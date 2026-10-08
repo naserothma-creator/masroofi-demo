@@ -3,15 +3,16 @@
   "short_name": "Masroofi",
   "description": "اعرف وين عم تروح مصاريك",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#f3f5f9",
+  "background_color": "#f5f6fa",
   "theme_color": "#111827",
   "orientation": "portrait",
   "lang": "ar",
   "dir": "rtl",
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "file_0000000090988210a438a2225e3f4219.png",
       "sizes": "192x192",
       "type": "image/png"
     },
