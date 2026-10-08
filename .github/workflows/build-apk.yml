@@ -8,11 +8,9 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -28,7 +26,9 @@ jobs:
           gradle-version: '8.7'
 
       - name: Build APK
-        run: gradle assembleDebug
+        run: |
+          cd android
+          gradle assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
