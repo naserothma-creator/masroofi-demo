@@ -15,37 +15,23 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        try {
-            WebView webView = new WebView(this);
+        WebView webView = new WebView(this);
 
-            WebSettings settings = webView.getSettings();
-            settings.setJavaScriptEnabled(true);
-            settings.setDomStorageEnabled(true);
-            settings.setDatabaseEnabled(true);
-            settings.setAllowFileAccess(true);
-            settings.setAllowContentAccess(true);
+        WebSettings settings = webView.getSettings();
 
-            webView.setWebViewClient(new WebViewClient());
+        settings.setJavaScriptEnabled(true);
+        settings.setDomStorageEnabled(true);
+        settings.setAllowFileAccess(true);
+        settings.setAllowContentAccess(true);
 
-            webView.loadUrl(
-                "https://naserothma-creator.github.io/masroofi-demo/"
-            );
+        webView.setWebViewClient(new WebViewClient());
 
-            setContentView(webView);
+        webView.setBackgroundColor(Color.WHITE);
 
-        } catch (Exception e) {
+        webView.loadUrl(
+            "https://naserothma-creator.github.io/masroofi-demo/"
+        );
 
-            TextView error = new TextView(this);
-            error.setText(
-                "Masroofi\n\nحدث خطأ أثناء تشغيل التطبيق.\n\n" +
-                "يرجى إعادة فتح التطبيق."
-            );
-            error.setTextSize(20);
-            error.setTextColor(Color.DKGRAY);
-            error.setGravity(Gravity.CENTER);
-            error.setPadding(40, 40, 40, 40);
-
-            setContentView(error);
-        }
+        setContentView(webView);
     }
 }
