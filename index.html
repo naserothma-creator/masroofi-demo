@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masroofi</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f6fa;
+    color: #222;
+}
+
+header {
+    background: #111827;
+    color: white;
+    padding: 25px 20px;
+    border-radius: 0 0 25px 25px;
+}
+
+header h1 {
+    margin: 0 0 8px;
+    font-size: 30px;
+}
+
+header p {
+    margin: 0;
+    opacity: .8;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.06);
+}
+
+.balance {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 8px 0 18px;
+}
+
+.progress {
+    height: 12px;
+    background: #e5e7eb;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #22c55e;
+    transition: .3s;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 17px;
+    margin-top: 10px;
+}
+
+button {
+    width: 100%;
+    border: none;
+    padding: 16px;
+    border-radius: 14px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.add {
+    background: #111827;
+    color: white;
+}
+
+.expense {
+    border-bottom: 1px solid #eee;
+    padding: 13px 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.expense:last-child {
+    border-bottom: none;
+}
+
+.empty {
+    color: #777;
+    text-align: center;
+    padding: 15px;
+}
+
+.warning {
+    color: #dc2626;
+    font-weight: bold;
+    margin-top: 12px;
+    display: none;
+}
+
+.delete {
+    background: #fee2e2;
+    color: #b91c1c;
+    width: auto;
+    padding: 7px 10px;
+    margin: 0;
+    font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>💰 Masroofi</h1>
+    <p>اعرف وين عم تروح مصاريك</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <div>💰 الميزانية الشهرية</div>
+        <div class="balance" id="budget">200,000 ل.س</div>
+
+        <div>💸 المصروف</div>
+        <div class="balance" id="spent">0 ل.س</div>
+
+        <div>💵 المتبقي</div>
+        <div class="balance" id="remaining">200,000 ل.س</div>
+
+        <div class="progress">
+            <div class="progress-bar" id="progress"></div>
+        </div>
+
+        <div class="warning" id="warning">
+            ⚠️ انتبه! وصلت إلى 80% من ميزانيتك.
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>➕ إضافة مصروف</h2>
+
+        <input
+            id="amount"
+            type="number"
+            placeholder="المبلغ"
+        >
+
+        <input
+            id="description"
+            type="text"
+            placeholder="مثلاً: قهوة"
+        >
+
+        <button class="add" onclick="addExpense()">
+            إضافة المصروف
+        </button>
+    </div>
+
+    <div class="card">
+        <h2>📜 آخر المصاريف</h2>
+        <div id="expenses">
+            <div class="empty">
+                لا توجد مصاريف حتى الآن
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+const budget = 200000;
+
+let expenses =
+    JSON.parse(localStorage.getItem("masroofi_expenses")) || [];
+
+function saveExpenses() {
+    localStorage.setItem(
+        "masroofi_expenses",
+        JSON.stringify(expenses)
+    );
+}
+
+function addExpense() {
+
+    const amountInput =
+        document.getElementById("amount");
+
+    const descriptionInput =
+        document.getElementById("description");
+
+    const amount =
+        Number(amountInput.value);
+
+    const description =
+        descriptionInput.value.trim();
+
+    if (!amount || amount <= 0) {
+        alert("اكتب مبلغ صحيح");
+        return;
+    }
+
+    if (!description) {
+        alert("اكتب وصف المصروف");
+        return;
+    }
+
+    expenses.unshift({
+        id: Date.now(),
+        amount: amount,
+        description: description,
+        date: new Date().toLocaleDateString("ar")
+    });
+
+    saveExpenses();
+
+    amountInput.value = "";
+    descriptionInput.value = "";
+
+    updateApp();
+}
+
+function deleteExpense(id) {
+
+    expenses =
+        expenses.filter(expense => expense.id !== id);
+
+    saveExpenses();
+
+    updateApp();
+}
+
+function updateApp() {
+
+    const spent =
+        expenses.reduce(
+            (total, expense) =>
+            total + expense.amount,
+            0
+        );
+
+    const remaining =
+        budget - spent;
+
+    document.getElementById("spent").textContent =
+        spent.toLocaleString("ar") + " ل.س";
+
+    document.getElementById("remaining").textContent =
+        remaining.toLocaleString("ar") + " ل.س";
+
+    const percentage =
+        (spent / budget) * 100;
+
+    document.getElementById("progress").style.width =
+        Math.min(percentage, 100) + "%";
+
+    const warning =
+        document.getElementById("warning");
+
+    warning.style.display =
+        percentage >= 80 ? "block" : "none";
+
+    const container =
+        document.getElementById("expenses");
+
+    if (expenses.length === 0) {
+
+        container.innerHTML =
+            '<div class="empty">لا توجد مصاريف حتى الآن</div>';
+
+        return;
+    }
+
+    container.innerHTML =
+        expenses.map(expense => {
+
+            const safeDescription =
+                escapeHtml(expense.description);
+
+            return `
+                <div class="expense">
+
+                    <div>
+                        <strong>
+                            ${safeDescription}
+                        </strong>
+
+                        <br>
+
+                        <small>
+                            ${expense.date}
+                        </small>
+                    </div>
+
+                    <div style="text-align:left">
+
+                        <strong>
+                            ${expense.amount.toLocaleString("ar")}
+                            ل.س
+                        </strong>
+
+                        <br>
+
+                        <button
+                            class="delete"
+                            onclick="deleteExpense(${expense.id})"
+                        >
+                            حذف
+                        </button>
+
+                    </div>
+
+                </div>
+            `;
+
+        }).join("");
+}
+
+function escapeHtml(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+}
+
+updateApp();
+
+</script>
+
+</body>
+  </html>
