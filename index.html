@@ -1,35 +1,16 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Masroofi</title>
-
-<link
-    rel="manifest"
-    href="./manifest.json"
->
-
-<meta
-    name="theme-color"
-    content="#111827"
->
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#111827">
 
 <style>
-
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 :root {
-
     --bg: #f3f5f9;
     --card: #ffffff;
     --text: #111827;
@@ -38,1837 +19,985 @@
     --green: #16a34a;
     --orange: #f59e0b;
     --red: #dc2626;
-
 }
 
 body.dark {
-
     --bg: #0f172a;
     --card: #1e293b;
     --text: #f8fafc;
     --muted: #94a3b8;
     --border: #334155;
-
 }
 
 body {
-
     margin: 0;
-
     background: var(--bg);
-
     color: var(--text);
-
-    font-family:
-        Arial,
-        sans-serif;
-
+    font-family: Arial, sans-serif;
 }
 
 header {
-
     background: #111827;
-
     color: white;
-
     padding: 28px 20px 32px;
-
-    border-radius:
-        0 0 30px 30px;
-
+    border-radius: 0 0 30px 30px;
 }
 
 .header {
-
     max-width: 650px;
-
     margin: auto;
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
 }
 
 .logo {
-
     font-size: 29px;
-
     font-weight: bold;
-
 }
 
 .subtitle {
-
     margin-top: 7px;
-
     opacity: .75;
-
 }
 
 .theme {
-
     width: 46px;
-
     height: 46px;
-
     padding: 0;
-
     margin: 0;
-
     border-radius: 14px;
-
-    background:
-        rgba(255,255,255,.12);
-
+    background: rgba(255,255,255,.12);
     color: white;
-
     font-size: 20px;
-
 }
 
 .container {
-
     max-width: 650px;
-
     margin: auto;
-
     padding: 18px;
-
 }
 
 .card {
-
     background: var(--card);
-
     border-radius: 22px;
-
     padding: 20px;
-
     margin-bottom: 16px;
-
-    box-shadow:
-        0 5px 20px
-        rgba(0,0,0,.06);
-
+    box-shadow: 0 5px 20px rgba(0,0,0,.06);
 }
 
 .title {
-
     font-size: 20px;
-
     font-weight: bold;
-
     margin-bottom: 18px;
-
 }
 
 .label {
-
     color: var(--muted);
-
     font-size: 14px;
-
 }
 
 .big-number {
-
     font-size: 29px;
-
     font-weight: bold;
-
-    margin:
-        7px 0 18px;
-
+    margin: 7px 0 18px;
 }
 
 .stats {
-
     display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
+    grid-template-columns: 1fr 1fr;
     gap: 12px;
-
 }
 
 .stat {
-
     background: var(--bg);
-
     border-radius: 16px;
-
     padding: 15px;
-
 }
 
 .stat-number {
-
     font-size: 20px;
-
     font-weight: bold;
-
     margin-top: 7px;
-
 }
 
 .progress {
-
     height: 13px;
-
     background: #e5e7eb;
-
     border-radius: 20px;
-
     overflow: hidden;
-
     margin-top: 16px;
-
 }
 
 .progress-bar {
-
     height: 100%;
-
     width: 0;
-
     background: var(--green);
-
     transition: .3s;
-
 }
 
 .alert {
-
     display: none;
-
     margin-top: 13px;
-
     padding: 13px;
-
     border-radius: 13px;
-
     background: #fef3c7;
-
     color: #92400e;
-
     font-weight: bold;
-
 }
 
-input,
-select {
-
+input, select {
     width: 100%;
-
     padding: 15px;
-
     margin-bottom: 10px;
-
-    border:
-        1px solid var(--border);
-
+    border: 1px solid var(--border);
     border-radius: 14px;
-
     background: var(--card);
-
     color: var(--text);
-
     font-size: 16px;
-
     outline: none;
-
 }
 
 button {
-
     width: 100%;
-
     border: none;
-
     padding: 15px;
-
     border-radius: 14px;
-
     font-size: 17px;
-
     font-weight: bold;
-
     cursor: pointer;
-
     margin-top: 8px;
-
 }
 
 .primary {
-
     background: #111827;
-
     color: white;
-
 }
 
 .secondary {
-
     background: var(--bg);
-
     color: var(--text);
-
 }
 
 .red-button {
-
     background: #fee2e2;
-
     color: #991b1b;
-
 }
 
 .report-grid {
-
     display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
+    grid-template-columns: 1fr 1fr;
     gap: 12px;
-
 }
 
 .report-box {
-
     background: var(--bg);
-
     border-radius: 16px;
-
     padding: 15px;
-
 }
 
-.report-icon {
-
-    font-size: 22px;
-
-}
+.report-icon { font-size: 22px; }
 
 .report-value {
-
     font-size: 19px;
-
     font-weight: bold;
-
     margin-top: 8px;
-
 }
 
 .report-label {
-
     color: var(--muted);
-
     font-size: 13px;
-
     margin-top: 5px;
-
 }
 
-.category {
-
-    margin-bottom: 16px;
-
-}
+.category { margin-bottom: 16px; }
 
 .category-head {
-
     display: flex;
-
     justify-content: space-between;
-
     margin-bottom: 7px;
-
 }
 
 .category-bar {
-
     height: 9px;
-
     background: var(--border);
-
     border-radius: 20px;
-
     overflow: hidden;
-
 }
 
 .category-fill {
-
     height: 100%;
-
     background: #111827;
-
     border-radius: 20px;
-
 }
 
 .expense {
-
     display: flex;
-
     justify-content: space-between;
-
     gap: 12px;
-
     padding: 15px 0;
-
-    border-bottom:
-        1px solid var(--border);
-
+    border-bottom: 1px solid var(--border);
 }
 
-.expense:last-child {
+.expense:last-child { border-bottom: none; }
 
-    border-bottom: none;
-
-}
-
-.expense-name {
-
-    font-weight: bold;
-
-}
+.expense-name { font-weight: bold; }
 
 .expense-meta {
-
     color: var(--muted);
-
     font-size: 13px;
-
     margin-top: 5px;
-
 }
 
 .expense-right {
-
     text-align: left;
-
     white-space: nowrap;
-
 }
 
-.expense-amount {
-
-    font-weight: bold;
-
-}
+.expense-amount { font-weight: bold; }
 
 .delete {
-
     width: auto;
-
     padding: 6px 9px;
-
     margin-top: 6px;
-
     background: #fee2e2;
-
     color: #991b1b;
-
     font-size: 12px;
-
 }
 
 .empty {
-
     text-align: center;
-
     color: var(--muted);
-
     padding: 25px 5px;
-
 }
 
 .modal {
-
     display: none;
-
     position: fixed;
-
     inset: 0;
-
-    background:
-        rgba(0,0,0,.55);
-
+    background: rgba(0,0,0,.55);
     z-index: 10;
-
     align-items: center;
-
     justify-content: center;
-
     padding: 20px;
-
 }
 
 .modal-box {
-
     width: 100%;
-
     max-width: 430px;
-
     background: var(--card);
-
     color: var(--text);
-
     border-radius: 22px;
-
     padding: 22px;
-
 }
 
 .footer {
-
     text-align: center;
-
     color: var(--muted);
-
     font-size: 13px;
-
-    padding:
-        5px 0 25px;
-
+    padding: 5px 0 25px;
 }
 
 @media (max-width: 430px) {
-
-    .stats,
-    .report-grid {
-
-        grid-template-columns:
-            1fr;
-
+    .stats, .report-grid {
+        grid-template-columns: 1fr;
     }
 
-    .logo {
-
-        font-size: 26px;
-
-    }
-
+    .logo { font-size: 26px; }
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
 <header>
+    <div class="header">
+        <div>
+            <div class="logo">💰 Masroofi</div>
+            <div class="subtitle">اعرف وين عم تروح مصاريك</div>
+        </div>
 
-<div class="header">
-
-<div>
-
-<div class="logo">
-💰 Masroofi
-</div>
-
-<div class="subtitle">
-اعرف وين عم تروح مصاريك
-</div>
-
-</div>
-
-<button
-    class="theme"
-    onclick="toggleDarkMode()"
->
-🌙
-</button>
-
-</div>
-
+        <button class="theme" type="button"
+                onclick="toggleDarkMode()">
+            🌙
+        </button>
+    </div>
 </header>
-
 
 <div class="container">
 
+    <div class="card">
+        <div class="title">💰 ملخص الشهر</div>
 
-<!-- SUMMARY -->
+        <div class="label">الميزانية الشهرية</div>
+        <div class="big-number" id="budget">0 ل.س</div>
 
-<div class="card">
+        <div class="stats">
+            <div class="stat">
+                <div class="label">💸 المصروف</div>
+                <div class="stat-number" id="spent">0 ل.س</div>
+            </div>
 
-<div class="title">
-💰 ملخص الشهر
+            <div class="stat">
+                <div class="label">💵 المتبقي</div>
+                <div class="stat-number" id="remaining">0 ل.س</div>
+            </div>
+        </div>
+
+        <div class="progress">
+            <div class="progress-bar" id="progress"></div>
+        </div>
+
+        <div class="alert" id="alert">
+            ⚠️ انتبه! استهلاكك للميزانية مرتفع.
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="title">➕ إضافة مصروف</div>
+
+        <input id="amount" type="number"
+               inputmode="decimal"
+               placeholder="المبلغ مثال: 15000">
+
+        <input id="description" type="text"
+               placeholder="مثال: قهوة">
+
+        <select id="category">
+            <option value="🍔 طعام">🍔 طعام</option>
+            <option value="🚗 مواصلات">🚗 مواصلات</option>
+            <option value="🏠 منزل">🏠 منزل</option>
+            <option value="💡 فواتير">💡 فواتير</option>
+            <option value="🛒 تسوق">🛒 تسوق</option>
+            <option value="🎮 ترفيه">🎮 ترفيه</option>
+            <option value="🏥 صحة">🏥 صحة</option>
+            <option value="📚 تعليم">📚 تعليم</option>
+            <option value="📦 أخرى">📦 أخرى</option>
+        </select>
+
+        <button class="primary" type="button"
+                onclick="addExpense()">
+            ➕ إضافة المصروف
+        </button>
+    </div>
+
+    <div class="card">
+        <div class="title">📊 التقرير الشهري</div>
+
+        <div class="report-grid">
+            <div class="report-box">
+                <div class="report-icon">📅</div>
+                <div class="report-value" id="daysPassed">0</div>
+                <div class="report-label">أيام الشهر</div>
+            </div>
+
+            <div class="report-box">
+                <div class="report-icon">💸</div>
+                <div class="report-value" id="dailyAverage">0</div>
+                <div class="report-label">متوسط الصرف اليومي</div>
+            </div>
+
+            <div class="report-box">
+                <div class="report-icon">🔮</div>
+                <div class="report-value" id="prediction">0</div>
+                <div class="report-label">توقع نهاية الشهر</div>
+            </div>
+
+            <div class="report-box">
+                <div class="report-icon">🏆</div>
+                <div class="report-value" id="topCategory">-</div>
+                <div class="report-label">أكثر تصنيف صرفًا</div>
+            </div>
+        </div>
+
+        <div class="alert" id="predictionAlert"></div>
+    </div>
+
+    <div class="card">
+        <div class="title">🏷️ أين تذهب مصاريك؟</div>
+        <div id="categoryReport">
+            <div class="empty">أضف مصروف حتى يظهر التقرير 📊</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="title">📜 آخر المصاريف</div>
+        <div id="expenses">
+            <div class="empty">لا توجد مصاريف حتى الآن</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="title">⚙️ الإعدادات</div>
+
+        <button class="secondary" type="button"
+                onclick="openBudget()">
+            💰 تعديل الميزانية
+        </button>
+
+        <button class="red-button" type="button"
+                onclick="clearData()">
+            🗑️ مسح جميع البيانات
+        </button>
+    </div>
+
+    <div class="footer">
+        Masroofi — اعرف وين عم تروح مصاريك 💰
+    </div>
 </div>
 
-<div class="label">
-الميزانية الشهرية
+<!-- نافذة تعديل الميزانية -->
+<div class="modal" id="budgetModal"
+     role="dialog" aria-modal="true">
+
+    <div class="modal-box">
+        <div class="title">💰 تعديل الميزانية</div>
+
+        <input id="newBudget" type="number"
+               inputmode="decimal"
+               placeholder="مثال: 500000">
+
+        <button class="primary" type="button"
+                onclick="saveBudget()">
+            💾 حفظ الميزانية
+        </button>
+
+        <button class="secondary" type="button"
+                onclick="closeBudget()">
+            إلغاء
+        </button>
+    </div>
 </div>
 
-<div
-    class="big-number"
-    id="budget"
->
-0 ل.س
+<!-- نافذة تأكيد داخل التطبيق -->
+<div class="modal" id="confirmModal"
+     role="dialog" aria-modal="true">
+
+    <div class="modal-box">
+        <div class="title" id="confirmTitle">
+            تأكيد العملية
+        </div>
+
+        <div id="confirmMessage"
+             style="line-height:1.8;margin-bottom:12px">
+        </div>
+
+        <button class="red-button" type="button"
+                id="confirmYes">
+            تأكيد
+        </button>
+
+        <button class="secondary" type="button"
+                id="confirmNo">
+            إلغاء
+        </button>
+    </div>
 </div>
-
-<div class="stats">
-
-
-<div class="stat">
-
-<div class="label">
-💸 المصروف
-</div>
-
-<div
-    class="stat-number"
-    id="spent"
->
-0 ل.س
-</div>
-
-</div>
-
-
-<div class="stat">
-
-<div class="label">
-💵 المتبقي
-</div>
-
-<div
-    class="stat-number"
-    id="remaining"
->
-0 ل.س
-</div>
-
-</div>
-
-
-</div>
-
-
-<div class="progress">
-
-<div
-    class="progress-bar"
-    id="progress"
-></div>
-
-</div>
-
-
-<div
-    class="alert"
-    id="alert"
->
-⚠️ انتبه! استهلاكك للميزانية مرتفع.
-</div>
-
-</div>
-
-
-
-<!-- ADD EXPENSE -->
-
-<div class="card">
-
-<div class="title">
-➕ إضافة مصروف
-</div>
-
-<input
-    id="amount"
-    type="number"
-    inputmode="decimal"
-    placeholder="المبلغ مثال: 15000"
->
-
-<input
-    id="description"
-    type="text"
-    placeholder="مثال: قهوة"
->
-
-<select id="category">
-
-<option value="🍔 طعام">
-🍔 طعام
-</option>
-
-<option value="🚗 مواصلات">
-🚗 مواصلات
-</option>
-
-<option value="🏠 منزل">
-🏠 منزل
-</option>
-
-<option value="💡 فواتير">
-💡 فواتير
-</option>
-
-<option value="🛒 تسوق">
-🛒 تسوق
-</option>
-
-<option value="🎮 ترفيه">
-🎮 ترفيه
-</option>
-
-<option value="🏥 صحة">
-🏥 صحة
-</option>
-
-<option value="📚 تعليم">
-📚 تعليم
-</option>
-
-<option value="📦 أخرى">
-📦 أخرى
-</option>
-
-</select>
-
-
-<button
-    class="primary"
-    onclick="addExpense()"
->
-➕ إضافة المصروف
-</button>
-
-</div>
-
-
-
-<!-- MONTHLY REPORT -->
-
-<div class="card">
-
-<div class="title">
-📊 التقرير الشهري
-</div>
-
-<div class="report-grid">
-
-
-<div class="report-box">
-
-<div class="report-icon">
-📅
-</div>
-
-<div
-    class="report-value"
-    id="daysPassed"
->
-0
-</div>
-
-<div class="report-label">
-أيام الشهر
-</div>
-
-</div>
-
-
-<div class="report-box">
-
-<div class="report-icon">
-💸
-</div>
-
-<div
-    class="report-value"
-    id="dailyAverage"
->
-0
-</div>
-
-<div class="report-label">
-متوسط الصرف اليومي
-</div>
-
-</div>
-
-
-<div class="report-box">
-
-<div class="report-icon">
-🔮
-</div>
-
-<div
-    class="report-value"
-    id="prediction"
->
-0
-</div>
-
-<div class="report-label">
-توقع نهاية الشهر
-</div>
-
-</div>
-
-
-<div class="report-box">
-
-<div class="report-icon">
-🏆
-</div>
-
-<div
-    class="report-value"
-    id="topCategory"
->
--
-</div>
-
-<div class="report-label">
-أكثر تصنيف صرفًا
-</div>
-
-</div>
-
-
-</div>
-
-
-<div
-    class="alert"
-    id="predictionAlert"
->
-</div>
-
-</div>
-
-
-
-<!-- CATEGORY REPORT -->
-
-<div class="card">
-
-<div class="title">
-🏷️ أين تذهب مصاريك؟
-</div>
-
-<div id="categoryReport">
-
-<div class="empty">
-أضف مصروف حتى يظهر التقرير 📊
-</div>
-
-</div>
-
-</div>
-
-
-
-<!-- EXPENSES -->
-
-<div class="card">
-
-<div class="title">
-📜 آخر المصاريف
-</div>
-
-<div id="expenses">
-
-<div class="empty">
-لا توجد مصاريف حتى الآن
-</div>
-
-</div>
-
-</div>
-
-
-
-<!-- SETTINGS -->
-
-<div class="card">
-
-<div class="title">
-⚙️ الإعدادات
-</div>
-
-<button
-    class="secondary"
-    onclick="openBudget()"
->
-💰 تعديل الميزانية
-</button>
-
-<button
-    class="red-button"
-    onclick="clearData()"
->
-🗑️ مسح جميع البيانات
-</button>
-
-</div>
-
-
-<div class="footer">
-
-Masroofi —
-اعرف وين عم تروح مصاريك 💰
-
-</div>
-
-</div>
-
-
-
-<!-- BUDGET MODAL -->
-
-<div
-    class="modal"
-    id="budgetModal"
->
-
-<div class="modal-box">
-
-<div class="title">
-💰 تعديل الميزانية
-</div>
-
-<input
-    id="newBudget"
-    type="number"
-    inputmode="decimal"
-    placeholder="مثال: 500000"
->
-
-<button
-    class="primary"
-    onclick="saveBudget()"
->
-💾 حفظ الميزانية
-</button>
-
-<button
-    class="secondary"
-    onclick="closeBudget()"
->
-إلغاء
-</button>
-
-</div>
-
-</div>
-
-
 
 <script>
+"use strict";
 
+/* الميزانية الافتراضية صفر */
+function readBudget() {
+    const saved = localStorage.getItem("masroofi_budget");
 
-/* =========================
-   DATA
-========================= */
+    if (saved === null) return 0;
 
-let budget =
-Number(
-    localStorage.getItem(
-        "masroofi_budget"
-    )
-) || 200000;
+    const value = Number(saved);
 
-
-let expenses =
-JSON.parse(
-    localStorage.getItem(
-        "masroofi_expenses"
-    )
-) || [];
-
-
-
-/* =========================
-   MONEY
-========================= */
-
-function money(value) {
-
-return Number(value)
-    .toLocaleString("ar-SY")
-    + " ل.س";
-
+    return Number.isFinite(value) && value >= 0
+        ? value
+        : 0;
 }
 
-
-
-/* =========================
-   SAVE
-========================= */
-
-function saveData() {
-
-localStorage.setItem(
-    "masroofi_budget",
-    budget
-);
-
-localStorage.setItem(
-    "masroofi_expenses",
-    JSON.stringify(expenses)
-);
-
-}
-
-
-
-/* =========================
-   ADD EXPENSE
-========================= */
-
-function addExpense() {
-
-const amount =
-Number(
-    document.getElementById(
-        "amount"
-    ).value
-);
-
-
-const description =
-document.getElementById(
-    "description"
-).value.trim();
-
-
-const category =
-document.getElementById(
-    "category"
-).value;
-
-
-if (!amount || amount <= 0) {
-
-alert(
-    "⚠️ اكتب مبلغ صحيح"
-);
-
-return;
-
-}
-
-
-if (!description) {
-
-alert(
-    "⚠️ اكتب وصف المصروف"
-);
-
-return;
-
-}
-
-
-expenses.unshift({
-
-id: Date.now(),
-
-amount: amount,
-
-description: description,
-
-category: category,
-
-date:
-new Date()
-    .toLocaleDateString("ar-SY"),
-
-timestamp: Date.now()
-
-});
-
-
-saveData();
-
-
-document.getElementById(
-    "amount"
-).value = "";
-
-
-document.getElementById(
-    "description"
-).value = "";
-
-
-update();
-
-}
-
-
-
-/* =========================
-   DELETE
-========================= */
-
-function deleteExpense(id) {
-
-if (
-!confirm(
-"هل تريد حذف هذا المصروف؟"
-)
-) {
-
-return;
-
-}
-
-
-expenses =
-expenses.filter(
-expense =>
-expense.id !== id
-);
-
-
-saveData();
-
-update();
-
-}
-
-
-
-/* =========================
-   MAIN UPDATE
-========================= */
-
-function update() {
-
-const spent =
-expenses.reduce(
-(sum, expense) =>
-sum + Number(
-    expense.amount
-),
-0
-);
-
-
-const remaining =
-budget - spent;
-
-
-const percentage =
-budget > 0
-? (spent / budget) * 100
-: 0;
-
-
-document.getElementById(
-    "budget"
-).textContent =
-money(budget);
-
-
-document.getElementById(
-    "spent"
-).textContent =
-money(spent);
-
-
-document.getElementById(
-    "remaining"
-).textContent =
-money(remaining);
-
-
-const progress =
-document.getElementById(
-    "progress"
-);
-
-
-progress.style.width =
-Math.min(
-    percentage,
-    100
-) + "%";
-
-
-if (percentage >= 100) {
-
-progress.style.background =
-"#dc2626";
-
-}
-
-else if (percentage >= 80) {
-
-progress.style.background =
-"#f59e0b";
-
-}
-
-else {
-
-progress.style.background =
-"#16a34a";
-
-}
-
-
-const alertBox =
-document.getElementById(
-    "alert"
-);
-
-
-alertBox.style.display =
-percentage >= 80
-? "block"
-: "none";
-
-
-renderExpenses();
-
-renderCategories();
-
-renderMonthlyReport();
-
-}
-
-
-
-/* =========================
-   EXPENSE LIST
-========================= */
-
-function renderExpenses() {
-
-const container =
-document.getElementById(
-    "expenses"
-);
-
-
-if (expenses.length === 0) {
-
-container.innerHTML =
-
-`
-<div class="empty">
-📭 لا توجد مصاريف حتى الآن
-</div>
-`;
-
-return;
-
-}
-
-
-container.innerHTML =
-expenses
-.slice(0, 20)
-.map(expense => {
-
-return `
-
-<div class="expense">
-
-<div>
-
-<div class="expense-name">
-
-${escapeHtml(
-    expense.description
-)}
-
-</div>
-
-<div class="expense-meta">
-
-${escapeHtml(
-    expense.category
-)}
-
- ·
-
-${escapeHtml(
-    expense.date
-)}
-
-</div>
-
-</div>
-
-
-<div class="expense-right">
-
-<div class="expense-amount">
-
-${money(
-    expense.amount
-)}
-
-</div>
-
-<button
-    class="delete"
-    onclick="deleteExpense(
-        ${expense.id}
-    )"
->
-حذف
-</button>
-
-</div>
-
-</div>
-
-`;
-
-})
-.join("");
-
-}
-
-
-
-/* =========================
-   CATEGORY REPORT
-========================= */
-
-function renderCategories() {
-
-const container =
-document.getElementById(
-    "categoryReport"
-);
-
-
-if (expenses.length === 0) {
-
-container.innerHTML =
-
-`
-<div class="empty">
-أضف مصروف حتى يظهر التقرير 📊
-</div>
-`;
-
-return;
-
-}
-
-
-const totals = {};
-
-
-expenses.forEach(
-expense => {
-
-if (
-!totals[
-    expense.category
-]
-) {
-
-totals[
-    expense.category
-] = 0;
-
-}
-
-totals[
-    expense.category
-] += Number(
-    expense.amount
-);
-
-}
-);
-
-
-const total =
-Object.values(totals)
-.reduce(
-    (a,b) => a+b,
-    0
-);
-
-
-container.innerHTML =
-Object.entries(totals)
-.sort(
-    (a,b) => b[1] - a[1]
-)
-.map(
-([category, amount]) => {
-
-const percentage =
-total > 0
-? (amount / total) * 100
-: 0;
-
-
-return `
-
-<div class="category">
-
-<div class="category-head">
-
-<span>
-${escapeHtml(category)}
-</span>
-
-<strong>
-${money(amount)}
-</strong>
-
-</div>
-
-<div class="category-bar">
-
-<div
-    class="category-fill"
-    style="
-        width:
-        ${percentage}%
-    "
-></div>
-
-</div>
-
-</div>
-
-`;
-
-}
-)
-.join("");
-
-}
-
-
-
-/* =========================
-   MONTHLY REPORT
-========================= */
-
-function renderMonthlyReport() {
-
-const now =
-new Date();
-
-
-const year =
-now.getFullYear();
-
-
-const month =
-now.getMonth();
-
-
-const today =
-now.getDate();
-
-
-const daysInMonth =
-new Date(
-    year,
-    month + 1,
-    0
-).getDate();
-
-
-const currentMonthExpenses =
-expenses.filter(
-expense => {
-
-const date =
-new Date(
-    expense.timestamp
-);
-
-
-return (
-    date.getFullYear()
-    === year
-    &&
-    date.getMonth()
-    === month
-);
-
-}
-);
-
-
-const spent =
-currentMonthExpenses.reduce(
-(sum, expense) =>
-sum + Number(
-    expense.amount
-),
-0
-);
-
-
-const dailyAverage =
-today > 0
-? spent / today
-: 0;
-
-
-const prediction =
-dailyAverage *
-daysInMonth;
-
-
-document.getElementById(
-    "daysPassed"
-).textContent =
-today +
-" / " +
-daysInMonth;
-
-
-document.getElementById(
-    "dailyAverage"
-).textContent =
-money(dailyAverage);
-
-
-document.getElementById(
-    "prediction"
-).textContent =
-money(prediction);
-
-
-
-/* TOP CATEGORY */
-
-const categories = {};
-
-
-currentMonthExpenses.forEach(
-expense => {
-
-if (
-!categories[
-    expense.category
-]
-) {
-
-categories[
-    expense.category
-] = 0;
-
-}
-
-categories[
-    expense.category
-] += Number(
-    expense.amount
-);
-
-}
-);
-
-
-let topCategory = "-";
-
-let topAmount = 0;
-
-
-Object.entries(
-    categories
-)
-.forEach(
-([category, amount]) => {
-
-if (
-    amount > topAmount
-) {
-
-topAmount = amount;
-
-topCategory =
-category;
-
-}
-
-}
-);
-
-
-document.getElementById(
-    "topCategory"
-).textContent =
-topCategory;
-
-
-
-/* PREDICTION ALERT */
-
-const predictionAlert =
-document.getElementById(
-    "predictionAlert"
-);
-
-
-if (
-prediction > budget
-&&
-dailyAverage > 0
-) {
-
-predictionAlert.style.display =
-"block";
-
-predictionAlert.textContent =
-"⚠️ حسب معدل صرفك الحالي، ممكن تتجاوز ميزانيتك قبل نهاية الشهر.";
-
-}
-
-else if (
-prediction >
-budget * 0.8
-&&
-dailyAverage > 0
-) {
-
-predictionAlert.style.display =
-"block";
-
-predictionAlert.textContent =
-"🟡 انتبه، توقعات الصرف قريبة من الحد الأعلى لميزانيتك.";
-
-}
-
-else {
-
-predictionAlert.style.display =
-"none";
-
-}
-
-}
-
-
-
-/* =========================
-   BUDGET
-========================= */
-
-function openBudget() {
-
-document.getElementById(
-    "newBudget"
-).value =
-budget;
-
-
-document.getElementById(
-    "budgetModal"
-).style.display =
-"flex";
-
-}
-
-
-function closeBudget() {
-
-document.getElementById(
-    "budgetModal"
-).style.display =
-"none";
-
-}
-
-
-function saveBudget() {
-
-const value =
-Number(
-    document.getElementById(
-        "newBudget"
-    ).value
-);
-
-
-if (
-!value ||
-value <= 0
-) {
-
-alert(
-    "⚠️ اكتب ميزانية صحيحة"
-);
-
-return;
-
-}
-
-
-budget = value;
-
-saveData();
-
-update();
-
-closeBudget();
-
-}
-
-
-
-/* =========================
-   DARK MODE
-========================= */
-
-function toggleDarkMode() {
-
-document.body.classList.toggle(
-    "dark"
-);
-
-
-localStorage.setItem(
-    "masroofi_dark",
-    document.body.classList.contains(
-        "dark"
-    )
-);
-
-}
-
-
-function loadDarkMode() {
-
-if (
-localStorage.getItem(
-    "masroofi_dark"
-) === "true"
-) {
-
-document.body.classList.add(
-    "dark"
-);
-
-}
-
-}
-
-
-
-/* =========================
-   CLEAR DATA
-========================= */
-
-function clearData() {
-
-const ok =
-confirm(
-"⚠️ سيتم حذف جميع المصاريف وإرجاع الميزانية إلى 200,000 ل.س. هل أنت متأكد؟"
-);
-
-
-if (!ok) {
-
-return;
-
-}
-
-
-expenses = [];
-
-budget = 200000;
-
-
-localStorage.removeItem(
-    "masroofi_expenses"
-);
-
-localStorage.removeItem(
-    "masroofi_budget"
-);
-
-
-update();
-
-}
-
-
-
-/* =========================
-   SECURITY
-========================= */
-
-function escapeHtml(text) {
-
-const div =
-document.createElement(
-    "div"
-);
-
-div.textContent =
-text;
-
-return div.innerHTML;
-
-}
-
-
-
-/* =========================
-   PWA SERVICE WORKER
-========================= */
-
-if (
-"serviceWorker"
-in navigator
-) {
-
-window.addEventListener(
-    "load",
-    () => {
-
-        navigator.serviceWorker
-        .register("./sw.js")
-        .catch(
-            error => {
-
-                console.log(
-                    "Service Worker error:",
-                    error
-                );
-
-            }
+let budget = readBudget();
+
+/* قراءة المصروفات المحفوظة */
+function readExpenses() {
+    try {
+        const saved = JSON.parse(
+            localStorage.getItem("masroofi_expenses") || "[]"
         );
 
-    }
-);
+        if (!Array.isArray(saved)) return [];
 
+        return saved
+            .filter(e => e && typeof e === "object")
+            .map((e, i) => ({
+                id: e.id ?? (Date.now() + i),
+                amount: Number(e.amount) || 0,
+                description: String(e.description ?? ""),
+                category: String(e.category ?? "📦 أخرى"),
+                date: String(e.date ?? ""),
+                timestamp: Number(e.timestamp) || Date.now()
+            }));
+
+    } catch (error) {
+        console.error("تعذر قراءة المصروفات:", error);
+        return [];
+    }
 }
 
+let expenses = readExpenses();
 
+/* تنسيق الأموال */
+function money(value) {
+    return Number(value || 0).toLocaleString("ar-SY") + " ل.س";
+}
 
-/* =========================
-   START
-========================= */
+/* حفظ البيانات */
+function saveData() {
+    try {
+        localStorage.setItem("masroofi_budget", String(budget));
 
+        localStorage.setItem(
+            "masroofi_expenses",
+            JSON.stringify(expenses)
+        );
+
+        return true;
+
+    } catch (error) {
+        console.error("تعذر حفظ البيانات:", error);
+        showMessage("تعذر حفظ البيانات على هذا الجهاز.");
+        return false;
+    }
+}
+
+/* عرض رسالة داخل التطبيق */
+function showMessage(message) {
+    const modal = document.getElementById("confirmModal");
+
+    document.getElementById("confirmTitle").textContent = "تنبيه";
+    document.getElementById("confirmMessage").textContent = message;
+
+    const yes = document.getElementById("confirmYes");
+    const no = document.getElementById("confirmNo");
+
+    yes.style.display = "none";
+    no.textContent = "حسنًا";
+
+    yes.onclick = null;
+
+    no.onclick = function() {
+        modal.style.display = "none";
+        resetConfirmButtons();
+    };
+
+    modal.style.display = "flex";
+}
+
+/* إعادة أزرار التأكيد إلى حالتها الطبيعية */
+function resetConfirmButtons() {
+    const yes = document.getElementById("confirmYes");
+    const no = document.getElementById("confirmNo");
+
+    yes.style.display = "block";
+    no.textContent = "إلغاء";
+
+    yes.onclick = null;
+    no.onclick = null;
+}
+
+/* نافذة تأكيد مدمجة ومتوافقة مع WebView */
+function askConfirm(title, message, onConfirm) {
+    const modal = document.getElementById("confirmModal");
+
+    const titleElement = document.getElementById("confirmTitle");
+    const messageElement = document.getElementById("confirmMessage");
+
+    const yes = document.getElementById("confirmYes");
+    const no = document.getElementById("confirmNo");
+
+    titleElement.textContent = title;
+    messageElement.textContent = message;
+
+    yes.style.display = "block";
+    no.textContent = "إلغاء";
+
+    yes.onclick = function() {
+        modal.style.display = "none";
+        resetConfirmButtons();
+        onConfirm();
+    };
+
+    no.onclick = function() {
+        modal.style.display = "none";
+        resetConfirmButtons();
+    };
+
+    modal.style.display = "flex";
+}
+
+/* إضافة مصروف */
+function addExpense() {
+    const amount = Number(
+        document.getElementById("amount").value
+    );
+
+    const description = document
+        .getElementById("description")
+        .value.trim();
+
+    const category = document.getElementById("category").value;
+
+    if (!Number.isFinite(amount) || amount <= 0) {
+        showMessage("⚠️ اكتب مبلغ صحيح");
+        return;
+    }
+
+    if (!description) {
+        showMessage("⚠️ اكتب وصف المصروف");
+        return;
+    }
+
+    const id = window.crypto && crypto.randomUUID
+        ? crypto.randomUUID()
+        : String(Date.now()) + String(Math.random()).slice(2);
+
+    expenses.unshift({
+        id: id,
+        amount: amount,
+        description: description,
+        category: category,
+        date: new Date().toLocaleDateString("ar-SY"),
+        timestamp: Date.now()
+    });
+
+    saveData();
+
+    document.getElementById("amount").value = "";
+    document.getElementById("description").value = "";
+
+    update();
+}
+
+/* حذف مصروف واحد */
+function deleteExpense(id) {
+    askConfirm(
+        "حذف المصروف",
+        "هل تريد حذف هذا المصروف؟",
+        function() {
+            const oldLength = expenses.length;
+
+            expenses = expenses.filter(function(expense) {
+                return String(expense.id) !== String(id);
+            });
+
+            if (expenses.length === oldLength) {
+                showMessage("لم يتم العثور على المصروف. حدّث الصفحة وحاول مرة أخرى.");
+                return;
+            }
+
+            saveData();
+            update();
+
+            showMessage("تم حذف المصروف بنجاح.");
+        }
+    );
+}
+
+/* تحديث الملخص والتقارير */
+function update() {
+    const spent = expenses.reduce(
+        (sum, expense) => sum + Number(expense.amount || 0),
+        0
+    );
+
+    const remaining = budget - spent;
+
+    const percentage = budget > 0
+        ? (spent / budget) * 100
+        : 0;
+
+    document.getElementById("budget").textContent = money(budget);
+    document.getElementById("spent").textContent = money(spent);
+    document.getElementById("remaining").textContent = money(remaining);
+
+    const progress = document.getElementById("progress");
+
+    progress.style.width = Math.min(percentage, 100) + "%";
+
+    if (percentage >= 100) {
+        progress.style.background = "#dc2626";
+    } else if (percentage >= 80) {
+        progress.style.background = "#f59e0b";
+    } else {
+        progress.style.background = "#16a34a";
+    }
+
+    document.getElementById("alert").style.display =
+        budget > 0 && percentage >= 80 ? "block" : "none";
+
+    renderExpenses();
+    renderCategories();
+    renderMonthlyReport();
+}
+
+/* عرض المصروفات وزر الحذف */
+function renderExpenses() {
+    const container = document.getElementById("expenses");
+
+    if (expenses.length === 0) {
+        container.innerHTML =
+            '<div class="empty">📭 لا توجد مصاريف حتى الآن</div>';
+        return;
+    }
+
+    container.innerHTML = expenses.slice(0, 20).map(function(expense) {
+        return `
+            <div class="expense">
+                <div>
+                    <div class="expense-name">
+                        ${escapeHtml(expense.description)}
+                    </div>
+
+                    <div class="expense-meta">
+                        ${escapeHtml(expense.category)} ·
+                        ${escapeHtml(expense.date)}
+                    </div>
+                </div>
+
+                <div class="expense-right">
+                    <div class="expense-amount">
+                        ${money(expense.amount)}
+                    </div>
+
+                    <button
+                        class="delete"
+                        type="button"
+                        data-delete-id="${escapeHtml(String(expense.id))}">
+                        حذف
+                    </button>
+                </div>
+            </div>
+        `;
+    }).join("");
+}
+
+/* التقاط ضغطات الحذف بطريقة مستقلة */
+document.getElementById("expenses").addEventListener("click", function(event) {
+    const button = event.target.closest("button[data-delete-id]");
+
+    if (button) {
+        deleteExpense(button.getAttribute("data-delete-id"));
+    }
+});
+
+/* تقرير التصنيفات */
+function renderCategories() {
+    const container = document.getElementById("categoryReport");
+
+    if (expenses.length === 0) {
+        container.innerHTML =
+            '<div class="empty">أضف مصروف حتى يظهر التقرير 📊</div>';
+        return;
+    }
+
+    const totals = {};
+
+    expenses.forEach(function(expense) {
+        totals[expense.category] =
+            (totals[expense.category] || 0) + Number(expense.amount || 0);
+    });
+
+    const total = Object.values(totals).reduce(
+        (a, b) => a + b,
+        0
+    );
+
+    container.innerHTML = Object.entries(totals)
+        .sort((a, b) => b[1] - a[1])
+        .map(function(item) {
+            const category = item[0];
+            const amount = item[1];
+
+            const percentage = total > 0
+                ? (amount / total) * 100
+                : 0;
+
+            return `
+                <div class="category">
+                    <div class="category-head">
+                        <span>${escapeHtml(category)}</span>
+                        <strong>${money(amount)}</strong>
+                    </div>
+
+                    <div class="category-bar">
+                        <div class="category-fill"
+                             style="width:${percentage}%"></div>
+                    </div>
+                </div>
+            `;
+        }).join("");
+}
+
+/* التقرير الشهري */
+function renderMonthlyReport() {
+    const now = new Date();
+
+    const year = now.getFullYear();
+    const month = now.getMonth();
+    const today = now.getDate();
+
+    const daysInMonth = new Date(
+        year,
+        month + 1,
+        0
+    ).getDate();
+
+    const currentMonthExpenses = expenses.filter(function(expense) {
+        const date = new Date(Number(expense.timestamp));
+
+        return date.getFullYear() === year &&
+               date.getMonth() === month;
+    });
+
+    const spent = currentMonthExpenses.reduce(
+        (sum, expense) => sum + Number(expense.amount || 0),
+        0
+    );
+
+    const dailyAverage = spent / today;
+    const prediction = dailyAverage * daysInMonth;
+
+    document.getElementById("daysPassed").textContent =
+        today + " / " + daysInMonth;
+
+    document.getElementById("dailyAverage").textContent =
+        money(dailyAverage);
+
+    document.getElementById("prediction").textContent =
+        money(prediction);
+
+    const categories = {};
+
+    currentMonthExpenses.forEach(function(expense) {
+        categories[expense.category] =
+            (categories[expense.category] || 0) +
+            Number(expense.amount || 0);
+    });
+
+    let topCategory = "-";
+    let topAmount = 0;
+
+    Object.entries(categories).forEach(function(item) {
+        if (item[1] > topAmount) {
+            topAmount = item[1];
+            topCategory = item[0];
+        }
+    });
+
+    document.getElementById("topCategory").textContent = topCategory;
+
+    const predictionAlert = document.getElementById("predictionAlert");
+
+    if (dailyAverage > 0 && prediction > budget) {
+        predictionAlert.style.display = "block";
+        predictionAlert.textContent =
+            "⚠️ حسب معدل صرفك الحالي، ممكن تتجاوز ميزانيتك قبل نهاية الشهر.";
+    } else if (dailyAverage > 0 && prediction > budget * 0.8) {
+        predictionAlert.style.display = "block";
+        predictionAlert.textContent =
+            "🟡 انتبه، توقعات الصرف قريبة من الحد الأعلى لميزانيتك.";
+    } else {
+        predictionAlert.style.display = "none";
+    }
+}
+
+/* تعديل الميزانية */
+function openBudget() {
+    document.getElementById("newBudget").value = budget;
+    document.getElementById("budgetModal").style.display = "flex";
+}
+
+function closeBudget() {
+    document.getElementById("budgetModal").style.display = "none";
+}
+
+function saveBudget() {
+    const value = Number(
+        document.getElementById("newBudget").value
+    );
+
+    if (!Number.isFinite(value) || value <= 0) {
+        showMessage("⚠️ اكتب ميزانية صحيحة أكبر من صفر");
+        return;
+    }
+
+    budget = value;
+
+    saveData();
+    update();
+    closeBudget();
+}
+
+/* الوضع الداكن */
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+
+    try {
+        localStorage.setItem(
+            "masroofi_dark",
+            document.body.classList.contains("dark") ? "true" : "false"
+        );
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function loadDarkMode() {
+    if (localStorage.getItem("masroofi_dark") === "true") {
+        document.body.classList.add("dark");
+    }
+}
+
+/* مسح جميع البيانات */
+function clearData() {
+    askConfirm(
+        "مسح جميع البيانات",
+        "سيتم حذف جميع المصاريف وإرجاع الميزانية إلى صفر. هل أنت متأكد؟",
+        function() {
+            expenses = [];
+            budget = 0;
+
+            try {
+                localStorage.removeItem("masroofi_expenses");
+                localStorage.setItem("masroofi_budget", "0");
+            } catch (error) {
+                console.error("تعذر مسح البيانات:", error);
+                showMessage("حدث خطأ أثناء مسح البيانات.");
+                return;
+            }
+
+            update();
+            showMessage("تم مسح جميع البيانات وإرجاع الميزانية إلى صفر.");
+        }
+    );
+}
+
+/* حماية النصوص المعروضة */
+function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.textContent = String(text ?? "");
+    return div.innerHTML;
+}
+
+/* Service Worker */
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function() {
+        navigator.serviceWorker
+            .register("./sw.js")
+            .catch(function(error) {
+                console.log("Service Worker error:", error);
+            });
+    });
+}
+
+/* بدء التطبيق */
 loadDarkMode();
-
 update();
-
 </script>
 
-
 </body>
-
 </html>
