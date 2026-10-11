@@ -5,59 +5,342 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#111827">
 <title>Masroofi</title>
+
 <style>
-:root{--bg:#f3f5f9;--card:#fff;--text:#111827;--muted:#6b7280;--border:#e5e7eb;--green:#15803d;--red:#b91c1c;--amber:#b45309}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,"Noto Sans Arabic",sans-serif}
-body.dark{--bg:#0f172a;--card:#1e293b;--text:#f8fafc;--muted:#cbd5e1;--border:#334155}
-header{background:#111827;color:#fff;padding:24px 18px;border-radius:0 0 26px 26px}
-.header,.container{max-width:680px;margin:auto}
-.header{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.logo{font-size:28px;font-weight:800}
-.subtitle{margin-top:7px;opacity:.85}
-button{font:inherit;cursor:pointer;border:0;border-radius:13px;padding:13px 15px;font-weight:700;min-height:46px}
-.theme{background:#ffffff20;color:#fff;font-size:20px;width:48px;padding:8px}
-.container{padding:16px}
-.card{background:var(--card);border-radius:20px;padding:18px;margin-bottom:15px;box-shadow:0 4px 18px #0000000a}
-.title{font-size:19px;font-weight:800;margin:0 0 15px}
-.label{color:var(--muted);font-size:14px}
-.big{font-size:28px;font-weight:800;margin:7px 0 16px;overflow-wrap:anywhere}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.stat,.report-box{background:var(--bg);border-radius:14px;padding:13px;min-width:0}
-.stat strong{display:block;font-size:19px;margin-top:7px;overflow-wrap:anywhere}
-.progress{height:11px;background:var(--border);border-radius:20px;overflow:hidden;margin-top:15px}
-.progressbar{height:100%;width:0;background:var(--green);transition:width .2s}
-.notice{display:none;background:#fef3c7;color:#92400e;border-radius:12px;padding:12px;margin-top:12px;line-height:1.6}
-input,select{display:block;width:100%;min-height:48px;padding:12px;margin:0 0 10px;border:1px solid var(--border);border-radius:12px;background:var(--card);color:var(--text);font:inherit}
-.primary{background:#111827;color:white;width:100%}
-.secondary{background:var(--bg);color:var(--text);width:100%}
-.danger{background:#fee2e2;color:#991b1b;width:100%}
-.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.report-icon{font-size:21px}
-.report-value{font-weight:800;margin-top:8px;overflow-wrap:anywhere}
-.report-label{font-size:13px;color:var(--muted);margin-top:5px}
-.category{margin-bottom:15px}
-.category-head{display:flex;justify-content:space-between;gap:10px;margin-bottom:7px}
-.category-head span{overflow-wrap:anywhere}
-.bar{height:8px;background:var(--border);border-radius:20px;overflow:hidden}
-.fill{height:100%;background:#334155}
-.expense{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--border)}
-.expense:last-child{border-bottom:0}
-.expense-name{font-weight:700;overflow-wrap:anywhere}
-.meta{font-size:13px;color:var(--muted);margin-top:5px}
-.right{text-align:left;flex-shrink:0}
-.amount{font-weight:800;white-space:nowrap}
-.delete{background:#fee2e2;color:#991b1b;padding:7px 10px;min-height:36px;font-size:13px;margin-top:7px}
-.empty{text-align:center;padding:20px 5px;color:var(--muted);line-height:1.7}
-.footer{text-align:center;color:var(--muted);font-size:13px;padding:5px 0 22px}
-.modal{display:none;position:fixed;inset:0;z-index:1000;background:#0009;align-items:center;justify-content:center;padding:18px}
-.modal-box{width:100%;max-width:420px;background:var(--card);color:var(--text);border-radius:20px;padding:20px;box-shadow:0 10px 40px #0003}
-.modal-message{line-height:1.8;margin:8px 0 14px;white-space:pre-wrap;overflow-wrap:anywhere}
-.modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.modal-actions button{width:100%}
-@media(max-width:420px){.container{padding:12px}.card{padding:15px}.logo{font-size:25px}.big{font-size:25px}}
+:root {
+  --bg:#f3f5f9;
+  --card:#fff;
+  --text:#111827;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --green:#15803d;
+  --red:#b91c1c;
+  --amber:#b45309;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,"Noto Sans Arabic",sans-serif;
+}
+
+body.dark {
+  --bg:#0f172a;
+  --card:#1e293b;
+  --text:#f8fafc;
+  --muted:#cbd5e1;
+  --border:#334155;
+}
+
+header {
+  background:#111827;
+  color:#fff;
+  padding:24px 18px;
+  border-radius:0 0 26px 26px;
+}
+
+.header,.container {
+  max-width:680px;
+  margin:auto;
+}
+
+.header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.logo {
+  font-size:28px;
+  font-weight:800;
+}
+
+.subtitle {
+  margin-top:7px;
+  opacity:.85;
+}
+
+button {
+  font:inherit;
+  cursor:pointer;
+  border:0;
+  border-radius:13px;
+  padding:13px 15px;
+  font-weight:700;
+  min-height:46px;
+}
+
+button:disabled {
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+.theme {
+  background:#ffffff20;
+  color:#fff;
+  font-size:20px;
+  width:48px;
+  padding:8px;
+}
+
+.container { padding:16px; }
+
+.card {
+  background:var(--card);
+  border-radius:20px;
+  padding:18px;
+  margin-bottom:15px;
+  box-shadow:0 4px 18px #0000000a;
+}
+
+.title {
+  font-size:19px;
+  font-weight:800;
+  margin:0 0 15px;
+}
+
+.label {
+  color:var(--muted);
+  font-size:14px;
+}
+
+.big {
+  font-size:28px;
+  font-weight:800;
+  margin:7px 0 16px;
+  overflow-wrap:anywhere;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.stat,.report-box {
+  background:var(--bg);
+  border-radius:14px;
+  padding:13px;
+  min-width:0;
+}
+
+.stat strong {
+  display:block;
+  font-size:19px;
+  margin-top:7px;
+  overflow-wrap:anywhere;
+}
+
+.progress {
+  height:11px;
+  background:var(--border);
+  border-radius:20px;
+  overflow:hidden;
+  margin-top:15px;
+}
+
+.progressbar {
+  height:100%;
+  width:0;
+  background:var(--green);
+  transition:width .2s;
+}
+
+.notice {
+  display:none;
+  background:#fef3c7;
+  color:#92400e;
+  border-radius:12px;
+  padding:12px;
+  margin-top:12px;
+  line-height:1.6;
+}
+
+input,select {
+  display:block;
+  width:100%;
+  min-height:48px;
+  padding:12px;
+  margin:0 0 10px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--card);
+  color:var(--text);
+  font:inherit;
+}
+
+.primary {
+  background:#111827;
+  color:white;
+  width:100%;
+}
+
+.secondary {
+  background:var(--bg);
+  color:var(--text);
+  width:100%;
+}
+
+.danger {
+  background:#fee2e2;
+  color:#991b1b;
+  width:100%;
+}
+
+.report-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.report-icon { font-size:21px; }
+
+.report-value {
+  font-weight:800;
+  margin-top:8px;
+  overflow-wrap:anywhere;
+}
+
+.report-label {
+  font-size:13px;
+  color:var(--muted);
+  margin-top:5px;
+}
+
+.category { margin-bottom:15px; }
+
+.category-head {
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:7px;
+}
+
+.category-head span { overflow-wrap:anywhere; }
+
+.bar {
+  height:8px;
+  background:var(--border);
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.fill {
+  height:100%;
+  background:#334155;
+}
+
+.expense {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  padding:13px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.expense:last-child { border-bottom:0; }
+
+.expense-name {
+  font-weight:700;
+  overflow-wrap:anywhere;
+}
+
+.meta {
+  font-size:13px;
+  color:var(--muted);
+  margin-top:5px;
+}
+
+.right {
+  text-align:left;
+  flex-shrink:0;
+}
+
+.amount {
+  font-weight:800;
+  white-space:nowrap;
+}
+
+.delete {
+  background:#fee2e2;
+  color:#991b1b;
+  padding:7px 10px;
+  min-height:36px;
+  font-size:13px;
+  margin-top:7px;
+}
+
+.empty {
+  text-align:center;
+  padding:20px 5px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.footer {
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  padding:5px 0 22px;
+}
+
+.backup-info {
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.8;
+  margin-top:10px;
+}
+
+.modal {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  background:#0009;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+}
+
+.modal-box {
+  width:100%;
+  max-width:420px;
+  background:var(--card);
+  color:var(--text);
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 10px 40px #0003;
+}
+
+.modal-message {
+  line-height:1.8;
+  margin:8px 0 14px;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+
+.modal-actions {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+
+.modal-actions button { width:100%; }
+
+@media(max-width:420px) {
+  .container { padding:12px; }
+  .card { padding:15px; }
+  .logo { font-size:25px; }
+  .big { font-size:25px; }
+}
 </style>
 </head>
+
 <body>
 
 <header>
@@ -66,7 +349,9 @@ input,select{display:block;width:100%;min-height:48px;padding:12px;margin:0 0 10
       <div class="logo">💰 Masroofi</div>
       <div class="subtitle">اعرف وين عم تروح مصاريك</div>
     </div>
-    <button class="theme" id="themeBtn" type="button" aria-label="الوضع الليلي">🌙</button>
+
+    <button class="theme" id="themeBtn" type="button"
+      aria-label="الوضع الليلي">🌙</button>
   </div>
 </header>
 
@@ -74,27 +359,40 @@ input,select{display:block;width:100%;min-height:48px;padding:12px;margin:0 0 10
 
 <section class="card">
   <h2 class="title">💰 ملخص الميزانية</h2>
+
   <div class="label">الميزانية الشهرية</div>
   <div class="big" id="budgetDisplay">0 ل.س</div>
+
   <div class="grid">
     <div class="stat">
       <div class="label">💸 المصروف</div>
       <strong id="spentDisplay">0 ل.س</strong>
     </div>
+
     <div class="stat">
       <div class="label">💵 المتبقي</div>
       <strong id="remainingDisplay">0 ل.س</strong>
     </div>
   </div>
-  <div class="progress"><div class="progressbar" id="progressBar"></div></div>
+
+  <div class="progress">
+    <div class="progressbar" id="progressBar"></div>
+  </div>
+
   <div class="notice" id="budgetNotice"></div>
 </section>
 
 <section class="card">
   <h2 class="title">➕ إضافة مصروف</h2>
+
   <form id="expenseForm">
-    <input id="amountInput" type="number" min="0.01" step="any" inputmode="decimal" placeholder="المبلغ مثال: 15000" required>
-    <input id="descriptionInput" type="text" maxlength="120" placeholder="وصف المصروف مثال: قهوة" required>
+    <input id="amountInput" type="number" min="0.01"
+      step="any" inputmode="decimal"
+      placeholder="المبلغ مثال: 15000" required>
+
+    <input id="descriptionInput" type="text" maxlength="120"
+      placeholder="وصف المصروف مثال: قهوة" required>
+
     <select id="categoryInput">
       <option>🍔 طعام</option>
       <option>🚗 مواصلات</option>
@@ -106,75 +404,142 @@ input,select{display:block;width:100%;min-height:48px;padding:12px;margin:0 0 10
       <option>📚 تعليم</option>
       <option>📦 أخرى</option>
     </select>
-    <button class="primary" type="submit">➕ إضافة المصروف</button>
+
+    <button class="primary" type="submit">
+      ➕ إضافة المصروف
+    </button>
   </form>
 </section>
 
 <section class="card">
   <h2 class="title">📊 التقرير الشهري</h2>
+
   <div class="report-grid">
     <div class="report-box">
       <div class="report-icon">📅</div>
       <div class="report-value" id="daysValue">-</div>
       <div class="report-label">أيام الشهر</div>
     </div>
+
     <div class="report-box">
       <div class="report-icon">💸</div>
       <div class="report-value" id="averageValue">0 ل.س</div>
       <div class="report-label">متوسط الصرف اليومي</div>
     </div>
+
     <div class="report-box">
       <div class="report-icon">🔮</div>
       <div class="report-value" id="predictionValue">0 ل.س</div>
       <div class="report-label">توقع نهاية الشهر</div>
     </div>
+
     <div class="report-box">
       <div class="report-icon">🏆</div>
       <div class="report-value" id="topCategoryValue">-</div>
       <div class="report-label">أكثر تصنيف صرفًا</div>
     </div>
   </div>
+
   <div class="notice" id="predictionNotice"></div>
 </section>
 
 <section class="card">
   <h2 class="title">🏷️ أين تذهب مصاريك؟</h2>
-  <div id="categoryReport" class="empty">أضف مصروفًا حتى يظهر التقرير 📊</div>
+  <div id="categoryReport" class="empty">
+    أضف مصروفًا حتى يظهر التقرير 📊
+  </div>
 </section>
 
 <section class="card">
   <h2 class="title">📜 آخر المصاريف</h2>
-  <div id="expensesList" class="empty">لا توجد مصاريف حتى الآن</div>
+  <div id="expensesList" class="empty">
+    لا توجد مصاريف حتى الآن
+  </div>
 </section>
 
 <section class="card">
   <h2 class="title">⚙️ الإعدادات</h2>
-  <button class="secondary" id="editBudgetBtn" type="button">💰 تعديل الميزانية</button>
+
+  <button class="secondary" id="editBudgetBtn" type="button">
+    💰 تعديل الميزانية
+  </button>
+
   <div style="height:8px"></div>
-  <button class="danger" id="clearDataBtn" type="button">🗑️ مسح جميع البيانات</button>
+
+  <button class="secondary" id="exportBackupBtn" type="button">
+    📤 إنشاء نسخة احتياطية
+  </button>
+
+  <div style="height:8px"></div>
+
+  <button class="secondary" id="importBackupBtn" type="button">
+    📥 استعادة نسخة احتياطية
+  </button>
+
+  <input
+    id="backupFileInput"
+    type="file"
+    accept=".json,application/json"
+    style="display:none"
+  >
+
+  <div class="backup-info">
+    احتفظ بنسخة احتياطية من بياناتك بشكل دوري.
+    عند الاستعادة، ستُستبدل البيانات الحالية بالبيانات الموجودة في الملف.
+    لا تشارك ملف النسخة الاحتياطية مع أشخاص آخرين.
+  </div>
+
+  <div style="height:8px"></div>
+
+  <button class="danger" id="clearDataBtn" type="button">
+    🗑️ مسح جميع البيانات
+  </button>
 </section>
 
-<div class="footer">Masroofi — اعرف وين عم تروح مصاريك 💰</div>
+<div class="footer">
+  Masroofi — اعرف وين عم تروح مصاريك 💰
+</div>
+
 </main>
 
-<div class="modal" id="dialogModal" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
+<div class="modal" id="dialogModal" role="dialog"
+  aria-modal="true" aria-labelledby="dialogTitle">
+
   <div class="modal-box">
     <h2 class="title" id="dialogTitle">تأكيد</h2>
+
     <div class="modal-message" id="dialogMessage"></div>
+
     <div class="modal-actions">
-      <button class="primary" id="dialogConfirm" type="button">تأكيد</button>
-      <button class="secondary" id="dialogCancel" type="button">إلغاء</button>
+      <button class="primary" id="dialogConfirm" type="button">
+        تأكيد
+      </button>
+
+      <button class="secondary" id="dialogCancel" type="button">
+        إلغاء
+      </button>
     </div>
   </div>
 </div>
 
-<div class="modal" id="budgetModal" role="dialog" aria-modal="true" aria-labelledby="budgetTitle">
+<div class="modal" id="budgetModal" role="dialog"
+  aria-modal="true" aria-labelledby="budgetTitle">
+
   <div class="modal-box">
     <h2 class="title" id="budgetTitle">💰 تعديل الميزانية</h2>
-    <input id="budgetInput" type="number" min="0.01" step="any" inputmode="decimal" placeholder="أدخل الميزانية الجديدة">
+
+    <input id="budgetInput" type="number" min="0.01"
+      step="any" inputmode="decimal"
+      placeholder="أدخل الميزانية الجديدة">
+
     <div class="modal-actions">
-      <button class="primary" id="saveBudgetBtn" type="button">حفظ الميزانية</button>
-      <button class="secondary" id="cancelBudgetBtn" type="button">إلغاء</button>
+      <button class="primary" id="saveBudgetBtn" type="button">
+        حفظ الميزانية
+      </button>
+
+      <button class="secondary" id="cancelBudgetBtn" type="button">
+        إلغاء
+      </button>
     </div>
   </div>
 </div>
@@ -188,6 +553,7 @@ const KEYS = {
   dark: "masroofi_dark"
 };
 
+const BACKUP_VERSION = 1;
 const $ = id => document.getElementById(id);
 
 function safeGet(key) {
@@ -218,9 +584,11 @@ function safeRemove(key) {
 
 function initialBudget() {
   const raw = safeGet(KEYS.budget);
+
   if (raw === null) return 0;
 
   const n = Number(raw);
+
   return Number.isFinite(n) && n >= 0 ? n : 0;
 }
 
@@ -240,7 +608,9 @@ function loadExpenses() {
         date: String(x.date ?? ""),
         timestamp: Number(x.timestamp) || Date.now()
       }))
-      .filter(x => x.amount > 0);
+      .filter(x =>
+        Number.isFinite(x.amount) && x.amount > 0
+      );
   } catch (e) {
     return [];
   }
@@ -267,15 +637,37 @@ function escapeHtml(value) {
 }
 
 function persist() {
-  const a = safeSet(KEYS.budget, String(budget));
-  const b = safeSet(KEYS.expenses, JSON.stringify(expenses));
+  const oldBudget = safeGet(KEYS.budget);
+  const oldExpenses = safeGet(KEYS.expenses);
 
-  if (!a || !b) {
-    showMessage("تنبيه", "تعذر حفظ البيانات. قد تكون مساحة التخزين ممتلئة أو غير متاحة.");
+  try {
+    localStorage.setItem(KEYS.budget, String(budget));
+    localStorage.setItem(KEYS.expenses, JSON.stringify(expenses));
+    return true;
+  } catch (e) {
+    try {
+      if (oldBudget === null) {
+        localStorage.removeItem(KEYS.budget);
+      } else {
+        localStorage.setItem(KEYS.budget, oldBudget);
+      }
+
+      if (oldExpenses === null) {
+        localStorage.removeItem(KEYS.expenses);
+      } else {
+        localStorage.setItem(KEYS.expenses, oldExpenses);
+      }
+    } catch (restoreError) {
+      // تعذرت استعادة التخزين السابق.
+    }
+
+    showMessage(
+      "تعذر حفظ البيانات",
+      "قد تكون مساحة التخزين ممتلئة أو غير متاحة. لم يتم تأكيد الحفظ."
+    );
+
     return false;
   }
-
-  return true;
 }
 
 function showMessage(title, message) {
@@ -284,11 +676,17 @@ function showMessage(title, message) {
 
 function openDialog(title, message, action, confirmText = "تأكيد") {
   pendingAction = action;
+
   $("dialogTitle").textContent = title;
   $("dialogMessage").textContent = message;
   $("dialogConfirm").textContent = confirmText;
-  $("dialogConfirm").style.display = action ? "block" : "none";
-  $("dialogCancel").textContent = action ? "إلغاء" : "حسنًا";
+
+  $("dialogConfirm").style.display =
+    action ? "block" : "none";
+
+  $("dialogCancel").textContent =
+    action ? "إلغاء" : "حسنًا";
+
   $("dialogModal").style.display = "flex";
 }
 
@@ -331,18 +729,22 @@ function addExpense(event) {
     return;
   }
 
-  const id = (window.crypto && typeof window.crypto.randomUUID === "function")
+  const id = (window.crypto &&
+    typeof window.crypto.randomUUID === "function")
     ? window.crypto.randomUUID()
-    : String(Date.now()) + "-" + Math.random().toString(36).slice(2);
+    : String(Date.now()) + "-" +
+      Math.random().toString(36).slice(2);
 
-  expenses.unshift({
+  const expense = {
     id,
     amount,
     description,
     category,
     date: new Date().toLocaleDateString("ar-SY"),
     timestamp: Date.now()
-  });
+  };
+
+  expenses.unshift(expense);
 
   if (!persist()) {
     expenses.shift();
@@ -351,6 +753,7 @@ function addExpense(event) {
 
   $("expenseForm").reset();
   render();
+
   showMessage("تمت الإضافة", "تمت إضافة المصروف بنجاح.");
 }
 
@@ -361,10 +764,15 @@ function deleteExpense(id) {
     "حذف المصروف",
     "هل أنت متأكد أنك تريد حذف هذا المصروف؟",
     () => {
-      const index = expenses.findIndex(x => String(x.id) === String(id));
+      const index = expenses.findIndex(
+        x => String(x.id) === String(id)
+      );
 
       if (index < 0) {
-        showMessage("لم يتم العثور عليه", "حدّث الصفحة ثم حاول مرة ثانية.");
+        showMessage(
+          "لم يتم العثور عليه",
+          "حدّث الصفحة ثم حاول مرة ثانية."
+        );
         return;
       }
 
@@ -377,6 +785,7 @@ function deleteExpense(id) {
       }
 
       render();
+
       showMessage("تم الحذف", "تم حذف المصروف بنجاح.");
     }
   );
@@ -404,12 +813,18 @@ function renderExpenses() {
   list.innerHTML = expenses.slice(0, 100).map(x => `
     <div class="expense">
       <div>
-        <div class="expense-name">${escapeHtml(x.description)}</div>
-        <div class="meta">${escapeHtml(x.category)} · ${escapeHtml(x.date)}</div>
+        <div class="expense-name">
+          ${escapeHtml(x.description)}
+        </div>
+        <div class="meta">
+          ${escapeHtml(x.category)} · ${escapeHtml(x.date)}
+        </div>
       </div>
+
       <div class="right">
         <div class="amount">${money(x.amount)}</div>
-        <button class="delete" type="button" data-delete-id="${escapeHtml(x.id)}">حذف</button>
+        <button class="delete" type="button"
+          data-delete-id="${escapeHtml(x.id)}">حذف</button>
       </div>
     </div>
   `).join("");
@@ -432,7 +847,9 @@ function renderCategories() {
     totals[x.category] = (totals[x.category] || 0) + x.amount;
   }
 
-  const sum = Object.values(totals).reduce((a, b) => a + b, 0);
+  const sum = Object.values(totals).reduce(
+    (a, b) => a + b, 0
+  );
 
   el.innerHTML = Object.entries(totals)
     .sort((a, b) => b[1] - a[1])
@@ -443,7 +860,9 @@ function renderCategories() {
           <strong>${money(val)}</strong>
         </div>
         <div class="bar">
-          <div class="fill" style="width:${sum ? Math.min(100, val / sum * 100) : 0}%"></div>
+          <div class="fill" style="width:${
+            sum ? Math.min(100, val / sum * 100) : 0
+          }%"></div>
         </div>
       </div>
     `).join("");
@@ -452,12 +871,18 @@ function renderCategories() {
 function renderReport() {
   const now = new Date();
   const day = now.getDate();
-  const days = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+
+  const days = new Date(
+    now.getFullYear(),
+    now.getMonth() + 1,
+    0
+  ).getDate();
 
   const current = expenses.filter(x => {
     const d = new Date(x.timestamp);
-    return d.getFullYear() === now.getFullYear()
-      && d.getMonth() === now.getMonth();
+
+    return d.getFullYear() === now.getFullYear() &&
+      d.getMonth() === now.getMonth();
   });
 
   const spent = current.reduce((s, x) => s + x.amount, 0);
@@ -474,7 +899,9 @@ function renderReport() {
     cats[x.category] = (cats[x.category] || 0) + x.amount;
   });
 
-  const top = Object.entries(cats).sort((a, b) => b[1] - a[1])[0];
+  const top = Object.entries(cats).sort(
+    (a, b) => b[1] - a[1]
+  )[0];
 
   $("topCategoryValue").textContent = top ? top[0] : "-";
 
@@ -482,10 +909,12 @@ function renderReport() {
 
   if (budget > 0 && pred > budget) {
     note.style.display = "block";
-    note.textContent = "⚠️ حسب معدل صرفك الحالي، قد تتجاوز الميزانية قبل نهاية الشهر.";
+    note.textContent =
+      "⚠️ حسب معدل صرفك الحالي، قد تتجاوز الميزانية قبل نهاية الشهر.";
   } else if (budget > 0 && pred > budget * 0.8) {
     note.style.display = "block";
-    note.textContent = "🟡 انتبه، توقعات الصرف قريبة من الحد الأعلى للميزانية.";
+    note.textContent =
+      "🟡 انتبه، توقعات الصرف قريبة من الحد الأعلى للميزانية.";
   } else {
     note.style.display = "none";
   }
@@ -500,7 +929,9 @@ function render() {
   $("spentDisplay").textContent = money(spent);
   $("remainingDisplay").textContent = money(remaining);
 
-  $("progressBar").style.width = Math.min(100, percent) + "%";
+  $("progressBar").style.width =
+    Math.min(100, Math.max(0, percent)) + "%";
+
   $("progressBar").style.background =
     percent >= 100 ? "#b91c1c" :
     percent >= 80 ? "#b45309" :
@@ -510,7 +941,9 @@ function render() {
 
   if (budget > 0 && percent >= 80) {
     note.style.display = "block";
-    note.textContent = "⚠️ انتبه، استهلكت " + Math.round(percent) + "% من ميزانيتك.";
+    note.textContent =
+      "⚠️ انتبه، استهلكت " + Math.round(percent) +
+      "% من ميزانيتك.";
   } else {
     note.style.display = "none";
   }
@@ -533,7 +966,10 @@ $("saveBudgetBtn").addEventListener("click", () => {
   const value = Number($("budgetInput").value);
 
   if (!Number.isFinite(value) || value <= 0) {
-    showMessage("ميزانية غير صحيحة", "أدخل ميزانية أكبر من صفر.");
+    showMessage(
+      "ميزانية غير صحيحة",
+      "أدخل ميزانية أكبر من صفر."
+    );
     return;
   }
 
@@ -547,38 +983,347 @@ $("saveBudgetBtn").addEventListener("click", () => {
 
   $("budgetModal").style.display = "none";
   render();
+
   showMessage("تم الحفظ", "تم تحديث الميزانية.");
 });
+
+/* ===========================
+   النسخ الاحتياطي
+   =========================== */
+
+function createBackupData() {
+  return {
+    app: "Masroofi",
+    backupVersion: BACKUP_VERSION,
+    exportedAt: new Date().toISOString(),
+    budget: budget,
+    expenses: expenses,
+    darkMode: safeGet(KEYS.dark) === "true"
+  };
+}
+
+function exportBackup() {
+  let blobUrl = null;
+
+  try {
+    const backup = createBackupData();
+    const json = JSON.stringify(backup, null, 2);
+
+    const blob = new Blob(
+      [json],
+      { type: "application/json;charset=utf-8" }
+    );
+
+    blobUrl = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    const date = new Date().toISOString().slice(0, 10);
+
+    link.href = blobUrl;
+    link.download = "masroofi-backup-" + date + ".json";
+    link.style.display = "none";
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    showMessage(
+      "تم تجهيز النسخة الاحتياطية",
+      "إذا لم يبدأ التنزيل، فقد لا يدعم التطبيق الحالي تنزيل الملفات بعد. سنحتاج عندها إلى ضبط إعدادات Android."
+    );
+  } catch (e) {
+    showMessage(
+      "تعذر إنشاء النسخة",
+      "لم نتمكن من تجهيز ملف النسخة الاحتياطية."
+    );
+  }
+
+  if (blobUrl) {
+    setTimeout(() => URL.revokeObjectURL(blobUrl), 60000);
+  }
+}
+
+$("exportBackupBtn").addEventListener("click", () => {
+  openDialog(
+    "إنشاء نسخة احتياطية",
+    "سيتم تجهيز ملف يحتوي على الميزانية والمصاريف المحفوظة. احتفظ به في مكان آمن.",
+    exportBackup,
+    "متابعة"
+  );
+});
+
+/* ===========================
+   التحقق من ملف النسخة
+   =========================== */
+
+function validateBackup(data) {
+  if (!data || typeof data !== "object" || Array.isArray(data)) {
+    throw new Error("الملف ليس نسخة احتياطية صحيحة.");
+  }
+
+  if (data.app !== "Masroofi") {
+    throw new Error("هذا الملف ليس نسخة احتياطية من مصروفي.");
+  }
+
+  if (data.backupVersion !== BACKUP_VERSION) {
+    throw new Error("إصدار النسخة الاحتياطية غير مدعوم.");
+  }
+
+  const importedBudget = Number(data.budget);
+
+  if (!Number.isFinite(importedBudget) || importedBudget < 0) {
+    throw new Error("قيمة الميزانية داخل الملف غير صحيحة.");
+  }
+
+  if (!Array.isArray(data.expenses)) {
+    throw new Error("قائمة المصاريف داخل الملف غير صحيحة.");
+  }
+
+  if (data.expenses.length > 100000) {
+    throw new Error("الملف يحتوي على عدد كبير جدًا من المصاريف.");
+  }
+
+  const importedExpenses = data.expenses.map((x, index) => {
+    if (!x || typeof x !== "object" || Array.isArray(x)) {
+      throw new Error("يوجد مصروف غير صالح داخل الملف.");
+    }
+
+    const amount = Number(x.amount);
+    const description = String(x.description ?? "").trim();
+    const category = String(x.category ?? "📦 أخرى");
+    const date = String(x.date ?? "");
+    const timestamp = Number(x.timestamp);
+
+    if (!Number.isFinite(amount) || amount <= 0) {
+      throw new Error("يوجد مبلغ غير صالح داخل الملف.");
+    }
+
+    if (!description || description.length > 120) {
+      throw new Error("يوجد وصف مصروف غير صالح داخل الملف.");
+    }
+
+    if (category.length > 100 || date.length > 100) {
+      throw new Error("توجد بيانات غير صالحة داخل أحد المصاريف.");
+    }
+
+    if (!Number.isFinite(timestamp) || timestamp <= 0) {
+      throw new Error("يوجد تاريخ غير صالح داخل الملف.");
+    }
+
+    return {
+      id: String(x.id ?? ("restored-" + index)),
+      amount,
+      description,
+      category,
+      date,
+      timestamp
+    };
+  });
+
+  return {
+    budget: importedBudget,
+    expenses: importedExpenses,
+    darkMode: data.darkMode === true
+  };
+}
+
+/* ===========================
+   استعادة النسخة الاحتياطية
+   =========================== */
+
+$("importBackupBtn").addEventListener("click", () => {
+  openDialog(
+    "استعادة نسخة احتياطية",
+    "اختر ملف نسخة احتياطية محفوظًا سابقًا من مصروفي. لن تتغير بياناتك الحالية إلا بعد اختيار ملف صالح وتأكيد الاستعادة.",
+    () => {
+      $("backupFileInput").value = "";
+      $("backupFileInput").click();
+    },
+    "اختيار ملف"
+  );
+});
+
+$("backupFileInput").addEventListener("change", event => {
+  const file = event.target.files && event.target.files[0];
+
+  if (!file) return;
+
+  if (file.size > 20 * 1024 * 1024) {
+    $("backupFileInput").value = "";
+
+    showMessage(
+      "الملف كبير جدًا",
+      "حجم ملف النسخة الاحتياطية أكبر من الحد المسموح."
+    );
+
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onerror = () => {
+    $("backupFileInput").value = "";
+
+    showMessage(
+      "تعذر قراءة الملف",
+      "لم نتمكن من قراءة الملف المحدد."
+    );
+  };
+
+  reader.onload = () => {
+    let parsed;
+
+    try {
+      parsed = JSON.parse(String(reader.result));
+    } catch (e) {
+      showMessage(
+        "ملف غير صالح",
+        "تعذر قراءة الملف. تأكد أنه ملف JSON صادر من مصروفي."
+      );
+      return;
+    }
+
+    let validated;
+
+    try {
+      validated = validateBackup(parsed);
+    } catch (e) {
+      showMessage(
+        "تعذر استعادة النسخة",
+        e.message || "الملف غير صالح."
+      );
+      return;
+    }
+
+    openDialog(
+      "تأكيد استعادة النسخة",
+      "سيتم استبدال الميزانية والمصاريف الحالية بمحتويات النسخة الاحتياطية.\n\n" +
+      "عدد المصاريف في النسخة: " +
+      validated.expenses.length +
+      "\nالميزانية في النسخة: " +
+      money(validated.budget) +
+      "\n\nتأكد أنك تريد المتابعة. يُنصح بإنشاء نسخة احتياطية من بياناتك الحالية أولًا.",
+      () => {
+        restoreBackup(validated);
+      },
+      "استعادة البيانات"
+    );
+  };
+
+  reader.readAsText(file);
+});
+
+function restoreBackup(data) {
+  const oldBudget = budget;
+  const oldExpenses = expenses;
+  const oldDark = safeGet(KEYS.dark);
+
+  budget = data.budget;
+  expenses = data.expenses;
+
+  const budgetSaved = safeSet(KEYS.budget, String(budget));
+  const expensesSaved = safeSet(
+    KEYS.expenses,
+    JSON.stringify(expenses)
+  );
+
+  const darkSaved = safeSet(
+    KEYS.dark,
+    data.darkMode ? "true" : "false"
+  );
+
+  if (!budgetSaved || !expensesSaved || !darkSaved) {
+    budget = oldBudget;
+    expenses = oldExpenses;
+
+    try {
+      localStorage.setItem(KEYS.budget, String(oldBudget));
+      localStorage.setItem(
+        KEYS.expenses,
+        JSON.stringify(oldExpenses)
+      );
+
+      if (oldDark === null) {
+        localStorage.removeItem(KEYS.dark);
+      } else {
+        localStorage.setItem(KEYS.dark, oldDark);
+      }
+    } catch (e) {
+      // قد يتعذر التراجع إذا كانت مساحة التخزين غير متاحة.
+    }
+
+    applyTheme();
+    render();
+
+    showMessage(
+      "تعذرت الاستعادة",
+      "لم يتم حفظ جميع البيانات. تمت محاولة إعادة البيانات السابقة. تحقق من بياناتك قبل إجراء أي تغييرات أخرى."
+    );
+
+    return;
+  }
+
+  applyTheme();
+  render();
+
+  showMessage(
+    "تمت الاستعادة",
+    "تمت استعادة الميزانية والمصاريف بنجاح."
+  );
+}
+
+/* ===========================
+   مسح جميع البيانات
+   =========================== */
 
 $("clearDataBtn").addEventListener("click", () => {
   openDialog(
     "مسح جميع البيانات",
     "سيتم حذف كل المصاريف وإرجاع الميزانية إلى صفر. هذا الإجراء لا يمكن التراجع عنه. هل تريد المتابعة؟",
     () => {
-      const oldExpenses = expenses.slice();
+      const oldExpenses = expenses;
       const oldBudget = budget;
 
       expenses = [];
       budget = 0;
 
-      if (!safeRemove(KEYS.expenses) || !safeSet(KEYS.budget, "0")) {
+      if (
+        !safeRemove(KEYS.expenses) ||
+        !safeSet(KEYS.budget, "0")
+      ) {
         expenses = oldExpenses;
         budget = oldBudget;
+
         persist();
         render();
-        showMessage("تعذر المسح", "لم أتمكن من مسح البيانات المحفوظة. حاول مرة أخرى.");
+
+        showMessage(
+          "تعذر المسح",
+          "لم أتمكن من مسح البيانات المحفوظة. حاول مرة أخرى."
+        );
+
         return;
       }
 
       render();
-      showMessage("تم المسح", "تم مسح جميع المصاريف وإرجاع الميزانية إلى صفر.");
+
+      showMessage(
+        "تم المسح",
+        "تم مسح جميع المصاريف وإرجاع الميزانية إلى صفر."
+      );
     }
   );
 });
 
+/* ===========================
+   الوضع الليلي
+   =========================== */
+
 function applyTheme() {
   if (safeGet(KEYS.dark) === "true") {
     document.body.classList.add("dark");
+  } else {
+    document.body.classList.remove("dark");
   }
 
   $("themeBtn").textContent =
@@ -586,18 +1331,23 @@ function applyTheme() {
 }
 
 $("themeBtn").addEventListener("click", () => {
-  document.body.classList.toggle("dark");
+  const dark = !document.body.classList.contains("dark");
 
-  safeSet(
-    KEYS.dark,
-    document.body.classList.contains("dark") ? "true" : "false"
-  );
+  if (!safeSet(KEYS.dark, dark ? "true" : "false")) {
+    showMessage(
+      "تعذر حفظ المظهر",
+      "تغير المظهر مؤقتًا، لكن تعذر حفظ الاختيار."
+    );
+  }
 
   applyTheme();
 });
 
+/* تشغيل التطبيق */
+
 applyTheme();
 render();
+
 </script>
 </body>
 </html>
