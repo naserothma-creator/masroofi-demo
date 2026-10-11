@@ -4,34 +4,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#111827">
-<title>Masroofi</title>
+<title>Masroofi | مصروفي</title>
 <style>
-:root{--bg:#f3f5f9;--card:#fff;--text:#111827;--muted:#6b7280;--border:#e5e7eb}
+:root{--bg:#f3f5f9;--card:#fff;--text:#111827;--muted:#6b7280;--border:#e5e7eb;--primary:#4f46e5;--green:#15803d;--red:#b91c1c;--orange:#b45309}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,"Noto Sans Arabic",sans-serif}
-body.dark{--bg:#0f172a;--card:#1e293b;--text:#f8fafc;--muted:#cbd5e1;--border:#334155}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,"Noto Sans Arabic",sans-serif;transition:background .2s,color .2s}
+body.dark{--bg:#0f172a;--card:#1e293b;--text:#f8fafc;--muted:#cbd5e1;--border:#334155;--primary:#818cf8;--green:#4ade80;--red:#f87171;--orange:#fbbf24}
 header{background:#111827;color:#fff;padding:24px 18px;border-radius:0 0 26px 26px}
-.header,.container{max-width:680px;margin:auto}
+.header,.container{max-width:720px;margin:auto}
 .header{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .logo{font-size:28px;font-weight:800}
 .subtitle{margin-top:7px;opacity:.85}
-button{font:inherit;cursor:pointer;border:0;border-radius:13px;padding:13px 15px;font-weight:700;min-height:46px}
+button{font:inherit;cursor:pointer;border:0;border-radius:13px;padding:13px 15px;font-weight:700;min-height:45px}
 .theme{background:#ffffff20;color:#fff;font-size:20px;width:48px;padding:8px}
 .container{padding:16px}
-.card{background:var(--card);border-radius:20px;padding:18px;margin-bottom:15px;box-shadow:0 4px 18px #0000000a}
+.card{background:var(--card);border-radius:20px;padding:18px;margin-bottom:15px;box-shadow:0 4px 18px #0000000a;min-width:0}
 .title{font-size:19px;font-weight:800;margin:0 0 15px}
 .label{color:var(--muted);font-size:14px}
 .big{font-size:28px;font-weight:800;margin:7px 0 16px;overflow-wrap:anywhere}
 .grid,.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .stat,.report-box{background:var(--bg);border-radius:14px;padding:13px;min-width:0}
 .stat strong{display:block;font-size:19px;margin-top:7px;overflow-wrap:anywhere}
-.progress{height:11px;background:var(--border);border-radius:20px;overflow:hidden;margin-top:15px}
-.progressbar{height:100%;width:0;transition:width .2s}
-.notice{display:none;background:#fef3c7;color:#92400e;border-radius:12px;padding:12px;margin-top:12px;line-height:1.6}
+.progress{height:10px;background:var(--border);border-radius:20px;overflow:hidden;margin-top:13px}
+.progressbar{height:100%;width:0;transition:width .3s}
 input,select{display:block;width:100%;min-height:48px;padding:12px;margin:0 0 10px;border:1px solid var(--border);border-radius:12px;background:var(--card);color:var(--text);font:inherit}
 .primary{background:#111827;color:white;width:100%}
 .secondary{background:var(--bg);color:var(--text);width:100%}
 .danger{background:#fee2e2;color:#991b1b;width:100%}
+.purple{background:var(--primary);color:white;width:100%}
 .report-icon{font-size:21px}
 .report-value{font-weight:800;margin-top:8px;overflow-wrap:anywhere}
 .report-label{font-size:13px;color:var(--muted);margin-top:5px}
@@ -39,7 +39,7 @@ input,select{display:block;width:100%;min-height:48px;padding:12px;margin:0 0 10
 .category-head{display:flex;justify-content:space-between;gap:10px;margin-bottom:7px}
 .category-head span{overflow-wrap:anywhere}
 .bar{height:8px;background:var(--border);border-radius:20px;overflow:hidden}
-.fill{height:100%;background:#334155}
+.fill{height:100%;background:var(--primary);border-radius:20px}
 .expense{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--border)}
 .expense:last-child{border-bottom:0}
 .expense-name{font-weight:700;overflow-wrap:anywhere}
@@ -52,12 +52,24 @@ input,select{display:block;width:100%;min-height:48px;padding:12px;margin:0 0 10
 .edit{background:#dbeafe;color:#1d4ed8}
 .empty{text-align:center;padding:20px 5px;color:var(--muted);line-height:1.7}
 .footer{text-align:center;color:var(--muted);font-size:13px;padding:5px 0 22px}
+.notice{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:13px;margin-top:12px;line-height:1.8;overflow-wrap:anywhere}
+.notice.good{border-right:4px solid var(--green)}
+.notice.warn{border-right:4px solid var(--orange)}
+.notice.bad{border-right:4px solid var(--red)}
+.insight{padding:13px;border-radius:14px;background:var(--bg);margin-bottom:10px;line-height:1.8}
+.insight:last-child{margin-bottom:0}
+.goal{padding:13px;border:1px solid var(--border);border-radius:14px;margin-bottom:10px}
+.goal-head{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.goal-title{font-weight:800;overflow-wrap:anywhere}
+.goal-actions{display:flex;gap:7px;margin-top:10px}
+.goal-actions button{flex:1}
+.small-note{font-size:13px;color:var(--muted);line-height:1.7}
 .modal{display:none;position:fixed;inset:0;z-index:1000;background:#0009;align-items:center;justify-content:center;padding:18px}
 .modal-box{width:100%;max-width:420px;background:var(--card);color:var(--text);border-radius:20px;padding:20px;max-height:90vh;overflow:auto}
 .modal-message{line-height:1.8;margin:8px 0 14px;white-space:pre-wrap;overflow-wrap:anywhere}
 .modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
 .modal-actions button{width:100%}
-.small-note{font-size:13px;color:var(--muted);line-height:1.6}
+hr{border:0;border-top:1px solid var(--border);margin:15px 0}
 @media(max-width:420px){.container{padding:12px}.card{padding:15px}.logo{font-size:25px}.big{font-size:25px}.expense{gap:8px}.amount{font-size:14px}}
 </style>
 </head>
@@ -66,30 +78,58 @@ input,select{display:block;width:100%;min-height:48px;padding:12px;margin:0 0 10
 <div class="header">
 <div>
 <div class="logo">💰 Masroofi</div>
-<div class="subtitle">اعرف وين عم تروح مصاريك</div>
+<div class="subtitle">مصاريك بإيدك، وقراراتك بذكاء.</div>
 </div>
-<button class="theme" id="themeBtn" type="button" aria-label="الوضع الليلي">🌙</button>
+<button class="theme" id="themeBtn" type="button">🌙</button>
 </div>
 </header>
 
 <main class="container">
+
 <section class="card">
-<h2 class="title">💰 ملخص الميزانية</h2>
-<div class="label">الميزانية الشهرية</div>
-<div class="big" id="budgetDisplay">0 ل.س</div>
+<h2 class="title">💰 ملخص ميزانيتك</h2>
+<div class="label">الميزانية المحددة</div>
+<div class="big" id="budgetDisplay">0</div>
 <div class="grid">
-<div class="stat"><div class="label">💸 المصروف</div><strong id="spentDisplay">0 ل.س</strong></div>
-<div class="stat"><div class="label">💵 المتبقي</div><strong id="remainingDisplay">0 ل.س</strong></div>
+<div class="stat"><div class="label">💸 المصروف</div><strong id="spentDisplay">0</strong></div>
+<div class="stat"><div class="label">💵 المتبقي</div><strong id="remainingDisplay">0</strong></div>
 </div>
-<div class="progress"><div class="progressbar" id="progressBar"></div></div>
-<div class="notice" id="budgetNotice"></div>
+<div class="progress"><div class="progressbar" id="budgetBar"></div></div>
+<div id="budgetNotice"></div>
+</section>
+
+<section class="card">
+<h2 class="title">🧠 لوحة الذكاء المالي</h2>
+<p class="small-note">تحليل تلقائي لبياناتك المسجلة لمساعدتك على فهم صرفك والتخطيط بشكل أفضل.</p>
+<div class="report-grid">
+<div class="report-box"><div class="report-icon">📈</div><div class="report-value" id="monthSpent">0</div><div class="report-label">مصروف الشهر الحالي</div></div>
+<div class="report-box"><div class="report-icon">🔮</div><div class="report-value" id="forecast">—</div><div class="report-label">توقع مصروف نهاية الشهر</div></div>
+<div class="report-box"><div class="report-icon">🎯</div><div class="report-value" id="budgetScore">—</div><div class="report-label">استهلاك الميزانية</div></div>
+<div class="report-box"><div class="report-icon">📅</div><div class="report-value" id="dailyAverage">0</div><div class="report-label">متوسط الصرف اليومي</div></div>
+</div>
+<div id="financialInsights" style="margin-top:15px">
+<div class="empty">أضف مصاريفك لتظهر التحليلات المالية.</div>
+</div>
+<p class="small-note">التوقعات مبنية على متوسط الصرف المسجل خلال الشهر، وقد تختلف عن مصروفك الفعلي. لا يتصل التطبيق بحسابك البنكي.</p>
+</section>
+
+<section class="card">
+<h2 class="title">🎯 أهداف التوفير</h2>
+<div class="label">اسم الهدف</div>
+<input id="goalName" maxlength="70" placeholder="مثال: شراء هاتف جديد">
+<div class="label">المبلغ المطلوب</div>
+<input id="goalTarget" type="number" min="1" step="any" inputmode="decimal" placeholder="مثال: 500000">
+<div class="label">المبلغ الذي وفرته حتى الآن</div>
+<input id="goalSaved" type="number" min="0" step="any" inputmode="decimal" placeholder="مثال: 100000">
+<button class="purple" id="addGoalBtn" type="button">＋ إضافة هدف توفير</button>
+<div id="goalsList" style="margin-top:15px"></div>
 </section>
 
 <section class="card">
 <h2 class="title" id="formTitle">➕ إضافة مصروف</h2>
 <form id="expenseForm">
-<input id="amountInput" type="number" min="0.01" step="any" inputmode="decimal" placeholder="المبلغ مثال: 15000" required>
-<input id="descriptionInput" type="text" maxlength="120" placeholder="وصف المصروف مثال: قهوة" required>
+<input id="amountInput" type="number" min="0.01" step="any" inputmode="decimal" placeholder="المبلغ" required>
+<input id="descriptionInput" type="text" maxlength="120" placeholder="وصف المصروف" required>
 <select id="categoryInput">
 <option>🍔 طعام</option>
 <option>🚗 مواصلات</option>
@@ -107,33 +147,30 @@ input,select{display:block;width:100%;min-height:48px;padding:12px;margin:0 0 10
 </section>
 
 <section class="card">
-<h2 class="title">📊 التقرير الشهري</h2>
+<h2 class="title">📊 تقرير الشهر الحالي</h2>
 <div class="report-grid">
-<div class="report-box"><div class="report-icon">📅</div><div class="report-value" id="daysValue">-</div><div class="report-label">أيام الشهر</div></div>
-<div class="report-box"><div class="report-icon">💸</div><div class="report-value" id="averageValue">0 ل.س</div><div class="report-label">متوسط الصرف اليومي</div></div>
-<div class="report-box"><div class="report-icon">🔮</div><div class="report-value" id="predictionValue">0 ل.س</div><div class="report-label">توقع نهاية الشهر</div></div>
-<div class="report-box"><div class="report-icon">🏆</div><div class="report-value" id="topCategoryValue">-</div><div class="report-label">أكثر تصنيف صرفًا</div></div>
+<div class="report-box"><div class="report-icon">📅</div><div class="report-value" id="daysValue">—</div><div class="report-label">اليوم من الشهر</div></div>
+<div class="report-box"><div class="report-icon">🏆</div><div class="report-value" id="topCategory">—</div><div class="report-label">أعلى فئة صرفًا</div></div>
 </div>
-<div class="notice" id="predictionNotice"></div>
 </section>
 
 <section class="card">
-<h2 class="title">🏷️ أين تذهب مصاريك؟</h2>
-<div id="categoryReport" class="empty">أضف مصروفًا حتى يظهر التقرير 📊</div>
+<h2 class="title">🏷️ المصاريف حسب الفئة</h2>
+<div id="categoryReport" class="empty">أضف مصروفًا لعرض التقرير.</div>
 </section>
 
 <section class="card">
-<h2 class="title">📜 آخر المصاريف</h2>
-<div id="expensesList" class="empty">لا توجد مصاريف حتى الآن</div>
+<h2 class="title">📜 المصاريف الأخيرة</h2>
+<div id="expensesList" class="empty">لا توجد مصاريف حتى الآن.</div>
 </section>
 
 <section class="card">
 <h2 class="title">💾 النسخ الاحتياطي والاستعادة</h2>
 <button class="primary" id="backupBtn" type="button">📤 إنشاء نسخة احتياطية</button>
-<input id="restoreFileInput" type="file" accept=".json,application/json" style="display:none">
 <div style="height:8px"></div>
+<input id="restoreFileInput" type="file" accept=".json,application/json" style="display:none">
 <button class="secondary" id="restoreBtn" type="button">📥 استعادة نسخة احتياطية</button>
-<p class="small-note">احتفظ بنسخة احتياطية من بياناتك بشكل دوري. عند الاستعادة، ستُستبدل البيانات الحالية بالبيانات الموجودة في الملف. لا تشارك ملف النسخة الاحتياطية مع أشخاص آخرين.</p>
+<p class="small-note">النسخة الاحتياطية تتضمن الميزانية والمصاريف وأهداف التوفير. احتفظ بها في مكان آمن.</p>
 </section>
 
 <section class="card">
@@ -146,7 +183,7 @@ input,select{display:block;width:100%;min-height:48px;padding:12px;margin:0 0 10
 <div class="footer">Masroofi — اعرف وين عم تروح مصاريك 💰</div>
 </main>
 
-<div class="modal" id="dialogModal" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
+<div class="modal" id="dialogModal" role="dialog" aria-modal="true">
 <div class="modal-box">
 <h2 class="title" id="dialogTitle">تأكيد</h2>
 <div class="modal-message" id="dialogMessage"></div>
@@ -157,12 +194,12 @@ input,select{display:block;width:100%;min-height:48px;padding:12px;margin:0 0 10
 </div>
 </div>
 
-<div class="modal" id="budgetModal" role="dialog" aria-modal="true" aria-labelledby="budgetTitle">
+<div class="modal" id="budgetModal" role="dialog" aria-modal="true">
 <div class="modal-box">
-<h2 class="title" id="budgetTitle">💰 تعديل الميزانية</h2>
-<input id="budgetInput" type="number" min="0.01" step="any" inputmode="decimal" placeholder="أدخل الميزانية الجديدة">
+<h2 class="title">💰 تعديل الميزانية</h2>
+<input id="budgetInput" type="number" min="0.01" step="any" placeholder="الميزانية الجديدة">
 <div class="modal-actions">
-<button class="primary" id="saveBudgetBtn" type="button">حفظ الميزانية</button>
+<button class="primary" id="saveBudgetBtn" type="button">حفظ</button>
 <button class="secondary" id="cancelBudgetBtn" type="button">إلغاء</button>
 </div>
 </div>
@@ -171,125 +208,110 @@ input,select{display:block;width:100%;min-height:48px;padding:12px;margin:0 0 10
 <script>
 "use strict";
 
-const KEYS = {
-  budget: "masroofi_budget",
-  expenses: "masroofi_expenses",
-  dark: "masroofi_dark"
-};
+const KEY_BUDGET = "masroofi_budget";
+const KEY_EXPENSES = "masroofi_expenses";
+const KEY_DARK = "masroofi_dark";
+const KEY_GOALS = "masroofi_goals";
 
 const $ = id => document.getElementById(id);
 
-function safeGet(key) {
+function getItem(key, fallback) {
   try {
-    return localStorage.getItem(key);
+    const value = localStorage.getItem(key);
+    return value === null ? fallback : value;
   } catch (e) {
-    return null;
+    return fallback;
   }
 }
 
-function safeSet(key, value) {
+function setItem(key, value) {
   try {
     localStorage.setItem(key, value);
     return true;
   } catch (e) {
+    showMessage("تعذر الحفظ", "تعذر حفظ البيانات على الجهاز. تحقق من مساحة التخزين.");
     return false;
   }
 }
 
-function safeRemove(key) {
+function readJSON(key, fallback) {
   try {
-    localStorage.removeItem(key);
-    return true;
+    return JSON.parse(getItem(key, JSON.stringify(fallback)));
   } catch (e) {
-    return false;
+    return fallback;
   }
 }
 
-function initialBudget() {
-  let n = Number(safeGet(KEYS.budget));
-  return Number.isFinite(n) && n >= 0 ? n : 0;
-}
+let budget = Math.max(0, Number(getItem(KEY_BUDGET, "0")) || 0);
 
-function loadExpenses() {
-  try {
-    let value = JSON.parse(safeGet(KEYS.expenses) || "[]");
-    if (!Array.isArray(value)) return [];
+let expenses = readJSON(KEY_EXPENSES, []);
+if (!Array.isArray(expenses)) expenses = [];
 
-    return value
-      .filter(x => x && typeof x === "object")
-      .map((x, i) => ({
-        id: String(x.id ?? (Date.now() + "-" + i)),
-        amount: Number(x.amount) || 0,
-        description: String(x.description ?? ""),
-        category: String(x.category ?? "📦 أخرى"),
-        date: String(x.date ?? ""),
-        timestamp: Number(x.timestamp) || Date.now()
-      }))
-      .filter(x => x.amount > 0);
-  } catch (e) {
-    return [];
-  }
-}
+expenses = expenses.filter(e =>
+  e && typeof e === "object" &&
+  Number.isFinite(Number(e.amount)) &&
+  Number(e.amount) > 0
+).map((e, i) => ({
+  id: String(e.id ?? (Date.now() + "-" + i)),
+  amount: Number(e.amount),
+  description: String(e.description ?? ""),
+  category: String(e.category ?? "📦 أخرى"),
+  date: String(e.date ?? ""),
+  timestamp: Number(e.timestamp) || Date.now()
+}));
 
-let budget = initialBudget();
-let expenses = loadExpenses();
-let pendingAction = null;
+let goals = readJSON(KEY_GOALS, []);
+if (!Array.isArray(goals)) goals = [];
+
+goals = goals.filter(g =>
+  g && typeof g.name === "string" &&
+  Number(g.target) > 0
+).map(g => ({
+  id: String(g.id ?? Date.now() + Math.random()),
+  name: g.name,
+  target: Number(g.target),
+  saved: Math.max(0, Number(g.saved) || 0)
+}));
+
 let editingId = null;
+let pendingAction = null;
 
-function money(number) {
-  return Number(number || 0).toLocaleString("ar-SY", {
+function money(n) {
+  return Number(n || 0).toLocaleString("ar-SY", {
     maximumFractionDigits: 2
   }) + " ل.س";
 }
 
-function esc(value) {
-  return String(value ?? "").replace(/[&<>"']/g, character => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  }[character]));
+function esc(s) {
+  return String(s ?? "").replace(/[&<>"']/g, c => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;",
+    '"': "&quot;", "'": "&#39;"
+  }[c]));
 }
 
-function persist() {
-  const oldBudget = safeGet(KEYS.budget);
-  const oldExpenses = safeGet(KEYS.expenses);
-
-  const budgetSaved = safeSet(KEYS.budget, String(budget));
-  const expensesSaved = safeSet(KEYS.expenses, JSON.stringify(expenses));
-
-  if (!budgetSaved || !expensesSaved) {
-    if (oldBudget === null) {
-      safeRemove(KEYS.budget);
-    } else {
-      safeSet(KEYS.budget, oldBudget);
-    }
-
-    if (oldExpenses === null) {
-      safeRemove(KEYS.expenses);
-    } else {
-      safeSet(KEYS.expenses, oldExpenses);
-    }
-
-    message("تعذر الحفظ", "لم أتمكن من حفظ البيانات. تحقق من مساحة التخزين وحاول مرة أخرى.");
+function persistAll() {
+  try {
+    localStorage.setItem(KEY_BUDGET, String(budget));
+    localStorage.setItem(KEY_EXPENSES, JSON.stringify(expenses));
+    localStorage.setItem(KEY_GOALS, JSON.stringify(goals));
+    return true;
+  } catch (e) {
+    showMessage("تعذر الحفظ", "لم يتم حفظ التغييرات. قد تكون مساحة التخزين ممتلئة.");
     return false;
   }
-
-  return true;
 }
 
-function message(title, text) {
-  dialog(title, text, null, "حسنًا");
+function showMessage(title, text) {
+  showDialog(title, text, null, "حسنًا");
 }
 
-function dialog(title, text, action, confirmText = "تأكيد") {
+function showDialog(title, text, action, confirmText = "تأكيد") {
   pendingAction = action;
   $("dialogTitle").textContent = title;
   $("dialogMessage").textContent = text;
   $("dialogConfirm").textContent = confirmText;
   $("dialogConfirm").style.display = action ? "block" : "none";
-  $("dialogCancel").textContent = action ? "إلغاء" : "حسنًا";
+  $("dialogCancel").textContent = action ? "إلغاء" : "إغلاق";
   $("dialogModal").style.display = "flex";
 }
 
@@ -306,9 +328,272 @@ $("dialogConfirm").onclick = () => {
 
 $("dialogCancel").onclick = closeDialog;
 
-$("dialogModal").onclick = event => {
-  if (event.target === $("dialogModal")) closeDialog();
+$("dialogModal").onclick = e => {
+  if (e.target === $("dialogModal")) closeDialog();
 };
+
+function monthExpenses() {
+  const now = new Date();
+
+  return expenses.filter(e => {
+    const d = new Date(e.timestamp);
+    return d.getFullYear() === now.getFullYear() &&
+      d.getMonth() === now.getMonth();
+  });
+}
+
+function total(list) {
+  return list.reduce((sum, e) => sum + e.amount, 0);
+}
+
+function categoryTotals(list) {
+  const result = {};
+
+  list.forEach(e => {
+    result[e.category] = (result[e.category] || 0) + e.amount;
+  });
+
+  return result;
+}
+
+function renderIntelligence() {
+  const now = new Date();
+  const day = now.getDate();
+  const days = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+
+  const current = monthExpenses();
+  const spent = total(current);
+  const average = spent / Math.max(1, day);
+  const forecast = average * days;
+  const percentage = budget > 0 ? spent / budget * 100 : null;
+  const remaining = budget - spent;
+
+  $("monthSpent").textContent = money(spent);
+  $("forecast").textContent = money(forecast);
+  $("dailyAverage").textContent = money(average);
+  $("budgetScore").textContent =
+    percentage === null ? "حدد ميزانيتك" : Math.round(percentage) + "%";
+
+  const insights = [];
+
+  if (!expenses.length) {
+    insights.push({
+      type: "good",
+      title: "👋 لنبدأ",
+      text: "أضف مصاريفك الفعلية أولًا حتى يتمكن مصروفي من تحليل نمط الإنفاق."
+    });
+  } else {
+    const totals = categoryTotals(current);
+    const sorted = Object.entries(totals).sort((a, b) => b[1] - a[1]);
+
+    if (budget <= 0) {
+      insights.push({
+        type: "warn",
+        title: "🎯 حدد ميزانيتك",
+        text: "تحديد ميزانية شهرية يساعدك على قياس تقدمك ومعرفة إن كان صرفك ضمن خطتك."
+      });
+    } else if (percentage >= 100) {
+      insights.push({
+        type: "bad",
+        title: "🚨 تجاوزت الميزانية",
+        text: "صرفت " + money(spent) + "، أي " +
+          Math.round(percentage) + "% من ميزانيتك. راجع المصاريف غير الضرورية."
+      });
+    } else if (percentage >= 80) {
+      insights.push({
+        type: "warn",
+        title: "⚠️ اقتربت من حد الميزانية",
+        text: "تبقى " + money(Math.max(0, remaining)) +
+          ". حاول إعطاء الأولوية للاحتياجات الأساسية حتى نهاية الشهر."
+      });
+    } else {
+      insights.push({
+        type: "good",
+        title: "✅ وضع الميزانية",
+        text: "استهلكت " + Math.round(percentage) +
+          "% من الميزانية، والمتبقي " + money(remaining) + "."
+      });
+    }
+
+    if (sorted.length) {
+      const [name, amount] = sorted[0];
+
+      insights.push({
+        type: "warn",
+        title: "🔎 أكبر فئة صرفًا هذا الشهر",
+        text: name + " بمبلغ " + money(amount) +
+          ". راجع تفاصيل هذه الفئة لمعرفة إن كان فيها مجال للتوفير."
+      });
+    }
+
+    if (day >= 3 && spent > 0) {
+      insights.push({
+        type: "good",
+        title: "🔮 توقع نهاية الشهر",
+        text: "إذا استمر متوسط صرفك الحالي، فقد يصل مصروفك إلى " +
+          money(forecast) + " بنهاية الشهر. هذا تقدير وليس ضمانًا."
+      });
+    }
+
+    const lastSeven = expenses.filter(e =>
+      Date.now() - e.timestamp <= 7 * 24 * 60 * 60 * 1000
+    );
+
+    const lastSevenTotal = total(lastSeven);
+
+    insights.push({
+      type: "good",
+      title: "📆 آخر 7 أيام",
+      text: "المصاريف المسجلة خلال آخر سبعة أيام: " +
+        money(lastSevenTotal) + "."
+    });
+
+    if (budget > 0 && forecast > budget) {
+      insights.push({
+        type: "warn",
+        title: "💡 فرصة للتوفير",
+        text: "بحسب متوسط الصرف الحالي، قد تحتاج إلى خفض الإنفاق بنحو " +
+          money(forecast - budget) +
+          " للوصول إلى ميزانيتك المحددة."
+      });
+    }
+  }
+
+  $("financialInsights").innerHTML = insights.map(i => `
+    <div class="insight ${i.type}">
+      <strong>${esc(i.title)}</strong><br>
+      ${esc(i.text)}
+    </div>
+  `).join("");
+}
+
+function renderCategories() {
+  const current = monthExpenses();
+  const target = $("categoryReport");
+
+  if (!current.length) {
+    target.className = "empty";
+    target.textContent = "لا توجد مصاريف مسجلة لهذا الشهر.";
+    $("topCategory").textContent = "—";
+    return;
+  }
+
+  target.className = "";
+
+  const totals = categoryTotals(current);
+  const entries = Object.entries(totals).sort((a, b) => b[1] - a[1]);
+  const sum = total(current);
+
+  $("topCategory").textContent = entries[0][0];
+
+  target.innerHTML = entries.map(([name, amount]) => `
+    <div class="category">
+      <div class="category-head">
+        <span>${esc(name)}</span>
+        <strong>${money(amount)}</strong>
+      </div>
+      <div class="bar">
+        <div class="fill" style="width:${Math.min(100, amount / sum * 100)}%"></div>
+      </div>
+      <div class="meta">${Math.round(amount / sum * 100)}% من مصاريف الشهر</div>
+    </div>
+  `).join("");
+}
+
+function renderExpenses() {
+  const target = $("expensesList");
+
+  if (!expenses.length) {
+    target.className = "empty";
+    target.textContent = "لا توجد مصاريف حتى الآن.";
+    return;
+  }
+
+  target.className = "";
+
+  target.innerHTML = expenses.slice(0, 100).map(e => `
+    <div class="expense">
+      <div>
+        <div class="expense-name">${esc(e.description)}</div>
+        <div class="meta">${esc(e.category)} · ${esc(e.date)}</div>
+      </div>
+      <div class="right">
+        <div class="amount">${money(e.amount)}</div>
+        <div class="expense-actions">
+          <button class="edit" data-edit="${esc(e.id)}" type="button">✏️ تعديل</button>
+          <button class="delete" data-delete="${esc(e.id)}" type="button">حذف</button>
+        </div>
+      </div>
+    </div>
+  `).join("");
+}
+
+function renderGoals() {
+  const target = $("goalsList");
+
+  if (!goals.length) {
+    target.innerHTML = '<div class="empty">لا توجد أهداف توفير بعد. أضف هدفك الأول!</div>';
+    return;
+  }
+
+  target.innerHTML = goals.map(g => {
+    const percentage = Math.min(100, g.saved / g.target * 100);
+    const remaining = Math.max(0, g.target - g.saved);
+
+    return `
+      <div class="goal">
+        <div class="goal-head">
+          <div class="goal-title">🎯 ${esc(g.name)}</div>
+          <strong>${Math.round(percentage)}%</strong>
+        </div>
+        <div class="progress">
+          <div class="progressbar" style="width:${percentage}%;background:var(--green)"></div>
+        </div>
+        <div class="meta">تم توفير ${money(g.saved)} من ${money(g.target)}</div>
+        <div class="meta">${remaining > 0 ? "المتبقي لتحقيق الهدف: " + money(remaining) : "🎉 حققت هدفك!"}</div>
+        <div class="goal-actions">
+          <button class="edit" type="button" data-save-goal="${esc(g.id)}">＋ إضافة توفير</button>
+          <button class="delete" type="button" data-delete-goal="${esc(g.id)}">حذف الهدف</button>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function render() {
+  const spent = total(expenses);
+  const remaining = budget - spent;
+  const percentage = budget > 0 ? spent / budget * 100 : 0;
+
+  $("budgetDisplay").textContent = money(budget);
+  $("spentDisplay").textContent = money(spent);
+  $("remainingDisplay").textContent = money(remaining);
+
+  $("budgetBar").style.width = Math.min(100, percentage) + "%";
+  $("budgetBar").style.background =
+    percentage >= 100 ? "var(--red)" :
+    percentage >= 80 ? "var(--orange)" : "var(--green)";
+
+  const notice = $("budgetNotice");
+
+  if (budget > 0 && percentage >= 100) {
+    notice.innerHTML = '<div class="notice bad">🚨 تجاوزت ميزانيتك المحددة.</div>';
+  } else if (budget > 0 && percentage >= 80) {
+    notice.innerHTML = '<div class="notice warn">⚠️ استهلكت معظم ميزانيتك.</div>';
+  } else {
+    notice.innerHTML = "";
+  }
+
+  const now = new Date();
+  const days = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+
+  $("daysValue").textContent = now.getDate() + " / " + days;
+
+  renderIntelligence();
+  renderCategories();
+  renderExpenses();
+  renderGoals();
+}
 
 function resetForm() {
   editingId = null;
@@ -318,37 +603,6 @@ function resetForm() {
   $("cancelEditBtn").style.display = "none";
 }
 
-function editExpense(id) {
-  const expense = expenses.find(item => String(item.id) === String(id));
-
-  if (!expense) {
-    message("لم يتم العثور عليه", "حدّث الصفحة وحاول مرة أخرى.");
-    return;
-  }
-
-  editingId = String(expense.id);
-  $("amountInput").value = expense.amount;
-  $("descriptionInput").value = expense.description;
-
-  const option = [...$("categoryInput").options].find(item =>
-    item.textContent === expense.category ||
-    item.value === expense.category
-  );
-
-  if (option) $("categoryInput").value = option.value;
-
-  $("formTitle").textContent = "✏️ تعديل المصروف";
-  $("submitExpenseBtn").textContent = "💾 حفظ التعديل";
-  $("cancelEditBtn").style.display = "block";
-
-  $("expenseForm").scrollIntoView({
-    behavior: "smooth",
-    block: "center"
-  });
-}
-
-$("cancelEditBtn").onclick = resetForm;
-
 $("expenseForm").addEventListener("submit", event => {
   event.preventDefault();
 
@@ -356,44 +610,32 @@ $("expenseForm").addEventListener("submit", event => {
   const description = $("descriptionInput").value.trim();
   const category = $("categoryInput").value;
 
-  if (!Number.isFinite(amount) || amount <= 0) {
-    message("مبلغ غير صحيح", "اكتب مبلغًا أكبر من صفر.");
-    return;
-  }
-
-  if (!description) {
-    message("وصف مطلوب", "اكتب وصف المصروف.");
+  if (!Number.isFinite(amount) || amount <= 0 || !description) {
+    showMessage("تحقق من البيانات", "أدخل مبلغًا أكبر من صفر ووصفًا للمصروف.");
     return;
   }
 
   if (editingId !== null) {
-    const index = expenses.findIndex(item =>
-      String(item.id) === editingId
-    );
+    const index = expenses.findIndex(e => e.id === editingId);
 
     if (index < 0) {
       resetForm();
-      message("لم يتم العثور عليه", "لم أجد المصروف المطلوب تعديله.");
+      showMessage("تعذر التعديل", "لم يتم العثور على المصروف.");
       return;
     }
 
-    const oldExpense = { ...expenses[index] };
+    const old = { ...expenses[index] };
 
-    expenses[index] = {
-      ...expenses[index],
-      amount,
-      description,
-      category
-    };
+    expenses[index] = { ...old, amount, description, category };
 
-    if (!persist()) {
-      expenses[index] = oldExpense;
+    if (!persistAll()) {
+      expenses[index] = old;
       return;
     }
 
     resetForm();
     render();
-    message("تم التعديل", "تم حفظ التعديلات مع الاحتفاظ بتاريخ المصروف الأصلي.");
+    showMessage("تم التعديل", "تم حفظ تعديل المصروف.");
     return;
   }
 
@@ -410,214 +652,61 @@ $("expenseForm").addEventListener("submit", event => {
     timestamp: Date.now()
   });
 
-  if (!persist()) {
+  if (!persistAll()) {
     expenses.shift();
     return;
   }
 
   $("expenseForm").reset();
   render();
-  message("تمت الإضافة", "تمت إضافة المصروف بنجاح.");
+  showMessage("تمت الإضافة", "تمت إضافة المصروف وتحديث التحليلات.");
 });
+
+$("cancelEditBtn").onclick = resetForm;
 
 $("expensesList").addEventListener("click", event => {
-  const editButton = event.target.closest("[data-edit]");
-  const deleteButton = event.target.closest("[data-delete]");
+  const edit = event.target.closest("[data-edit]");
+  const del = event.target.closest("[data-delete]");
 
-  if (editButton) editExpense(editButton.dataset.edit);
-  if (deleteButton) deleteExpense(deleteButton.dataset.delete);
-});
+  if (edit) {
+    const e = expenses.find(x => x.id === edit.dataset.edit);
+    if (!e) return;
 
-function deleteExpense(id) {
-  dialog(
-    "حذف المصروف",
-    "هل أنت متأكد أنك تريد حذف هذا المصروف؟",
-    () => {
-      const index = expenses.findIndex(item =>
-        String(item.id) === String(id)
-      );
+    editingId = e.id;
+    $("amountInput").value = e.amount;
+    $("descriptionInput").value = e.description;
+    $("categoryInput").value = e.category;
+    $("formTitle").textContent = "✏️ تعديل المصروف";
+    $("submitExpenseBtn").textContent = "💾 حفظ التعديل";
+    $("cancelEditBtn").style.display = "block";
 
-      if (index < 0) {
-        message("لم يتم العثور عليه", "حدّث الصفحة ثم حاول مرة أخرى.");
-        return;
-      }
+    $("expenseForm").scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  if (del) {
+    const id = del.dataset.delete;
+
+    showDialog("حذف المصروف", "هل تريد حذف هذا المصروف؟", () => {
+      const index = expenses.findIndex(e => e.id === id);
+      if (index < 0) return;
 
       const removed = expenses.splice(index, 1)[0];
 
-      if (!persist()) {
+      if (!persistAll()) {
         expenses.splice(index, 0, removed);
-        render();
         return;
       }
 
-      if (editingId === String(id)) resetForm();
+      if (editingId === id) resetForm();
 
       render();
-      message("تم الحذف", "تم حذف المصروف بنجاح.");
-    }
-  );
-}
-
-function renderExpenses() {
-  const element = $("expensesList");
-
-  if (!expenses.length) {
-    element.className = "empty";
-    element.textContent = "لا توجد مصاريف حتى الآن";
-    return;
+      showMessage("تم الحذف", "تم حذف المصروف.");
+    });
   }
-
-  element.className = "";
-
-  element.innerHTML = expenses.slice(0, 100).map(expense => `
-    <div class="expense">
-      <div>
-        <div class="expense-name">${esc(expense.description)}</div>
-        <div class="meta">${esc(expense.category)} · ${esc(expense.date)}</div>
-      </div>
-      <div class="right">
-        <div class="amount">${money(expense.amount)}</div>
-        <div class="expense-actions">
-          <button class="edit" type="button" data-edit="${esc(expense.id)}">✏️ تعديل</button>
-          <button class="delete" type="button" data-delete="${esc(expense.id)}">حذف</button>
-        </div>
-      </div>
-    </div>
-  `).join("");
-}
-
-function renderCategories() {
-  const element = $("categoryReport");
-
-  if (!expenses.length) {
-    element.className = "empty";
-    element.textContent = "أضف مصروفًا حتى يظهر التقرير 📊";
-    return;
-  }
-
-  element.className = "";
-
-  const totals = {};
-
-  expenses.forEach(expense => {
-    totals[expense.category] =
-      (totals[expense.category] || 0) + expense.amount;
-  });
-
-  const sum = Object.values(totals).reduce(
-    (total, amount) => total + amount,
-    0
-  );
-
-  element.innerHTML = Object.entries(totals)
-    .sort((a, b) => b[1] - a[1])
-    .map(([category, amount]) => `
-      <div class="category">
-        <div class="category-head">
-          <span>${esc(category)}</span>
-          <strong>${money(amount)}</strong>
-        </div>
-        <div class="bar">
-          <div class="fill" style="width:${sum ? Math.min(100, amount / sum * 100) : 0}%"></div>
-        </div>
-      </div>
-    `).join("");
-}
-
-function renderReport() {
-  const now = new Date();
-  const day = now.getDate();
-  const days = new Date(
-    now.getFullYear(),
-    now.getMonth() + 1,
-    0
-  ).getDate();
-
-  const currentExpenses = expenses.filter(expense => {
-    const date = new Date(expense.timestamp);
-
-    return date.getFullYear() === now.getFullYear() &&
-      date.getMonth() === now.getMonth();
-  });
-
-  const spent = currentExpenses.reduce(
-    (total, expense) => total + expense.amount,
-    0
-  );
-
-  const average = day ? spent / day : 0;
-  const prediction = average * days;
-
-  $("daysValue").textContent = day + " / " + days;
-  $("averageValue").textContent = money(average);
-  $("predictionValue").textContent = money(prediction);
-
-  const categories = {};
-
-  currentExpenses.forEach(expense => {
-    categories[expense.category] =
-      (categories[expense.category] || 0) + expense.amount;
-  });
-
-  const topCategory = Object.entries(categories)
-    .sort((a, b) => b[1] - a[1])[0];
-
-  $("topCategoryValue").textContent =
-    topCategory ? topCategory[0] : "-";
-
-  const notice = $("predictionNotice");
-
-  if (budget > 0 && prediction > budget) {
-    notice.style.display = "block";
-    notice.textContent =
-      "⚠️ حسب معدل صرفك الحالي، قد تتجاوز الميزانية قبل نهاية الشهر.";
-  } else if (budget > 0 && prediction > budget * 0.8) {
-    notice.style.display = "block";
-    notice.textContent =
-      "🟡 انتبه، توقعات الصرف قريبة من الحد الأعلى للميزانية.";
-  } else {
-    notice.style.display = "none";
-  }
-}
-
-function render() {
-  const spent = expenses.reduce(
-    (total, expense) => total + expense.amount,
-    0
-  );
-
-  const remaining = budget - spent;
-  const percentage = budget > 0 ? spent / budget * 100 : 0;
-
-  $("budgetDisplay").textContent = money(budget);
-  $("spentDisplay").textContent = money(spent);
-  $("remainingDisplay").textContent = money(remaining);
-
-  $("progressBar").style.width =
-    Math.min(100, Math.max(0, percentage)) + "%";
-
-  $("progressBar").style.background =
-    percentage >= 100 ? "#b91c1c" :
-    percentage >= 80 ? "#b45309" :
-    "#15803d";
-
-  const notice = $("budgetNotice");
-
-  if (budget > 0 && percentage >= 80) {
-    notice.style.display = "block";
-    notice.textContent =
-      "⚠️ انتبه، استهلكت " + Math.round(percentage) + "% من ميزانيتك.";
-  } else {
-    notice.style.display = "none";
-  }
-
-  renderExpenses();
-  renderCategories();
-  renderReport();
-}
+});
 
 $("editBudgetBtn").onclick = () => {
-  $("budgetInput").value = budget > 0 ? budget : "";
+  $("budgetInput").value = budget || "";
   $("budgetModal").style.display = "flex";
 };
 
@@ -629,117 +718,194 @@ $("saveBudgetBtn").onclick = () => {
   const value = Number($("budgetInput").value);
 
   if (!Number.isFinite(value) || value <= 0) {
-    message("ميزانية غير صحيحة", "أدخل ميزانية أكبر من صفر.");
+    showMessage("ميزانية غير صحيحة", "أدخل مبلغًا أكبر من صفر.");
     return;
   }
 
-  const oldBudget = budget;
+  const old = budget;
   budget = value;
 
-  if (!persist()) {
-    budget = oldBudget;
+  if (!persistAll()) {
+    budget = old;
     return;
   }
 
   $("budgetModal").style.display = "none";
   render();
-  message("تم الحفظ", "تم تحديث الميزانية.");
+  showMessage("تم الحفظ", "تم تحديث الميزانية.");
 };
 
+$("addGoalBtn").onclick = () => {
+  const name = $("goalName").value.trim();
+  const target = Number($("goalTarget").value);
+  const saved = Number($("goalSaved").value || 0);
+
+  if (!name || !Number.isFinite(target) || target <= 0 ||
+      !Number.isFinite(saved) || saved < 0) {
+    showMessage("تحقق من البيانات", "أدخل اسم الهدف ومبلغًا مطلوبًا صحيحًا ومبلغ توفير غير سالب.");
+    return;
+  }
+
+  const goal = {
+    id: Date.now() + "-" + Math.random().toString(36).slice(2),
+    name,
+    target,
+    saved
+  };
+
+  goals.push(goal);
+
+  if (!persistAll()) {
+    goals.pop();
+    return;
+  }
+
+  $("goalName").value = "";
+  $("goalTarget").value = "";
+  $("goalSaved").value = "";
+
+  renderGoals();
+  showMessage("تمت إضافة الهدف", "تم حفظ هدف التوفير.");
+};
+
+$("goalsList").addEventListener("click", event => {
+  const saveBtn = event.target.closest("[data-save-goal]");
+  const deleteBtn = event.target.closest("[data-delete-goal]");
+
+  if (saveBtn) {
+    const goal = goals.find(g => g.id === saveBtn.dataset.saveGoal);
+    if (!goal) return;
+
+    const input = prompt("كم مبلغ التوفير الذي تريد إضافته؟");
+
+    if (input === null) return;
+
+    const amount = Number(input);
+
+    if (!Number.isFinite(amount) || amount <= 0) {
+      showMessage("مبلغ غير صحيح", "أدخل مبلغًا أكبر من صفر.");
+      return;
+    }
+
+    const old = goal.saved;
+    goal.saved += amount;
+
+    if (!persistAll()) {
+      goal.saved = old;
+      return;
+    }
+
+    renderGoals();
+
+    if (goal.saved >= goal.target) {
+      showMessage("🎉 مبروك!", "وصلت إلى هدف التوفير: " + goal.name);
+    } else {
+      showMessage("تم تحديث الهدف", "تم تسجيل مبلغ التوفير.");
+    }
+  }
+
+  if (deleteBtn) {
+    const id = deleteBtn.dataset.deleteGoal;
+
+    showDialog("حذف هدف التوفير", "هل تريد حذف هذا الهدف؟", () => {
+      const index = goals.findIndex(g => g.id === id);
+      if (index < 0) return;
+
+      const old = goals.splice(index, 1)[0];
+
+      if (!persistAll()) {
+        goals.splice(index, 0, old);
+        return;
+      }
+
+      renderGoals();
+      showMessage("تم الحذف", "تم حذف هدف التوفير.");
+    });
+  }
+});
+
 $("clearDataBtn").onclick = () => {
-  dialog(
+  showDialog(
     "مسح جميع البيانات",
-    "سيتم حذف كل المصاريف وإرجاع الميزانية إلى صفر. لا يمكن التراجع عن هذا الإجراء. هل تريد المتابعة؟",
+    "سيتم حذف الميزانية والمصاريف وأهداف التوفير. لا يمكن التراجع عن هذا الإجراء. أنشئ نسخة احتياطية أولًا. هل تريد المتابعة؟",
     () => {
-      const oldExpenses = expenses.slice();
       const oldBudget = budget;
+      const oldExpenses = expenses;
+      const oldGoals = goals;
 
-      expenses = [];
       budget = 0;
+      expenses = [];
+      goals = [];
 
-      if (!persist()) {
-        expenses = oldExpenses;
+      if (!persistAll()) {
         budget = oldBudget;
+        expenses = oldExpenses;
+        goals = oldGoals;
         render();
         return;
       }
 
       resetForm();
       render();
-      message("تم المسح", "تم مسح جميع المصاريف وإرجاع الميزانية إلى صفر.");
+      showMessage("تم المسح", "تم مسح البيانات.");
     }
   );
 };
 
 function applyTheme() {
-  document.body.classList.toggle(
-    "dark",
-    safeGet(KEYS.dark) === "true"
-  );
-
-  $("themeBtn").textContent =
-    document.body.classList.contains("dark") ? "☀️" : "🌙";
+  const dark = getItem(KEY_DARK, "false") === "true";
+  document.body.classList.toggle("dark", dark);
+  $("themeBtn").textContent = dark ? "☀️" : "🌙";
 }
 
 $("themeBtn").onclick = () => {
-  safeSet(
-    KEYS.dark,
-    document.body.classList.contains("dark") ? "false" : "true"
-  );
+  const dark = !document.body.classList.contains("dark");
+
+  if (!setItem(KEY_DARK, dark ? "true" : "false")) return;
 
   applyTheme();
 };
 
-function downloadJson(filename, content) {
-  const blob = new Blob(
-    [content],
-    { type: "application/json;charset=utf-8" }
-  );
-
+function downloadJson(filename, text) {
+  const blob = new Blob([text], { type: "application/json;charset=utf-8" });
   const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
+  const a = document.createElement("a");
 
-  link.href = url;
-  link.download = filename;
-  link.style.display = "none";
+  a.href = url;
+  a.download = filename;
+  a.style.display = "none";
 
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
 
-  setTimeout(() => URL.revokeObjectURL(url), 1500);
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
 }
 
 $("backupBtn").onclick = () => {
   try {
     const data = {
       app: "Masroofi",
-      backupVersion: 1,
+      backupVersion: 2,
       exportedAt: new Date().toISOString(),
       budget,
       expenses,
+      goals,
       darkMode: document.body.classList.contains("dark")
     };
 
-    const filename =
-      "masroofi-backup-" +
-      new Date().toISOString().slice(0, 10) +
-      ".json";
-
-    downloadJson(filename, JSON.stringify(data, null, 2));
-
-    message(
-      "تم تجهيز النسخة الاحتياطية",
-      "إذا بدأ التنزيل، ستجد الملف في مجلد التنزيلات. احتفظ به في مكان آمن."
+    downloadJson(
+      "masroofi-backup-" + new Date().toISOString().slice(0, 10) + ".json",
+      JSON.stringify(data, null, 2)
     );
-  } catch (error) {
-    message("تعذر إنشاء النسخة", "حاول مرة أخرى.");
+
+    showMessage("النسخة جاهزة", "إذا بدأ التنزيل، احتفظ بملف النسخة الاحتياطية في مكان آمن.");
+  } catch (e) {
+    showMessage("تعذر إنشاء النسخة", "حاول مرة أخرى.");
   }
 };
 
-$("restoreBtn").onclick = () => {
-  $("restoreFileInput").click();
-};
+$("restoreBtn").onclick = () => $("restoreFileInput").click();
 
 $("restoreFileInput").addEventListener("change", event => {
   const file = event.target.files && event.target.files[0];
@@ -753,140 +919,109 @@ $("restoreFileInput").addEventListener("change", event => {
 
     try {
       data = JSON.parse(String(reader.result || ""));
-    } catch (error) {
-      message("ملف غير صالح", "تعذر قراءة الملف كـ JSON.");
+    } catch (e) {
+      showMessage("ملف غير صالح", "تعذر قراءة الملف.");
       $("restoreFileInput").value = "";
       return;
     }
 
-    const valid =
-      data &&
-      typeof data === "object" &&
-      !Array.isArray(data) &&
+    const valid = data &&
       data.app === "Masroofi" &&
-      data.backupVersion === 1 &&
+      [1, 2].includes(data.backupVersion) &&
       Number.isFinite(Number(data.budget)) &&
       Number(data.budget) >= 0 &&
       Array.isArray(data.expenses);
 
     if (!valid) {
-      message(
-        "نسخة غير متوافقة",
-        "هذا الملف ليس نسخة احتياطية صالحة من مصروفي."
-      );
-
+      showMessage("نسخة غير متوافقة", "هذا الملف ليس نسخة احتياطية صالحة.");
       $("restoreFileInput").value = "";
       return;
     }
 
     const importedExpenses = [];
 
-    for (const expense of data.expenses) {
-      if (
-        !expense ||
-        typeof expense !== "object" ||
-        !Number.isFinite(Number(expense.amount)) ||
-        Number(expense.amount) <= 0 ||
-        typeof expense.description !== "string" ||
-        !expense.description.trim()
-      ) {
-        message(
-          "بيانات غير صالحة",
-          "تحتوي النسخة على مصروف غير صالح ولم تتغير بياناتك."
-        );
-
+    for (const e of data.expenses) {
+      if (!e || !Number.isFinite(Number(e.amount)) ||
+          Number(e.amount) <= 0 ||
+          typeof e.description !== "string" ||
+          !e.description.trim()) {
+        showMessage("بيانات غير صالحة", "لم يتم تغيير بياناتك.");
         $("restoreFileInput").value = "";
         return;
       }
 
       importedExpenses.push({
-        id: String(expense.id ?? (Date.now() + "-" + Math.random())),
-        amount: Number(expense.amount),
-        description: expense.description.slice(0, 120),
-        category: String(expense.category ?? "📦 أخرى"),
-        date: String(expense.date ?? ""),
-        timestamp: Number(expense.timestamp) || Date.now()
+        id: String(e.id ?? Date.now() + Math.random()),
+        amount: Number(e.amount),
+        description: e.description.slice(0, 120),
+        category: String(e.category ?? "📦 أخرى"),
+        date: String(e.date ?? ""),
+        timestamp: Number(e.timestamp) || Date.now()
       });
     }
 
-    const newBudget = Number(data.budget);
-    const darkMode = data.darkMode === true;
+    const importedGoals = Array.isArray(data.goals)
+      ? data.goals.filter(g =>
+          g && typeof g.name === "string" &&
+          Number(g.target) > 0 &&
+          Number(g.saved) >= 0
+        ).map(g => ({
+          id: String(g.id ?? Date.now() + Math.random()),
+          name: g.name.slice(0, 70),
+          target: Number(g.target),
+          saved: Number(g.saved)
+        }))
+      : [];
 
-    dialog(
-      "تأكيد استعادة النسخة",
-      "سيتم استبدال الميزانية والمصاريف الحالية بمحتويات النسخة الاحتياطية.\n\nعدد المصاريف في النسخة: " +
-        importedExpenses.length +
-        "\nالميزانية في النسخة: " +
-        money(newBudget) +
-        "\n\nيُنصح بإنشاء نسخة من بياناتك الحالية أولًا.",
+    showDialog(
+      "تأكيد الاستعادة",
+      "ستُستبدل البيانات الحالية ببيانات النسخة الاحتياطية. أنشئ نسخة من بياناتك الحالية قبل المتابعة إن أردت الاحتفاظ بها.",
       () => {
-        const oldBudget = budget;
-        const oldExpenses = expenses;
-        const oldDark = safeGet(KEYS.dark);
+        const old = {
+          budget,
+          expenses,
+          goals,
+          dark: getItem(KEY_DARK, "false")
+        };
 
-        const oldStoredBudget = safeGet(KEYS.budget);
-        const oldStoredExpenses = safeGet(KEYS.expenses);
-
-        budget = newBudget;
+        budget = Number(data.budget);
         expenses = importedExpenses;
+        goals = importedGoals;
 
-        const budgetSaved = safeSet(KEYS.budget, String(budget));
-        const expensesSaved = safeSet(
-          KEYS.expenses,
-          JSON.stringify(expenses)
-        );
-        const darkSaved = safeSet(
-          KEYS.dark,
-          darkMode ? "true" : "false"
-        );
+        const success = persistAll() &&
+          setItem(KEY_DARK, data.darkMode === true ? "true" : "false");
 
-        if (!budgetSaved || !expensesSaved || !darkSaved) {
-          budget = oldBudget;
-          expenses = oldExpenses;
+        if (!success) {
+          budget = old.budget;
+          expenses = old.expenses;
+          goals = old.goals;
 
-          if (oldStoredBudget === null) {
-            safeRemove(KEYS.budget);
-          } else {
-            safeSet(KEYS.budget, oldStoredBudget);
-          }
-
-          if (oldStoredExpenses === null) {
-            safeRemove(KEYS.expenses);
-          } else {
-            safeSet(KEYS.expenses, oldStoredExpenses);
-          }
-
-          if (oldDark === null) {
-            safeRemove(KEYS.dark);
-          } else {
-            safeSet(KEYS.dark, oldDark);
-          }
+          try {
+            localStorage.setItem(KEY_BUDGET, String(old.budget));
+            localStorage.setItem(KEY_EXPENSES, JSON.stringify(old.expenses));
+            localStorage.setItem(KEY_GOALS, JSON.stringify(old.goals));
+            localStorage.setItem(KEY_DARK, old.dark);
+          } catch (e) {}
 
           applyTheme();
           render();
-
-          message(
-            "تعذر الاستعادة",
-            "لم تكتمل الاستعادة، وتمت محاولة إعادة البيانات السابقة."
-          );
-
+          showMessage("تعذر الاستعادة", "تمت محاولة استرجاع البيانات السابقة.");
           return;
         }
 
         applyTheme();
         resetForm();
         render();
-
-        message("تمت الاستعادة", "تمت استعادة النسخة الاحتياطية بنجاح.");
+        showMessage("تمت الاستعادة", "تم استرجاع النسخة الاحتياطية.");
       },
-      "استعادة البيانات"
+      "استعادة"
     );
 
     $("restoreFileInput").value = "";
   };
 
   reader.onerror = () => {
-    message("تعذر قراءة الملف", "حاول اختيار الملف مرة أخرى.");
+    showMessage("تعذر قراءة الملف", "حاول مرة أخرى.");
     $("restoreFileInput").value = "";
   };
 
