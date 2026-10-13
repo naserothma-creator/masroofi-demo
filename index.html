@@ -4,820 +4,388 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0f766e">
-<title>مصروفي Masroofi</title>
+<title>مصروفي | Masroofi</title>
 <style>
 :root{
-  --bg:#f3f7f8;--card:#fff;--text:#152b35;--muted:#71818a;
-  --primary:#0f766e;--primary2:#115e59;--line:#e4ebee;
-  --green:#15803d;--greenbg:#e9f9ef;--red:#b91c1c;--redbg:#fff0f0;
-  --yellow:#a16207;--yellowbg:#fff8df;--shadow:0 5px 20px #15333d0a;
-  --radius:18px;
+  --primary:#0f766e;--primary2:#115e59;--bg:#f3f7f8;
+  --card:#fff;--text:#17313b;--muted:#71838a;
+  --line:#dfe8ea;--green:#15803d;--yellow:#b45309;
+  --red:#b91c1c;--radius:17px;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;padding-bottom:95px}
-body.dark{
- --bg:#10191e;--card:#1a272e;--text:#e9f2f4;--muted:#a3b3bb;
- --primary:#42b8a9;--primary2:#249688;--line:#304149;
- --green:#6ee7a0;--greenbg:#183b2a;--red:#ff9999;--redbg:#402525;
- --yellow:#f5d56a;--yellowbg:#40371d;--shadow:0 5px 20px #0002
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;
+  line-height:1.6;padding-bottom:85px
 }
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
 button:disabled{opacity:.5;cursor:not-allowed}
-button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
-header{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
-.header-inner{max-width:1000px;margin:auto;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px}
-.brand{display:flex;align-items:center;gap:10px}
-.logo{width:43px;height:43px;border-radius:14px;background:var(--primary);color:white;display:grid;place-items:center;font-size:23px}
-.brand h1{font-size:19px;margin:0}
-.brand p{font-size:12px;color:var(--muted);margin:2px 0 0}
-.icon-btn{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:12px;padding:9px 12px}
-main{max-width:1000px;margin:auto;padding:16px}
-.page{display:none}.page.active{display:block}
-h2{font-size:21px;margin:5px 0 6px}
-h3{font-size:16px;margin:0 0 12px}
-.subtitle{color:var(--muted);font-size:13px;margin:0 0 17px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px;box-shadow:var(--shadow)}
-.hero{background:linear-gradient(135deg,#0f766e,#115e59);color:#fff;border-radius:23px;padding:21px;margin-bottom:15px}
-.hero .eyebrow{font-size:13px;opacity:.85}
-.hero .amount{font-size:clamp(30px,8vw,43px);font-weight:800;margin:8px 0}
-.hero .hint{font-size:13px;opacity:.9;line-height:1.7}
-.hero .row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.hero button{background:#fff;color:#115e59;border:0;border-radius:12px;padding:10px 14px;font-weight:700}
-.hero.good{background:linear-gradient(135deg,#15803d,#166534)}
-.hero.warn{background:linear-gradient(135deg,#a16207,#854d0e)}
-.hero.bad{background:linear-gradient(135deg,#b91c1c,#991b1b)}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.stat{padding:14px;border:1px solid var(--line);background:var(--card);border-radius:16px;min-width:0}
-.stat .label{font-size:12px;color:var(--muted)}
-.stat .value{font-size:clamp(18px,4vw,24px);font-weight:800;margin-top:6px;overflow-wrap:anywhere}
-.stat .small{font-size:12px;color:var(--muted);margin-top:4px}
-.green{color:var(--green)!important}.red{color:var(--red)!important}.muted{color:var(--muted)}
-.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
-.between{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.btn{border:0;background:var(--primary);color:white;border-radius:12px;padding:11px 14px;font-weight:650}
-.btn.secondary{background:var(--bg);border:1px solid var(--line);color:var(--text)}
-.btn.danger{background:var(--red);color:#fff}
-.btn.small{padding:7px 10px;font-size:12px;border-radius:9px}
-.btn.full{width:100%}
-form{display:grid;gap:11px}
-label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
-input,select,textarea{width:100%;min-width:0;border:1px solid var(--line);border-radius:11px;background:var(--bg);color:var(--text);padding:11px}
-textarea{resize:vertical}
-.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.fullspan{grid-column:1/-1}
-.list{display:grid;gap:9px}
-.item{border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-.item-title{font-weight:700;overflow-wrap:anywhere}
-.item-meta{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.7}
-.item-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
-.badge{display:inline-flex;padding:4px 8px;border-radius:9px;font-size:11px;background:var(--bg);color:var(--muted)}
-.badge.good{background:var(--greenbg);color:var(--green)}
-.badge.warn{background:var(--yellowbg);color:var(--yellow)}
-.badge.bad{background:var(--redbg);color:var(--red)}
-.empty{text-align:center;padding:24px 12px;color:var(--muted);line-height:1.8}
-.empty strong{display:block;color:var(--text);margin-bottom:5px}
-.progress{height:9px;background:var(--bg);border-radius:99px;overflow:hidden;margin:9px 0}
-.progress span{display:block;height:100%;background:var(--primary);border-radius:99px}
-.section-title{margin:21px 0 10px}
-.tabs{display:flex;gap:8px;overflow:auto;padding-bottom:3px;margin-bottom:12px}
-.tabs button{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:11px;padding:9px 12px}
-.tabs button.active{background:var(--primary);color:white;border-color:var(--primary)}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:20;background:var(--card);border-top:1px solid var(--line);padding:7px max(7px,env(safe-area-inset-right)) calc(7px + env(safe-area-inset-bottom)) max(7px,env(safe-area-inset-left));display:grid;grid-template-columns:repeat(5,1fr);gap:3px}
-.nav-btn{border:0;background:transparent;color:var(--muted);padding:6px 2px;border-radius:12px;display:grid;justify-items:center;gap:3px;font-size:11px}
-.nav-btn .emoji{font-size:20px}
-.nav-btn.active{background:var(--greenbg);color:var(--primary);font-weight:800}
-.notice{padding:11px 13px;border-radius:12px;background:var(--yellowbg);color:var(--yellow);font-size:12px;line-height:1.7;margin-bottom:12px}
-.disabled-note{font-size:11px;color:var(--muted);margin-top:5px}
+.container{width:min(100% - 24px,900px);margin:auto}
+header{
+  color:#fff;background:linear-gradient(135deg,var(--primary),var(--primary2));
+  padding:20px 0 24px;border-radius:0 0 24px 24px
+}
+.head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:11px}
+.logo{
+  display:grid;place-items:center;width:48px;height:48px;
+  background:#ffffff25;border-radius:15px;font-size:27px
+}
+.brand h1{margin:0;font-size:22px}
+.brand p{margin:0;font-size:12px;opacity:.85}
+.head button{border:1px solid #ffffff55;background:#ffffff20;color:white;
+  padding:9px 12px;border-radius:11px}
+main{padding-top:17px}
+.page{display:none}
+.page.active{display:block}
+.card{
+  background:var(--card);border:1px solid var(--line);
+  border-radius:var(--radius);padding:16px;margin-bottom:13px;
+  box-shadow:0 4px 17px #18343d08;min-width:0
+}
+h2{font-size:18px;margin:0 0 12px}
+h3{font-size:15px;margin:0 0 10px}
+p{margin:5px 0}
+.muted,.small{color:var(--muted)}
+.small{font-size:12px}
+.row{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.between{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.stat{background:#f7fafb;border:1px solid var(--line);padding:12px;border-radius:13px;min-width:0}
+.stat-label{font-size:12px;color:var(--muted)}
+.stat-value{font-size:19px;font-weight:800;overflow-wrap:anywhere}
+.hero{background:linear-gradient(135deg,#0f766e,#0d9488);color:white;border:0}
+.hero .stat-label,.hero .small{color:#e0f2f1}
+.hero-value{font-size:30px;font-weight:850;overflow-wrap:anywhere;margin:3px 0 8px}
+.btn{
+  border:1px solid transparent;border-radius:11px;padding:9px 13px;
+  background:var(--primary);color:white;font-weight:700;display:inline-flex;
+  justify-content:center;align-items:center;gap:5px
+}
+.btn.secondary{background:white;border-color:var(--line);color:var(--text)}
+.btn.danger{background:#fff0f0;color:var(--red);border-color:#fecaca}
+.btn.small{font-size:12px;padding:5px 9px}
+.btn.block{width:100%}
+label{display:block;font-size:13px;font-weight:700;margin:0 0 5px}
+.field{margin-bottom:12px;min-width:0}
+input,select,textarea{
+  width:100%;min-width:0;border:1px solid #d2dfe2;border-radius:10px;
+  padding:10px 11px;background:#fff;color:var(--text);outline:none
+}
+input:focus,select:focus,textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px #0f766e18}
+textarea{min-height:75px;resize:vertical}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px}
+.full{grid-column:1/-1}
+.badge{display:inline-block;border-radius:30px;padding:3px 8px;font-size:11px;font-weight:750}
+.good{background:#dcfce7;color:#166534}
+.warn{background:#fef3c7;color:#92400e}
+.bad{background:#fee2e2;color:#991b1b}
+.neutral{background:#edf2f4;color:#53656d}
+.progress{height:8px;border-radius:30px;background:#e8eff1;overflow:hidden;margin:8px 0}
+.progress span{height:100%;display:block;background:var(--primary);border-radius:30px}
+.item{padding:12px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px}
+.item:last-child{border-bottom:0;padding-bottom:0}
+.item-title{font-weight:750;overflow-wrap:anywhere}
+.item-meta{font-size:12px;color:var(--muted)}
+.item-actions{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.empty{padding:22px;text-align:center;border:1px dashed #cbd9dc;border-radius:12px;color:var(--muted)}
+.notice{padding:11px 13px;border-radius:11px;font-size:13px;margin-bottom:12px}
+.notice.info{background:#e7f5f3;color:#115e59}
+.notice.warn{background:#fff5d8;color:#92400e}
+.notice.danger{background:#feecec;color:#991b1b}
+.tabs{
+  position:fixed;z-index:20;bottom:0;left:0;right:0;
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+  background:#fffffff5;border-top:1px solid var(--line);
+  padding:7px 6px calc(7px + env(safe-area-inset-bottom));
+  backdrop-filter:blur(10px)
+}
+.tab{border:0;background:transparent;color:var(--muted);font-size:10px;
+  display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 1px;border-radius:10px}
+.tab .ico{font-size:20px;line-height:1.2}
+.tab.active{background:#e5f4f1;color:var(--primary);font-weight:800}
+.toast{
+  position:fixed;z-index:100;bottom:90px;left:50%;transform:translateX(-50%);
+  background:#173b3d;color:#fff;padding:10px 15px;border-radius:11px;
+  width:max-content;max-width:90%;font-size:13px;display:none
+}
+.section-title{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:18px 0 10px}
+.section-title h2{margin:0}
+footer{text-align:center;color:var(--muted);font-size:11px;padding:16px}
 hr{border:0;border-top:1px solid var(--line);margin:15px 0}
 .hidden{display:none!important}
-.category-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:10px 0;font-size:13px}
-.category-row .progress{flex:1;margin:0;max-width:42%}
-footer{text-align:center;color:var(--muted);font-size:11px;padding:18px}
-#toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:var(--text);color:var(--card);padding:11px 16px;border-radius:12px;z-index:40;max-width:90%;font-size:13px;display:none}
-@media(min-width:760px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.hero{padding:27px}.home-columns{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}.home-columns .card{height:fit-content}}
-@media(max-width:420px){main{padding:12px}.card{padding:13px}.formgrid{grid-template-columns:1fr}.fullspan{grid-column:auto}.grid3{grid-template-columns:repeat(2,minmax(0,1fr))}.brand h1{font-size:17px}}
+@media(min-width:650px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:480px){
+  .container{width:calc(100% - 18px)}
+  .card{padding:13px}
+  .form-grid{grid-template-columns:1fr}
+  .full{grid-column:auto}
+  .brand h1{font-size:19px}
+  .hero-value{font-size:26px}
+}
 </style>
 </head>
 <body>
+
 <header>
-  <div class="header-inner">
+  <div class="container head">
     <div class="brand">
-      <div class="logo">₪</div>
-      <div><h1>مصروفي Masroofi</h1><p>مساعدك المالي اليومي · اعرف وين عم تروح مصاريك</p></div>
+      <div class="logo">💰</div>
+      <div><h1>مصروفي</h1><p>Masroofi · مصروفك تحت السيطرة</p></div>
     </div>
-    <button class="icon-btn" id="themeBtn" aria-label="تغيير المظهر" title="الوضع الداكن">🌙</button>
+    <button onclick="showPage('settings')">⚙️ الإعدادات</button>
   </div>
 </header>
 
-<main>
-  <!-- 1: الرئيسية -->
+<main class="container">
   <section id="page-home" class="page active">
-    <h2>أهلًا بك في مصروفي 👋</h2>
-    <p class="subtitle">خطوة صغيرة اليوم تساعدك تتحكم بمصروفك.</p>
-    <div id="setupNotice" class="notice hidden">
-      لنحسب المبلغ الآمن بشكل مفيد، أدخل دخلك وميزانيتك الشهرية أولًا.
-      <button class="btn small" onclick="go('more');showMore('settings')">إعداد الميزانية</button>
-    </div>
-    <div class="hero" id="safeHero">
-      <div class="eyebrow">ماذا أستطيع أن أصرف اليوم؟</div>
-      <div class="amount" id="safeAmount">—</div>
-      <div class="hint" id="safeHint">أدخل بياناتك الشهرية لاحتساب المبلغ الآمن.</div>
-      <div class="row" style="margin-top:15px">
-        <button onclick="go('transactions');openTxForm('expense')">＋ إضافة مصروف</button>
-        <button onclick="explainSafe()" style="background:transparent;color:white;border:1px solid #ffffff80">كيف حُسب؟</button>
+    <div id="welcome" class="card">
+      <div class="between">
+        <div><h2>أهلًا بك في مصروفي 👋</h2><p class="muted small">نظّم دخلك ومصاريفك وراقب أهدافك.</p></div>
+        <button class="btn small secondary" onclick="dismissWelcome()">إخفاء</button>
       </div>
     </div>
-    <div class="grid" id="homeStats"></div>
-    <div class="home-columns" style="margin-top:16px">
-      <div>
-        <div class="card">
-          <div class="between"><h3>الالتزامات القادمة</h3><button class="btn secondary small" onclick="go('obligations')">عرض الكل</button></div>
-          <div id="homeBills" class="list"></div>
-        </div>
-        <div class="card">
-          <div class="between"><h3>آخر المعاملات</h3><button class="btn secondary small" onclick="go('transactions')">عرض الكل</button></div>
-          <div id="homeTransactions" class="list"></div>
-        </div>
-      </div>
-      <div>
-        <div class="card">
-          <h3>ملخص الميزانية</h3>
-          <div id="homeBudget"></div>
-        </div>
-        <div class="card">
-          <div class="between"><h3>أهداف الادخار</h3><button class="btn secondary small" onclick="go('more');showMore('goals')">عرض الأهداف</button></div>
-          <div id="homeGoals"></div>
-        </div>
+
+    <div class="card hero">
+      <div class="stat-label">المبلغ الآمن للصرف اليوم</div>
+      <div id="safeAmount" class="hero-value">—</div>
+      <p id="safeNote" class="small">أدخل دخلك والتزاماتك وميزانيتك لحساب المبلغ.</p>
+      <div class="row" style="margin-top:13px">
+        <button class="btn" style="background:white;color:#0f766e" onclick="openTransaction('expense')">＋ إضافة مصروف</button>
+        <button class="btn secondary" onclick="openTransaction('income')">＋ إضافة دخل</button>
       </div>
     </div>
+
+    <div class="grid">
+      <div class="stat"><div class="stat-label">الدخل المسجل هذا الشهر</div><div class="stat-value" id="homeIncome">0</div></div>
+      <div class="stat"><div class="stat-label">المصروف هذا الشهر</div><div class="stat-value" id="homeExpense">0</div></div>
+      <div class="stat"><div class="stat-label">المتبقي من الميزانية</div><div class="stat-value" id="homeBudget">—</div></div>
+      <div class="stat"><div class="stat-label">الالتزامات غير المدفوعة</div><div class="stat-value" id="homeDue">0</div></div>
+    </div>
+
+    <div class="section-title"><h2>ميزانية الشهر</h2><button class="btn small secondary" onclick="showPage('settings')">ضبطها</button></div>
+    <div class="card">
+      <div class="between"><span class="muted small">المصروف / الحد</span><strong id="budgetNumbers">—</strong></div>
+      <div class="progress"><span id="budgetProgress" style="width:0%"></span></div>
+      <p id="budgetMessage" class="small muted">حدد ميزانية شهرية من الإعدادات.</p>
+    </div>
+
+    <div class="section-title"><h2>الالتزامات القادمة</h2><button class="btn small secondary" onclick="showPage('obligations')">عرض الكل</button></div>
+    <div id="homeObligations" class="card"><div class="empty">لا توجد التزامات بعد.</div></div>
+
+    <div class="section-title"><h2>أحدث المعاملات</h2><button class="btn small secondary" onclick="showPage('transactions')">عرض الكل</button></div>
+    <div id="homeTransactions" class="card"><div class="empty">لا توجد معاملات بعد.</div></div>
+
+    <div class="section-title"><h2>أهداف الادخار</h2><button class="btn small secondary" onclick="showPage('more')">إدارة الأهداف</button></div>
+    <div id="homeGoals" class="card"><div class="empty">أضف هدف ادخار من صفحة المزيد.</div></div>
   </section>
 
-  <!-- 2: المعاملات -->
   <section id="page-transactions" class="page">
-    <h2>المعاملات</h2><p class="subtitle">سجّل كل دخل ومصروف، وعدّل السجلات عند الحاجة.</p>
+    <div class="section-title"><h2>المعاملات</h2><button class="btn" onclick="openTransaction()">＋ إضافة</button></div>
     <div class="card">
-      <div class="tabs">
-        <button id="txTabExpense" class="active" onclick="openTxForm('expense')">＋ مصروف</button>
-        <button id="txTabIncome" onclick="openTxForm('income')">＋ دخل</button>
+      <div class="form-grid">
+        <div class="field"><label>نوع المعاملة</label><select id="filterType" onchange="renderTransactions()"><option value="">الكل</option><option value="expense">مصروف</option><option value="income">دخل</option></select></div>
+        <div class="field"><label>بحث</label><input id="searchTransactions" placeholder="ابحث بالوصف أو التصنيف" oninput="renderTransactions()"></div>
+        <div class="field"><label>من تاريخ</label><input type="date" id="filterFrom" onchange="renderTransactions()"></div>
+        <div class="field"><label>إلى تاريخ</label><input type="date" id="filterTo" onchange="renderTransactions()"></div>
       </div>
-      <form id="txForm">
-        <input type="hidden" id="txId">
-        <input type="hidden" id="txType" value="expense">
-        <div class="formgrid">
-          <label>المبلغ<input id="txAmount" type="number" min="0.01" step="0.01" required placeholder="مثال: 25"></label>
-          <label>التاريخ<input id="txDate" type="date" required></label>
-          <label>التصنيف<select id="txCategory"></select></label>
-          <label>طريقة الدفع<select id="txMethod"><option>نقدًا</option><option>بطاقة</option><option>تحويل</option><option>أخرى</option></select></label>
-          <label class="fullspan">الوصف<input id="txTitle" maxlength="120" placeholder="مثال: مشتريات المنزل"></label>
-          <label>الأولوية<select id="txPriority"><option value="essential">أساسي</option><option value="optional">اختياري</option></select></label>
-        </div>
-        <div class="row">
-          <button class="btn" type="submit" id="txSaveBtn">حفظ المعاملة</button>
-          <button class="btn secondary hidden" type="button" id="txCancelBtn" onclick="resetTxForm()">إلغاء التعديل</button>
-          <button class="btn secondary" type="button" id="voiceBtn" onclick="voiceEntry()">🎙️ إدخال صوتي</button>
-        </div>
-        <div id="voiceNote" class="disabled-note"></div>
-      </form>
+      <button class="btn small secondary" onclick="clearFilters()">مسح الفلاتر</button>
     </div>
-    <div class="card">
-      <h3>البحث والتصفية</h3>
-      <div class="formgrid">
-        <label>الشهر<input type="month" id="txMonth"></label>
-        <label>نوع المعاملة<select id="txFilterType"><option value="all">الكل</option><option value="expense">المصروفات</option><option value="income">الدخل</option></select></label>
-        <label class="fullspan">بحث بالوصف أو التصنيف<input id="txSearch" placeholder="اكتب كلمة للبحث"></label>
-      </div>
-    </div>
-    <div class="card">
-      <div class="between"><h3>سجل المعاملات</h3><span id="txCount" class="badge"></span></div>
-      <div id="txList" class="list"></div>
-    </div>
+    <div id="transactionList" class="card"></div>
   </section>
 
-  <!-- 3: الالتزامات -->
   <section id="page-obligations" class="page">
-    <h2>الالتزامات</h2><p class="subtitle">تابع الفواتير والدفعات المستحقة وحالة السداد.</p>
-    <div class="grid" id="obligationStats"></div>
+    <div class="section-title"><h2>الالتزامات والفواتير</h2><button class="btn" onclick="openObligation()">＋ إضافة</button></div>
     <div class="card">
-      <h3 id="billFormHeading">إضافة التزام</h3>
-      <form id="billForm">
-        <input type="hidden" id="billId">
-        <div class="formgrid">
-          <label>اسم الالتزام<input id="billTitle" maxlength="120" required placeholder="إيجار، كهرباء..."></label>
-          <label>المبلغ<input id="billAmount" type="number" min="0.01" step="0.01" required></label>
-          <label>تاريخ الاستحقاق<input id="billDue" type="date" required></label>
-          <label>النوع<select id="billType"><option value="expense">فاتورة / دفعة</option><option value="income">دخل متوقع</option></select></label>
-          <label>التكرار<select id="billRepeat"><option value="once">مرة واحدة</option><option value="monthly">شهري (تذكير فقط)</option></select></label>
-          <label>طريقة الدفع<input id="billMethod" placeholder="نقدًا، بطاقة..."></label>
-        </div>
-        <div class="row"><button class="btn" type="submit">حفظ الالتزام</button><button class="btn secondary hidden" id="billCancel" type="button" onclick="resetBillForm()">إلغاء التعديل</button></div>
-      </form>
-      <p class="disabled-note">التكرار الشهري محفوظ كتذكير؛ إنشاء دفعات شهرية تلقائيًا معطّل الآن.</p>
-    </div>
-    <div class="card">
-      <div class="formgrid">
-        <label>عرض<select id="billFilter"><option value="all">كل الالتزامات</option><option value="unpaid">غير المسددة</option><option value="paid">المسددة</option><option value="income">الدخل المتوقع</option></select></label>
-        <label>الشهر<input id="billMonth" type="month"></label>
+      <div class="grid">
+        <div class="stat"><div class="stat-label">إجمالي غير المدفوع</div><div id="obligationTotal" class="stat-value">0</div></div>
+        <div class="stat"><div class="stat-label">عدد الالتزامات المفتوحة</div><div id="obligationCount" class="stat-value">0</div></div>
       </div>
-      <div id="billList" class="list" style="margin-top:12px"></div>
     </div>
-    <div class="card">
-      <div class="between"><h3>الديون</h3><button class="btn secondary small" onclick="showMore('debts');go('more')">إدارة الديون</button></div>
-      <div id="obligationDebts"></div>
-    </div>
+    <div id="obligationList" class="card"></div>
   </section>
 
-  <!-- 4: التحليلات -->
   <section id="page-analytics" class="page">
-    <h2>التحليلات</h2><p class="subtitle">افهم أين تذهب أموالك وكيف يتغير وضعك المالي.</p>
+    <div class="section-title"><h2>التحليلات</h2></div>
     <div class="card">
-      <div class="formgrid">
-        <label>الشهر<input type="month" id="analyticsMonth"></label>
-        <label>العملة<select id="analyticsCurrency"><option value="€">€ يورو</option><option value="$">$ دولار</option><option value="£">£ جنيه</option><option value="ل.س">ليرة سورية</option><option value="ر.س">ريال</option><option value="د.إ">درهم</option></select></label>
+      <h3>ملخص الشهر الحالي</h3>
+      <div class="grid">
+        <div class="stat"><div class="stat-label">الدخل</div><div id="analyticsIncome" class="stat-value">0</div></div>
+        <div class="stat"><div class="stat-label">المصروف</div><div id="analyticsExpense" class="stat-value">0</div></div>
+        <div class="stat"><div class="stat-label">صافي الشهر</div><div id="analyticsNet" class="stat-value">0</div></div>
+        <div class="stat"><div class="stat-label">نسبة الادخار</div><div id="analyticsSaving" class="stat-value">—</div></div>
       </div>
     </div>
-    <div class="grid" id="analyticsStats"></div>
-    <div class="card"><h3>المصروفات حسب التصنيف</h3><div id="categoryBreakdown"></div></div>
-    <div class="card"><h3>الميزانية الشهرية</h3><div id="analyticsBudget"></div></div>
-    <div class="card"><h3>المقارنة الشهرية</h3><div id="monthlyComparison"></div></div>
-    <div class="card">
-      <h3>مؤشر الصحة المالية</h3><div id="healthScore"></div>
-    </div>
+    <div class="card"><h3>المصروفات حسب التصنيف</h3><div id="categoryAnalytics"></div></div>
+    <div class="card"><h3>آخر 6 أشهر</h3><div id="monthlyAnalytics"></div></div>
+    <button class="btn block" onclick="window.print()">طباعة التحليلات</button>
   </section>
 
-  <!-- 5: المزيد -->
   <section id="page-more" class="page">
-    <h2>المزيد</h2><p class="subtitle">أدوات إضافية لتنظيم أموالك.</p>
-    <div class="tabs" id="moreTabs">
-      <button class="active" data-more="budget" onclick="showMore('budget')">الميزانية</button>
-      <button data-more="goals" onclick="showMore('goals')">الادخار</button>
-      <button data-more="debts" onclick="showMore('debts')">الديون</button>
-      <button data-more="survival" onclick="showMore('survival')">وضع النجاة</button>
-      <button data-more="simulator" onclick="showMore('simulator')">المحاكاة</button>
-      <button data-more="reports" onclick="showMore('reports')">التقارير</button>
-      <button data-more="settings" onclick="showMore('settings')">الإعدادات</button>
+    <div class="section-title"><h2>المزيد</h2></div>
+    <div class="card">
+      <h3>أهداف الادخار</h3>
+      <p class="muted small">أنشئ هدفًا وحدد المبلغ المطلوب وتاريخ الوصول إليه.</p>
+      <button class="btn" onclick="openGoal()">＋ هدف جديد</button>
+    </div>
+    <div id="goalList" class="card"></div>
+    <div class="card">
+      <h3>حاسبة بسيطة</h3>
+      <div class="field"><label>المبلغ</label><input type="number" id="calcAmount" min="0" placeholder="0"></div>
+      <div class="field"><label>عدد الأيام</label><input type="number" id="calcDays" min="1" value="30"></div>
+      <button class="btn" onclick="calculateDaily()">احسب المبلغ اليومي</button>
+      <p id="calcResult" class="small muted"></p>
+    </div>
+    <div class="card">
+      <h3>ملاحظات شخصية</h3>
+      <textarea id="personalNotes" placeholder="اكتب ملاحظاتك هنا..."></textarea>
+      <button class="btn" style="margin-top:8px" onclick="saveNotes()">حفظ الملاحظات</button>
+    </div>
+  </section>
+
+  <section id="page-settings" class="page">
+    <div class="section-title"><h2>الإعدادات</h2></div>
+    <div class="card">
+      <h3>الإعدادات العامة</h3>
+      <div class="field"><label>العملة الأساسية</label>
+        <select id="currency">
+          <option value="SYP">الليرة السورية الجديدة (ل.س.ج)</option>
+          <option value="USD">الدولار الأمريكي ($)</option>
+          <option value="EUR">اليورو (€)</option>
+          <option value="SAR">الريال السعودي (ر.س)</option>
+          <option value="AED">الدرهم الإماراتي (د.إ)</option>
+        </select>
+      </div>
+      <div class="field"><label>الدخل الشهري المتوقع</label><input id="expectedIncome" type="number" min="0" placeholder="0"></div>
+      <div class="field"><label>ميزانية المصروفات الشهرية</label><input id="budgetLimit" type="number" min="0" placeholder="0"></div>
+      <div class="field"><label>الرصيد الحالي الذي تريد بدء الحساب منه (اختياري)</label><input id="startingBalance" type="number" placeholder="0"></div>
+      <button class="btn block" onclick="saveSettings()">حفظ الإعدادات</button>
     </div>
 
-    <section id="more-budget" class="more-panel">
-      <div class="card">
-        <h3>إعداد الميزانية الشهرية</h3>
-        <p class="subtitle">تُحفظ الميزانية لكل شهر على حدة.</p>
-        <form id="budgetForm">
-          <div class="formgrid">
-            <label>الشهر<input type="month" id="budgetMonth" required></label>
-            <label>الدخل الشهري المتوقع<input id="budgetIncome" type="number" min="0" step=".01" required></label>
-            <label>حد المصروفات الشهري<input id="budgetLimit" type="number" min="0" step=".01" required></label>
-            <label>احتياطي للطوارئ<input id="budgetReserve" type="number" min="0" step=".01" value="0"></label>
-            <label class="fullspan">ملاحظات<textarea id="budgetNotes" rows="2" maxlength="500"></textarea></label>
-          </div>
-          <button class="btn" type="submit">حفظ الميزانية</button>
-        </form>
-      </div>
-      <div class="card"><h3>تفصيل المصروفات</h3><div id="budgetDetail"></div></div>
-    </section>
+    <div class="card">
+      <h3>سعر صرف الدولار</h3>
+      <div class="notice info">أدخل سعر الدولار الذي تريد استخدامه. لا يتم جلب سعر السوق الموازية تلقائيًا في هذه النسخة.</div>
+      <div class="field"><label>كم تساوي وحدة الدولار بعملتك الأساسية؟</label><input id="usdRate" type="number" min="0" step="any" placeholder="أدخل السعر يدويًا"></div>
+      <div class="field"><label>مصدر السعر (اختياري)</label><input id="rateSource" placeholder="مثال: مصدر السعر"></div>
+      <button class="btn" onclick="saveRate()">حفظ سعر الصرف</button>
+      <p id="rateInfo" class="small muted" style="margin-top:10px"></p>
+    </div>
 
-    <section id="more-goals" class="more-panel hidden">
-      <div class="card">
-        <h3 id="goalFormHeading">هدف ادخار جديد</h3>
-        <form id="goalForm">
-          <input type="hidden" id="goalId">
-          <div class="formgrid">
-            <label>اسم الهدف<input id="goalTitle" maxlength="100" required placeholder="صندوق الطوارئ"></label>
-            <label>المبلغ المستهدف<input id="goalTarget" type="number" min=".01" step=".01" required></label>
-            <label>المبلغ المدخر حاليًا<input id="goalSaved" type="number" min="0" step=".01" value="0" required></label>
-            <label>الموعد المستهدف<input id="goalDate" type="date"></label>
-          </div>
-          <div class="row"><button class="btn" type="submit">حفظ الهدف</button><button id="goalCancel" class="btn secondary hidden" type="button" onclick="resetGoalForm()">إلغاء التعديل</button></div>
-        </form>
+    <div class="card">
+      <h3>النسخ الاحتياطي والاستعادة</h3>
+      <p class="small muted">احتفظ بنسخة من بياناتك في مكان آمن. الملف يحتوي على بيانات معاملاتك.</p>
+      <div class="row">
+        <button class="btn" onclick="exportBackup()">تنزيل نسخة احتياطية</button>
+        <button class="btn secondary" onclick="document.getElementById('importFile').click()">استعادة نسخة</button>
+        <input id="importFile" class="hidden" type="file" accept=".json,application/json" onchange="importBackup(event)">
       </div>
-      <div class="card"><h3>أهدافي</h3><div id="goalList" class="list"></div></div>
-      <div class="card"><h3>تحدي الادخار</h3><p>اختر مبلغًا صغيرًا وادخره بانتظام. هذا التحدي للتشجيع فقط.</p><button class="btn secondary" onclick="quickSave()">＋ تسجيل مساهمة ادخار</button></div>
-    </section>
+    </div>
 
-    <section id="more-debts" class="more-panel hidden">
-      <div class="card">
-        <h3 id="debtFormHeading">إضافة دين</h3>
-        <form id="debtForm">
-          <input type="hidden" id="debtId">
-          <div class="formgrid">
-            <label>وصف الدين<input id="debtTitle" maxlength="100" required placeholder="قرض، مبلغ لصديق..."></label>
-            <label>نوع الدين<select id="debtType"><option value="owe">أنا مدين</option><option value="owed">لي عند الآخرين</option></select></label>
-            <label>المبلغ الكلي<input id="debtAmount" type="number" min=".01" step=".01" required></label>
-            <label>المبلغ المدفوع/المستلم<input id="debtPaid" type="number" min="0" step=".01" value="0" required></label>
-            <label>تاريخ الاستحقاق<input id="debtDue" type="date"></label>
-            <label>الأولوية<select id="debtPriority"><option value="normal">عادية</option><option value="high">عالية</option></select></label>
-          </div>
-          <div class="row"><button class="btn" type="submit">حفظ الدين</button><button class="btn secondary hidden" id="debtCancel" type="button" onclick="resetDebtForm()">إلغاء التعديل</button></div>
-        </form>
-      </div>
-      <div class="card"><h3>سجل الديون</h3><div id="debtList" class="list"></div></div>
-    </section>
+    <div class="card">
+      <h3>معلومات التطبيق</h3>
+      <p class="small muted">مصروفي تطبيق محلي لتسجيل الدخل والمصروفات والالتزامات وأهداف الادخار.</p>
+      <p class="small muted">تُحفظ البيانات على هذا المتصفح والجهاز. حذف بيانات المتصفح قد يؤدي إلى فقدانها إذا لم تكن لديك نسخة احتياطية.</p>
+    </div>
 
-    <section id="more-survival" class="more-panel hidden">
-      <div class="card">
-        <h3>وضع النجاة المالية</h3>
-        <p>رتّب المصروفات حسب الضرورة عندما يكون الدخل محدودًا.</p>
-        <div id="survivalDetail"></div>
-        <div class="notice">هذا تقدير تنظيمي وليس استشارة مالية. تأكد من إدخال الالتزامات الأساسية بدقة.</div>
-      </div>
-    </section>
-
-    <section id="more-simulator" class="more-panel hidden">
-      <div class="card">
-        <h3>محاكاة سيناريو مالي</h3>
-        <p class="subtitle">غيّر الأرقام لتقدير أثرها على ميزانيتك، دون تعديل سجلاتك.</p>
-        <form id="simForm">
-          <label>تخفيض المصروفات الاختيارية شهريًا<input id="simCut" type="number" min="0" step=".01" value="0"></label>
-          <label>زيادة الإيجار/الالتزامات شهريًا<input id="simRise" type="number" min="0" step=".01" value="0"></label>
-          <label>دخل إضافي شهريًا<input id="simIncome" type="number" min="0" step=".01" value="0"></label>
-          <label>ادخار إضافي شهريًا<input id="simSave" type="number" min="0" step=".01" value="0"></label>
-          <button class="btn" type="submit">احسب السيناريو</button>
-        </form>
-        <div id="simResult" style="margin-top:14px"></div>
-      </div>
-    </section>
-
-    <section id="more-reports" class="more-panel hidden">
-      <div class="card">
-        <h3>التقارير والتصدير</h3>
-        <div class="row">
-          <button class="btn" onclick="exportCSV()">تصدير CSV</button>
-          <button class="btn secondary" onclick="printReport()">طباعة التقرير</button>
-          <button class="btn secondary" onclick="shareReport()">مشاركة الملخص</button>
-        </div>
-        <p class="disabled-note">التقارير المحاسبية المعتمدة غير متوفرة؛ استخدم الأرقام كسجل شخصي.</p>
-      </div>
-      <div class="card"><h3>ملخص التقرير</h3><div id="reportDetail"></div></div>
-    </section>
-
-    <section id="more-settings" class="more-panel hidden">
-      <div class="card">
-        <h3>الإعدادات العامة</h3>
-        <form id="settingsForm">
-          <label>العملة الأساسية
-            <select id="currency">
-              <option value="€">€ يورو</option><option value="$">$ دولار</option>
-              <option value="£">£ جنيه إسترليني</option><option value="ل.س">ليرة سورية</option>
-              <option value="ر.س">ريال سعودي</option><option value="د.إ">درهم إماراتي</option>
-            </select>
-          </label>
-          <label>نمط الحياة
-            <select id="lifeMode"><option value="normal">عادي</option><option value="tight">ميزانية محدودة</option><option value="survival">نجاة مالية</option></select>
-          </label>
-          <button class="btn" type="submit">حفظ الإعدادات</button>
-        </form>
-      </div>
-      <div class="card">
-        <h3>النسخ الاحتياطي والاستعادة</h3>
-        <p class="subtitle">احتفظ بنسخة من بياناتك قبل تغيير الجهاز أو استبدال الكود.</p>
-        <div class="row">
-          <button class="btn" onclick="backupJSON()">تنزيل نسخة احتياطية</button>
-          <button class="btn secondary" onclick="$('restoreFile').click()">استعادة نسخة</button>
-          <input id="restoreFile" type="file" accept=".json,application/json" class="hidden">
-        </div>
-        <div class="notice" style="margin-top:12px">البيانات محفوظة في مساحة التخزين المحلية لهذا المتصفح/الجهاز. النسخة الاحتياطية هي وسيلة الحماية الأساسية.</div>
-      </div>
-      <div class="card">
-        <h3>ميزات مستقبلية</h3>
-        <div class="item"><div><div class="item-title">مزامنة بين عدة أجهزة</div><div class="disabled-note">معطّل الآن — يحتاج إلى خادم وحساب مستخدم.</div></div></div>
-        <div class="item"><div><div class="item-title">تنبيهات تعمل بالخلفية</div><div class="disabled-note">معطّل الآن — يحتاج إلى دعم إضافي من المتصفح أو تطبيق Android.</div></div></div>
-        <div class="item"><div><div class="item-title">مسح الفواتير بالكاميرا</div><div class="disabled-note">معطّل الآن — لم تتم إضافة قراءة الفواتير آليًا.</div></div></div>
-        <div class="item"><div><div class="item-title">مشاركة الحساب العائلي</div><div class="disabled-note">معطّل الآن — يتطلب مزامنة وخادمًا.</div></div></div>
-      </div>
-      <div class="card">
-        <h3>إدارة البيانات</h3>
-        <button class="btn danger" onclick="clearData()">حذف جميع البيانات</button>
-        <p class="disabled-note">لا يمكن التراجع عن الحذف. نزّل نسخة احتياطية أولًا.</p>
-      </div>
-      <div class="card"><h3>معلومات التطبيق</h3><p class="muted">مصروفي Masroofi · إصدار تجريبي محلي</p><p class="muted">لا يرسل هذا الملف بياناتك إلى خادم.</p></div>
-    </section>
+    <div class="card">
+      <h3>إعادة ضبط البيانات</h3>
+      <div class="notice danger">لا تستخدم هذا الخيار إلا إذا كنت متأكدًا. يزيل بيانات مصروفي المحفوظة على هذا الجهاز.</div>
+      <button class="btn danger" onclick="resetData()">حذف بيانات التطبيق</button>
+    </div>
   </section>
-  <footer>مصروفي Masroofi · قرارات أوضح، ومصاريف تحت السيطرة.</footer>
 </main>
 
-<nav class="bottom-nav" aria-label="التنقل الرئيسي">
-  <button class="nav-btn active" data-page="home" onclick="go('home')"><span class="emoji">🏠</span><span>الرئيسية</span></button>
-  <button class="nav-btn" data-page="transactions" onclick="go('transactions')"><span class="emoji">🧾</span><span>المعاملات</span></button>
-  <button class="nav-btn" data-page="obligations" onclick="go('obligations')"><span class="emoji">📅</span><span>الالتزامات</span></button>
-  <button class="nav-btn" data-page="analytics" onclick="go('analytics')"><span class="emoji">📊</span><span>التحليلات</span></button>
-  <button class="nav-btn" data-page="more" onclick="go('more')"><span class="emoji">☰</span><span>المزيد</span></button>
+<nav class="tabs">
+  <button class="tab active" data-page="home" onclick="showPage('home')"><span class="ico">🏠</span>الرئيسية</button>
+  <button class="tab" data-page="transactions" onclick="showPage('transactions')"><span class="ico">💳</span>المعاملات</button>
+  <button class="tab" data-page="obligations" onclick="showPage('obligations')"><span class="ico">🧾</span>الالتزامات</button>
+  <button class="tab" data-page="analytics" onclick="showPage('analytics')"><span class="ico">📊</span>التحليلات</button>
+  <button class="tab" data-page="more" onclick="showPage('more')"><span class="ico">☰</span>المزيد</button>
 </nav>
-<div id="toast" role="status" aria-live="polite"></div>
+
+<div id="toast" class="toast"></div>
+
+<!-- نافذة المعاملة -->
+<div id="transactionModal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="modal-inner">
+    <div class="between"><h2 id="transactionModalTitle">إضافة معاملة</h2><button class="btn small secondary" onclick="closeModal('transactionModal')">إغلاق</button></div>
+    <form id="transactionForm" onsubmit="saveTransaction(event)">
+      <input type="hidden" id="transactionId">
+      <div class="field"><label>نوع المعاملة</label><select id="transactionType"><option value="expense">مصروف</option><option value="income">دخل</option></select></div>
+      <div class="field"><label>المبلغ</label><input id="transactionAmount" type="number" min="0.01" step="any" required></div>
+      <div class="field"><label>التصنيف</label><select id="transactionCategory"></select></div>
+      <div class="field"><label>الوصف</label><input id="transactionDescription" maxlength="120" placeholder="مثال: مشتريات المنزل"></div>
+      <div class="field"><label>التاريخ</label><input id="transactionDate" type="date" required></div>
+      <div class="field"><label>ملاحظات</label><textarea id="transactionNotes"></textarea></div>
+      <button class="btn block" type="submit">حفظ المعاملة</button>
+    </form>
+  </div>
+</div>
+
+<!-- نافذة الالتزام -->
+<div id="obligationModal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="modal-inner">
+    <div class="between"><h2 id="obligationModalTitle">إضافة التزام</h2><button class="btn small secondary" onclick="closeModal('obligationModal')">إغلاق</button></div>
+    <form id="obligationForm" onsubmit="saveObligation(event)">
+      <input type="hidden" id="obligationId">
+      <div class="field"><label>اسم الالتزام</label><input id="obligationTitle" required maxlength="100"></div>
+      <div class="field"><label>المبلغ</label><input id="obligationAmount" type="number" min="0.01" step="any" required></div>
+      <div class="field"><label>تاريخ الاستحقاق</label><input id="obligationDate" type="date" required></div>
+      <div class="field"><label>ملاحظات</label><textarea id="obligationNotes"></textarea></div>
+      <button class="btn block" type="submit">حفظ الالتزام</button>
+    </form>
+  </div>
+</div>
+
+<!-- نافذة هدف الادخار -->
+<div id="goalModal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="modal-inner">
+    <div class="between"><h2 id="goalModalTitle">هدف ادخار جديد</h2><button class="btn small secondary" onclick="closeModal('goalModal')">إغلاق</button></div>
+    <form id="goalForm" onsubmit="saveGoal(event)">
+      <input type="hidden" id="goalId">
+      <div class="field"><label>اسم الهدف</label><input id="goalTitle" required maxlength="100"></div>
+      <div class="field"><label>المبلغ المستهدف</label><input id="goalTarget" type="number" min="0.01" step="any" required></div>
+      <div class="field"><label>المبلغ المدخر حتى الآن</label><input id="goalSaved" type="number" min="0" step="any" value="0" required></div>
+      <div class="field"><label>التاريخ المستهدف (اختياري)</label><input id="goalDate" type="date"></div>
+      <button class="btn block" type="submit">حفظ الهدف</button>
+    </form>
+  </div>
+</div>
+
+<style>
+.modal{
+  position:fixed;inset:0;z-index:80;background:#102c34a8;
+  display:flex;align-items:center;justify-content:center;padding:12px;
+  overflow:auto
+}
+.modal.hidden{display:none!important}
+.modal-inner{
+  width:min(100%,520px);max-height:94vh;overflow:auto;
+  background:#fff;border-radius:18px;padding:18px;box-shadow:0 20px 60px #0003
+}
+</style>
 
 <script>
-'use strict';
-const KEY='masroofi_complete_v1';
-const $=id=>document.getElementById(id);
-const today=()=>new Date().toISOString().slice(0,10);
-const monthNow=()=>today().slice(0,7);
-const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);
-const num=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const money=n=>new Intl.NumberFormat('ar',{maximumFractionDigits:2}).format(num(n))+' '+state.settings.currency;
-const dateText=d=>d?new Date(d+'T12:00:00').toLocaleDateString('ar',{year:'numeric',month:'short',day:'numeric'}):'—';
-const defaultState=()=>({
- version:2,
- transactions:[],bills:[],debts:[],goals:[],
- budgets:{},
- settings:{currency:'€',lifeMode:'normal',dark:false},
- legacyBudget:0,legacyIncome:0
-});
-function cleanArray(a){return Array.isArray(a)?a:[]}
-function loadState(){
- let raw=null;
- try{raw=localStorage.getItem(KEY)}catch(e){}
- let s=defaultState();
- if(raw){
-   try{
-     const old=JSON.parse(raw);
-     if(old&&typeof old==='object'){
-       s={...s,...old};
-       s.settings={...defaultState().settings,...(old.settings||{})};
-       s.transactions=cleanArray(old.transactions);
-       s.bills=cleanArray(old.bills);
-       s.debts=cleanArray(old.debts);
-       s.goals=cleanArray(old.goals);
-       s.budgets=old.budgets&&typeof old.budgets==='object'?old.budgets:{};
-     }
-   }catch(e){console.warn('تعذر قراءة البيانات الحالية',e)}
- }
- // ترحيل بعض المفاتيح القديمة دون استبدال بيانات موجودة.
- if(!s.transactions.length){
-   try{
-     const old=JSON.parse(localStorage.getItem('masroofi_expenses')||'null');
-     if(Array.isArray(old)) s.transactions=old.map(x=>({
-       id:x.id||uid(),type:x.type||'expense',amount:num(x.amount),
-       title:x.title||x.name||x.description||'مصروف سابق',
-       category:x.category||'أخرى',date:x.date||today(),
-       method:x.method||'نقدًا',priority:x.priority||'essential'
-     }));
-   }catch(e){}
- }
- if(!Object.keys(s.budgets).length){
-   try{
-     const old=JSON.parse(localStorage.getItem('masroofi_budget')||'null');
-     if(old&&typeof old==='object'){
-       s.budgets[monthNow()]={income:num(old.income),limit:num(old.budget||old.limit),reserve:num(old.reserve),notes:''};
-     }
-   }catch(e){}
- }
- if(!s.goals.length){
-   try{
-     const old=JSON.parse(localStorage.getItem('masroofi_goals')||'null');
-     if(Array.isArray(old))s.goals=old.map(g=>({...g,id:g.id||uid(),title:g.title||g.name||'هدف ادخار',target:num(g.target),saved:num(g.saved)}));
-   }catch(e){}
- }
- return s;
-}
-let state=loadState();
-let activePage='home';
-let activeMore='budget';
-let toastTimer;
-function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){toast('تعذّر حفظ البيانات. قد تكون مساحة التخزين ممتلئة.')} }
-function toast(msg){const t=$('toast');t.textContent=msg;t.style.display='block';clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.style.display='none',2800)}
-function getBudget(m=monthNow()){return state.budgets[m]||{income:0,limit:0,reserve:0,notes:''}}
-function monthTx(m=monthNow()){return state.transactions.filter(t=>(t.date||'').slice(0,7)===m)}
-function sum(a,fn){return a.reduce((v,x)=>v+num(fn(x)),0)}
-function totalType(list,type){return sum(list.filter(x=>x.type===type),x=>x.amount)}
-function monthBills(m=monthNow(),unpaidOnly=false){
- return state.bills.filter(b=>(b.due||'').slice(0,7)===m&&(!unpaidOnly||!b.paid));
-}
-function expenses(m=monthNow()){return totalType(monthTx(m),'expense')}
-function income(m=monthNow()){return totalType(monthTx(m),'income')}
-function unpaidCommitments(m=monthNow()){
- return sum(monthBills(m,true).filter(b=>b.type!=='income'),b=>b.amount);
-}
-function remainingDays(m=monthNow()){
- const [y,mo]=m.split('-').map(Number);
- const last=new Date(y,mo,0).getDate();
- if(m!==monthNow())return last;
- return Math.max(1,last-new Date().getDate()+1);
-}
-function monthSpent(m=monthNow()){return expenses(m)}
-function safeInfo(m=monthNow()){
- const b=getBudget(m),tx=monthTx(m);
- const recordedIncome=income(m);
- const totalIncome=b.income>0?b.income:recordedIncome;
- const hasSetup=totalIncome>0||b.limit>0;
- const spent=monthSpent(m);
- const bills=unpaidCommitments(m);
- const reserve=num(b.reserve);
- const limit=b.limit>0?b.limit:totalIncome;
- const remainingBudget=limit-spent;
- const cashAvailable=totalIncome-spent-bills-reserve;
- const available=Math.max(0,Math.min(remainingBudget,cashAvailable));
- const daily=available/remainingDays(m);
- return {hasSetup,totalIncome,spent,bills,reserve,limit,remainingBudget,cashAvailable,available,daily,days:remainingDays(m)};
-}
-function go(page){
- activePage=page;
- document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+page));
- document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
- renderAll();
- window.scrollTo({top:0,behavior:'smooth'});
-}
-function showMore(which){
- activeMore=which;
- document.querySelectorAll('.more-panel').forEach(p=>p.classList.toggle('hidden',p.id!=='more-'+which));
- document.querySelectorAll('#moreTabs button').forEach(b=>b.classList.toggle('active',b.dataset.more===which));
-}
-function applyTheme(){
- document.body.classList.toggle('dark',!!state.settings.dark);
- $('themeBtn').textContent=state.settings.dark?'☀️':'🌙';
-}
-$('themeBtn').addEventListener('click',()=>{state.settings.dark=!state.settings.dark;applyTheme();save()});
-function fillCategories(){
- const categories=['طعام','سكن','مواصلات','فواتير','صحة','تعليم','تسوق','ترفيه','ادخار','راتب','عمل إضافي','أخرى'];
- $('txCategory').innerHTML=categories.map(c=>`<option>${esc(c)}</option>`).join('');
-}
-function openTxForm(type){
- $('txType').value=type;
- $('txTabExpense').classList.toggle('active',type==='expense');
- $('txTabIncome').classList.toggle('active',type==='income');
- $('txSaveBtn').textContent=$('txId').value?'حفظ التعديلات':(type==='expense'?'حفظ المصروف':'حفظ الدخل');
-}
-function resetTxForm(){
- $('txForm').reset();$('txId').value='';$('txDate').value=today();
- $('txType').value='expense';$('txPriority').value='essential';
- $('txCancelBtn').classList.add('hidden');openTxForm('expense');
-}
-$('txForm').addEventListener('submit',e=>{
- e.preventDefault();
- const id=$('txId').value;
- const amount=num($('txAmount').value);
- if(amount<=0)return toast('أدخل مبلغًا أكبر من صفر.');
- const obj={
-   id:id||uid(),type:$('txType').value,amount,
-   date:$('txDate').value||today(),category:$('txCategory').value,
-   method:$('txMethod').value,title:$('txTitle').value.trim()||$('txCategory').value,
-   priority:$('txPriority').value
- };
- if(id){const i=state.transactions.findIndex(x=>x.id===id);if(i>=0)state.transactions[i]=obj;else state.transactions.push(obj)}
- else state.transactions.push(obj);
- save();resetTxForm();renderAll();toast(id?'تم تعديل المعاملة':'تم حفظ المعاملة');
-});
-function editTx(id){
- const t=state.transactions.find(x=>x.id===id);if(!t)return;
- go('transactions');$('txId').value=t.id;$('txAmount').value=t.amount;$('txDate').value=t.date||today();
- $('txCategory').value=t.category||'أخرى';$('txMethod').value=t.method||'نقدًا';
- $('txTitle').value=t.title||'';$('txPriority').value=t.priority||'essential';
- openTxForm(t.type||'expense');$('txCancelBtn').classList.remove('hidden');
- $('txSaveBtn').textContent='حفظ التعديلات';window.scrollTo({top:0,behavior:'smooth'});
-}
-function deleteTx(id){
- if(!confirm('هل تريد حذف هذه المعاملة؟'))return;
- state.transactions=state.transactions.filter(t=>t.id!==id);save();renderAll();toast('تم حذف المعاملة');
-}
-function voiceEntry(){
- const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
- if(!SR){$('voiceNote').textContent='معطّل الآن على هذا المتصفح؛ يمكنك إدخال المعاملة يدويًا.';return}
- const rec=new SR();rec.lang='ar';rec.interimResults=false;rec.maxAlternatives=1;
- $('voiceNote').textContent='استمع الآن… اذكر وصف المعاملة والمبلغ.';
- rec.onresult=e=>{
-   const text=e.results[0][0].transcript;$('txTitle').value=text;
-   const match=text.match(/\d+(?:[.,]\d+)?/);
-   if(match)$('txAmount').value=match[0].replace(',','.');
-   toast('راجع المبلغ والوصف قبل الحفظ.');
- };
- rec.onerror=()=>{$('voiceNote').textContent='لم ينجح الإدخال الصوتي. جرّب الكتابة يدويًا.'};
- try{rec.start()}catch(e){toast('تعذر بدء الإدخال الصوتي')}
-}
-$('txMonth').value=monthNow();$('txMonth').addEventListener('change',renderTransactions);
-$('txFilterType').addEventListener('change',renderTransactions);
-$('txSearch').addEventListener('input',renderTransactions);
-function txItem(t){
- const isIn=t.type==='income';
- return `<div class="item"><div style="min-width:0"><div class="item-title">${esc(t.title||t.category||'معاملة')}</div><div class="item-meta">${esc(t.category||'أخرى')} · ${dateText(t.date)} · ${esc(t.method||'')}</div><span class="badge">${isIn?'دخل':'مصروف'} · ${t.priority==='optional'?'اختياري':'أساسي'}</span></div><div style="text-align:left"><div class="${isIn?'green':'red'}" style="font-weight:800;white-space:nowrap">${isIn?'+':'−'}${money(t.amount)}</div><div class="item-actions" style="margin-top:8px"><button class="btn secondary small" onclick="editTx('${t.id}')">تعديل</button><button class="btn danger small" onclick="deleteTx('${t.id}')">حذف</button></div></div></div>`;
-}
-function renderTransactions(){
- const m=$('txMonth').value||monthNow(),type=$('txFilterType').value,q=$('txSearch').value.trim().toLowerCase();
- const list=state.transactions.filter(t=>(t.date||'').slice(0,7)===m&&(type==='all'||t.type===type)&&(!q||[t.title,t.category,t.method].join(' ').toLowerCase().includes(q))).sort((a,b)=>(b.date||'').localeCompare(a.date||''));
- $('txCount').textContent=list.length+' معاملة';
- $('txList').innerHTML=list.length?list.map(txItem).join(''):'<div class="empty"><strong>لا توجد معاملات هنا بعد</strong>أضف دخلك ومصروفاتك لتظهر في هذا السجل.</div>';
-}
-$('budgetMonth').value=monthNow();
-function renderBudgetForm(){
- const m=$('budgetMonth').value||monthNow(),b=getBudget(m);
- $('budgetIncome').value=b.income||'';$('budgetLimit').value=b.limit||'';$('budgetReserve').value=b.reserve||0;$('budgetNotes').value=b.notes||'';
-}
-$('budgetMonth').addEventListener('change',renderBudgetForm);
-$('budgetForm').addEventListener('submit',e=>{
- e.preventDefault();const m=$('budgetMonth').value||monthNow();
- state.budgets[m]={income:num($('budgetIncome').value),limit:num($('budgetLimit').value),reserve:num($('budgetReserve').value),notes:$('budgetNotes').value.trim()};
- save();renderAll();toast('تم حفظ ميزانية '+m);
-});
-function renderHome(){
- const s=safeInfo(),b=getBudget(),spent=s.spent;
- $('setupNotice').classList.toggle('hidden',s.hasSetup);
- $('safeHero').className='hero '+(s.hasSetup?(s.available<=0?'bad':s.daily<s.totalIncome/Math.max(1,s.days)*.25?'warn':'good'):'');
- $('safeAmount').textContent=s.hasSetup?money(s.daily):'ابدأ بالإعداد';
- $('safeHint').textContent=s.hasSetup
-  ?`المتبقي من الميزانية ${money(s.remainingBudget)} · الأيام المتبقية ${s.days} · الالتزامات غير المسددة ${money(s.bills)}`
-  :'أدخل الدخل والميزانية والالتزامات للحصول على تقدير يومي أوضح.';
- const stats=[
-  ['الدخل الشهري',s.totalIncome,'دخل مسجل أو متوقع'],
-  ['مصروفات الشهر',spent,'المعاملات المسجلة'],
-  ['المتبقي من الميزانية',s.remainingBudget,'قد يصبح سالبًا عند تجاوز الحد'],
-  ['الالتزامات غير المسددة',s.bills,'ضمن الشهر الحالي']
- ];
- $('homeStats').innerHTML=stats.map(x=>`<div class="stat"><div class="label">${x[0]}</div><div class="value">${money(x[1])}</div><div class="small">${x[2]}</div></div>`).join('');
- const bills=monthBills().filter(b=>!b.paid).sort((a,b)=>(a.due||'').localeCompare(b.due||'')).slice(0,4);
- $('homeBills').innerHTML=bills.length?bills.map(b=>`<div class="item"><div><div class="item-title">${esc(b.title)}</div><div class="item-meta">${dateText(b.due)}</div></div><strong>${money(b.amount)}</strong></div>`).join(''):'<div class="empty">لا توجد التزامات غير مسددة هذا الشهر.</div>';
- const tx=monthTx().sort((a,b)=>(b.date||'').localeCompare(a.date||'')).slice(0,4);
- $('homeTransactions').innerHTML=tx.length?tx.map(t=>`<div class="item"><div><div class="item-title">${esc(t.title||t.category)}</div><div class="item-meta">${dateText(t.date)}</div></div><strong class="${t.type==='income'?'green':'red'}">${t.type==='income'?'+':'−'}${money(t.amount)}</strong></div>`).join(''):'<div class="empty">لم تسجّل معاملات بعد.</div>';
- $('homeBudget').innerHTML=`<div class="between"><span>المصروفات</span><strong>${money(spent)}</strong></div><div class="progress"><span style="width:${Math.min(100,s.limit>0?spent/s.limit*100:0)}%"></span></div><div class="between"><span class="muted">حد الميزانية</span><strong>${money(s.limit)}</strong></div><div class="between" style="margin-top:8px"><span class="muted">الاحتياطي</span><strong>${money(s.reserve)}</strong></div>`;
- const goals=state.goals.slice(0,3);
- $('homeGoals').innerHTML=goals.length?goals.map(g=>`<div style="margin:10px 0"><div class="between"><strong>${esc(g.title)}</strong><span>${Math.min(100,Math.round(num(g.saved)/Math.max(1,num(g.target))*100))}%</span></div><div class="progress"><span style="width:${Math.min(100,num(g.saved)/Math.max(1,num(g.target))*100)}%"></span></div><div class="item-meta">${money(g.saved)} من ${money(g.target)}</div></div>`).join(''):'<div class="empty">أنشئ هدف ادخار لمتابعة تقدمك.</div>';
-}
-function explainSafe(){
- const s=safeInfo();
- alert(`طريقة الحساب التقريبية:\n\nالدخل المعتمد: ${money(s.totalIncome)}\nناقص المصروفات المسجلة: ${money(s.spent)}\nناقص الالتزامات غير المسددة في الشهر: ${money(s.bills)}\nناقص احتياطي الطوارئ: ${money(s.reserve)}\n\nالمبلغ المتاح لا يتجاوز المتبقي من الميزانية، ثم يقسم على ${s.days} يومًا.\n\nالنتيجة تقديرية وتعتمد على دقة البيانات المدخلة.`);
-}
-$('billMonth').value=monthNow();
-$('billFilter').addEventListener('change',renderBills);$('billMonth').addEventListener('change',renderBills);
-$('billForm').addEventListener('submit',e=>{
- e.preventDefault();const id=$('billId').value,amount=num($('billAmount').value);
- if(amount<=0)return toast('أدخل مبلغًا أكبر من صفر.');
- const obj={id:id||uid(),title:$('billTitle').value.trim(),amount,due:$('billDue').value,type:$('billType').value,repeat:$('billRepeat').value,method:$('billMethod').value.trim(),paid:false};
- if(id){const old=state.bills.find(x=>x.id===id);if(old)obj.paid=old.paid;const i=state.bills.findIndex(x=>x.id===id);if(i>=0)state.bills[i]=obj;else state.bills.push(obj)}
- else state.bills.push(obj);
- save();resetBillForm();renderAll();toast('تم حفظ الالتزام');
-});
-function resetBillForm(){$('billForm').reset();$('billId').value='';$('billCancel').classList.add('hidden');$('billFormHeading').textContent='إضافة التزام'}
-function editBill(id){
- const b=state.bills.find(x=>x.id===id);if(!b)return;
- $('billId').value=id;$('billTitle').value=b.title;$('billAmount').value=b.amount;$('billDue').value=b.due||today();$('billType').value=b.type||'expense';$('billRepeat').value=b.repeat||'once';$('billMethod').value=b.method||'';
- $('billCancel').classList.remove('hidden');$('billFormHeading').textContent='تعديل الالتزام';window.scrollTo({top:0,behavior:'smooth'});
-}
-function toggleBill(id){const b=state.bills.find(x=>x.id===id);if(!b)return;b.paid=!b.paid;save();renderAll();toast(b.paid?'تم تسجيل السداد':'تم إرجاع الالتزام إلى غير مسدد')}
-function deleteBill(id){if(!confirm('حذف هذا الالتزام؟'))return;state.bills=state.bills.filter(b=>b.id!==id);save();renderAll()}
-function renderBills(){
- const m=$('billMonth').value||monthNow(),f=$('billFilter').value;
- let list=state.bills.filter(b=>(b.due||'').slice(0,7)===m);
- if(f==='unpaid')list=list.filter(b=>!b.paid&&b.type!=='income');
- if(f==='paid')list=list.filter(b=>b.paid);
- if(f==='income')list=list.filter(b=>b.type==='income');
- list.sort((a,b)=>(a.due||'').localeCompare(b.due||''));
- $('billList').innerHTML=list.length?list.map(b=>`<div class="item"><div style="min-width:0"><div class="item-title">${esc(b.title)}</div><div class="item-meta">${dateText(b.due)} · ${b.repeat==='monthly'?'تذكير شهري':'مرة واحدة'} · ${esc(b.method||'')}</div><span class="badge ${b.type==='income'?'good':b.paid?'good':'warn'}">${b.type==='income'?'دخل متوقع':b.paid?'مسدد':'غير مسدد'}</span></div><div style="text-align:left"><strong>${money(b.amount)}</strong><div class="item-actions" style="margin-top:8px"><button class="btn secondary small" onclick="toggleBill('${b.id}')">${b.paid?'إلغاء السداد':'تم السداد'}</button><button class="btn secondary small" onclick="editBill('${b.id}')">تعديل</button><button class="btn danger small" onclick="deleteBill('${b.id}')">حذف</button></div></div></div>`).join(''):'<div class="empty"><strong>لا توجد التزامات لهذا الشهر</strong>أضف فاتورة أو دفعة لتذكّر موعدها.</div>';
- const mBills=monthBills(m),unpaid=sum(mBills.filter(b=>!b.paid&&b.type!=='income'),b=>b.amount),paid=sum(mBills.filter(b=>b.paid&&b.type!=='income'),b=>b.amount);
- $('obligationStats').innerHTML=[['غير مسدد',unpaid],['تم سداده',paid],['دخل متوقع',sum(mBills.filter(b=>b.type==='income'),b=>b.amount)]].map(x=>`<div class="stat"><div class="label">${x[0]}</div><div class="value">${money(x[1])}</div></div>`).join('');
- const debts=state.debts.filter(d=>d.type==='owe');
- $('obligationDebts').innerHTML=debts.length?debts.slice(0,4).map(d=>`<div class="between" style="margin:9px 0"><span>${esc(d.title)}</span><strong>${money(Math.max(0,num(d.amount)-num(d.paid)))}</strong></div>`).join(''):'<div class="empty">لا توجد ديون مسجلة.</div>';
-}
-$('goalForm').addEventListener('submit',e=>{
- e.preventDefault();const id=$('goalId').value,target=num($('goalTarget').value),saved=num($('goalSaved').value);
- if(target<=0||saved<0)return toast('تحقق من مبالغ الهدف.');
- const g={id:id||uid(),title:$('goalTitle').value.trim(),target,saved,date:$('goalDate').value||''};
- if(id){const i=state.goals.findIndex(x=>x.id===id);if(i>=0)state.goals[i]=g;else state.goals.push(g)}else state.goals.push(g);
- save();resetGoalForm();renderAll();toast('تم حفظ هدف الادخار');
-});
-function resetGoalForm(){$('goalForm').reset();$('goalId').value='';$('goalSaved').value=0;$('goalCancel').classList.add('hidden');$('goalFormHeading').textContent='هدف ادخار جديد'}
-function editGoal(id){const g=state.goals.find(x=>x.id===id);if(!g)return;$('goalId').value=id;$('goalTitle').value=g.title;$('goalTarget').value=g.target;$('goalSaved').value=g.saved;$('goalDate').value=g.date||'';$('goalCancel').classList.remove('hidden');$('goalFormHeading').textContent='تعديل هدف الادخار'}
-function deleteGoal(id){if(!confirm('حذف هدف الادخار؟'))return;state.goals=state.goals.filter(g=>g.id!==id);save();renderAll()}
-function addGoalAmount(id,sign=1){
- const g=state.goals.find(x=>x.id===id);if(!g)return;
- const raw=prompt(sign>0?'كم تريد أن تضيف إلى الادخار؟':'كم تريد أن تسحب من الادخار؟','10');
- if(raw===null)return;const a=num(raw);if(a<=0)return toast('أدخل مبلغًا صحيحًا.');
- if(sign<0&&a>num(g.saved))return toast('المبلغ أكبر من المدخر.');
- g.saved=Math.max(0,num(g.saved)+sign*a);save();renderAll();toast('تم تحديث الادخار');
-}
-function quickSave(){
- if(!state.goals.length){showMore('goals');return toast('أنشئ هدف ادخار أولًا.')}
- const id=prompt('أدخل رقم الهدف من القائمة التالية:\n'+state.goals.map((g,i)=>`${i+1}. ${g.title}`).join('\n'),'1');
- if(id===null)return;const g=state.goals[num(id)-1];if(!g)return toast('رقم الهدف غير صحيح.');
- addGoalAmount(g.id,1);
-}
-$('debtForm').addEventListener('submit',e=>{
- e.preventDefault();const id=$('debtId').value,amount=num($('debtAmount').value),paid=num($('debtPaid').value);
- if(amount<=0||paid<0||paid>amount)return toast('تحقق من المبلغ الكلي والمبلغ المدفوع.');
- const d={id:id||uid(),title:$('debtTitle').value.trim(),type:$('debtType').value,amount,paid,due:$('debtDue').value||'',priority:$('debtPriority').value};
- if(id){const i=state.debts.findIndex(x=>x.id===id);if(i>=0)state.debts[i]=d;else state.debts.push(d)}else state.debts.push(d);
- save();resetDebtForm();renderAll();toast('تم حفظ الدين');
-});
-function resetDebtForm(){$('debtForm').reset();$('debtId').value='';$('debtPaid').value=0;$('debtCancel').classList.add('hidden');$('debtFormHeading').textContent='إضافة دين'}
-function editDebt(id){const d=state.debts.find(x=>x.id===id);if(!d)return;$('debtId').value=id;$('debtTitle').value=d.title;$('debtType').value=d.type;$('debtAmount').value=d.amount;$('debtPaid').value=d.paid;$('debtDue').value=d.due||'';$('debtPriority').value=d.priority||'normal';$('debtCancel').classList.remove('hidden');$('debtFormHeading').textContent='تعديل الدين'}
-function deleteDebt(id){if(!confirm('حذف هذا الدين؟'))return;state.debts=state.debts.filter(d=>d.id!==id);save();renderAll()}
-function renderGoals(){
- $('goalList').innerHTML=state.goals.length?state.goals.map(g=>{
- const pct=Math.min(100,Math.round(num(g.saved)/Math.max(1,num(g.target))*100));
- const months=g.date?Math.max(1,(new Date(g.date+'T12:00:00')-new Date(today()+'T12:00:00'))/(1000*60*60*24*30.4375)):null;
- const needed=months?Math.max(0,num(g.target)-num(g.saved))/months:null;
- return `<div class="item"><div style="flex:1;min-width:0"><div class="item-title">${esc(g.title)}</div><div class="item-meta">${money(g.saved)} من ${money(g.target)} · ${pct}%</div><div class="progress"><span style="width:${pct}%"></span></div><div class="item-meta">الموعد: ${dateText(g.date)}${needed!==null?' · المطلوب شهريًا تقريبًا '+money(needed):''}</div></div><div class="item-actions"><button class="btn secondary small" onclick="addGoalAmount('${g.id}',1)">＋ ادخار</button><button class="btn secondary small" onclick="addGoalAmount('${g.id}',-1)">سحب</button><button class="btn secondary small" onclick="editGoal('${g.id}')">تعديل</button><button class="btn danger small" onclick="deleteGoal('${g.id}')">حذف</button></div></div>`;
- }).join(''):'<div class="empty">لا توجد أهداف ادخار. أضف هدفًا لتبدأ المتابعة.</div>';
-}
-function renderDebts(){
- $('debtList').innerHTML=state.debts.length?state.debts.map(d=>{
- const left=Math.max(0,num(d.amount)-num(d.paid));
- return `<div class="item"><div style="min-width:0"><div class="item-title">${esc(d.title)}</div><div class="item-meta">${d.type==='owe'?'أنا مدين':'لي عند الآخرين'} · الاستحقاق: ${dateText(d.due)}</div><div class="item-meta">المتبقي ${money(left)} من ${money(d.amount)}</div><div class="progress"><span style="width:${Math.min(100,num(d.paid)/Math.max(1,num(d.amount))*100)}%"></span></div><span class="badge ${left===0?'good':d.priority==='high'?'bad':'warn'}">${left===0?'مكتمل':d.priority==='high'?'أولوية عالية':'قيد المتابعة'}</span></div><div class="item-actions"><button class="btn secondary small" onclick="recordDebtPayment('${d.id}')">تسجيل دفعة</button><button class="btn secondary small" onclick="editDebt('${d.id}')">تعديل</button><button class="btn danger small" onclick="deleteDebt('${d.id}')">حذف</button></div></div>`;
- }).join(''):'<div class="empty">لا توجد ديون مسجلة.</div>';
-}
-function recordDebtPayment(id){
- const d=state.debts.find(x=>x.id===id);if(!d)return;
- const left=Math.max(0,num(d.amount)-num(d.paid));if(!left)return toast('هذا الدين مكتمل.');
- const raw=prompt('أدخل مبلغ الدفعة أو المبلغ المستلم:',String(left));if(raw===null)return;
- const a=num(raw);if(a<=0||a>left)return toast('تحقق من المبلغ.');
- d.paid=num(d.paid)+a;save();renderAll();toast('تم تحديث الدين');
-}
-$('settingsForm').addEventListener('submit',e=>{
- e.preventDefault();state.settings.currency=$('currency').value;state.settings.lifeMode=$('lifeMode').value;save();renderAll();toast('تم حفظ الإعدادات');
-});
-$('analyticsMonth').value=monthNow();
-$('analyticsMonth').addEventListener('change',renderAnalytics);
-$('analyticsCurrency').addEventListener('change',()=>{state.settings.currency=$('analyticsCurrency').value;save();renderAll()});
-function renderAnalytics(){
- const m=$('analyticsMonth').value||monthNow(),b=getBudget(m),s=safeInfo(m),tx=monthTx(m),ex=expenses(m),inc=income(m),net=inc-ex;
- $('analyticsStats').innerHTML=[['الدخل المسجل',inc],['المصروفات',ex],['الفرق بين الدخل والمصروفات',net],['المتبقي من الميزانية',s.remainingBudget]].map((x,i)=>`<div class="stat"><div class="label">${x[0]}</div><div class="value ${i===2?(net<0?'red':'green'):''}">${money(x[1])}</div></div>`).join('');
- const cats={};tx.filter(t=>t.type==='expense').forEach(t=>cats[t.category||'أخرى']=(cats[t.category||'أخرى']||0)+num(t.amount));
- const rows=Object.entries(cats).sort((a,b)=>b[1]-a[1]),total=rows.reduce((a,x)=>a+x[1],0);
- $('categoryBreakdown').innerHTML=rows.length?rows.map(([name,val])=>`<div class="category-row"><span>${esc(name)}</span><div class="progress"><span style="width:${total?val/total*100:0}%"></span></div><strong>${money(val)}</strong></div>`).join(''):'<div class="empty">أضف مصروفات لتظهر التحليلات حسب التصنيف.</div>';
- $('analyticsBudget').innerHTML=`<div class="between"><span>حد الميزانية</span><strong>${money(b.limit)}</strong></div><div class="between" style="margin-top:8px"><span>المصروف</span><strong>${money(ex)}</strong></div><div class="progress"><span style="width:${b.limit>0?Math.min(100,ex/b.limit*100):0}%"></span></div><div class="between"><span>المتبقي</span><strong class="${s.remainingBudget<0?'red':'green'}">${money(s.remainingBudget)}</strong></div><div class="between" style="margin-top:8px"><span>الالتزامات غير المسددة</span><strong>${money(s.bills)}</strong></div>`;
- const prev=new Date(m+'-15T12:00:00');prev.setMonth(prev.getMonth()-1);const pm=prev.toISOString().slice(0,7);
- const pe=expenses(pm),pi=income(pm);
- $('monthlyComparison').innerHTML=`<div class="grid"><div class="stat"><div class="label">الشهر السابق (${pm})</div><div class="small">الدخل: ${money(pi)}</div><div class="small">المصروفات: ${money(pe)}</div></div><div class="stat"><div class="label">الشهر المحدد (${m})</div><div class="small">الدخل: ${money(inc)}</div><div class="small">المصروفات: ${money(ex)}</div></div></div><p class="muted">تغير المصروفات: <strong class="${ex>pe?'red':'green'}">${money(ex-pe)}</strong></p>`;
- const score=b.limit>0?Math.max(0,Math.min(100,Math.round((1-Math.max(0,ex)/b.limit)*100))):null;
- $('healthScore').innerHTML=score===null?'<div class="empty">أدخل حد الميزانية لاحتساب مؤشر تقريبي.</div>':`<div class="between"><strong style="font-size:26px">${score}/100</strong><span class="badge ${score>=70?'good':score>=40?'warn':'bad'}">${score>=70?'ضمن الحد غالبًا':score>=40?'راقب الإنفاق':'تجاوز أو اقتراب من الحد'}</span></div><div class="progress"><span style="width:${score}%"></span></div><p class="muted">هذا المؤشر مبسط ويعتمد على نسبة المصروفات إلى حد الميزانية فقط، ولا يقيس وضعك المالي بالكامل.</p>`;
-}
-function renderBudgetDetail(){
- const m=$('budgetMonth').value||monthNow(),b=getBudget(m),ex=expenses(m),inc=income(m);
- $('budgetDetail').innerHTML=`<div class="between"><span>الدخل المتوقع</span><strong>${money(b.income)}</strong></div><div class="between" style="margin-top:8px"><span>الدخل المسجل</span><strong>${money(inc)}</strong></div><div class="between" style="margin-top:8px"><span>المصروفات</span><strong>${money(ex)}</strong></div><div class="progress"><span style="width:${b.limit>0?Math.min(100,ex/b.limit*100):0}%"></span></div><div class="between"><span>المتبقي من الحد</span><strong class="${b.limit-ex<0?'red':'green'}">${money(b.limit-ex)}</strong></div>`;
-}
-function renderSurvival(){
- const m=monthNow(),b=getBudget(),s=safeInfo();
- const essential=sum(monthTx(m).filter(t=>t.type==='expense'&&t.priority!=='optional'),t=>t.amount);
- const optional=sum(monthTx(m).filter(t=>t.type==='expense'&&t.priority==='optional'),t=>t.amount);
- $('survivalDetail').innerHTML=`<div class="grid"><div class="stat"><div class="label">المصروفات الأساسية المسجلة</div><div class="value">${money(essential)}</div></div><div class="stat"><div class="label">المصروفات الاختيارية</div><div class="value">${money(optional)}</div></div><div class="stat"><div class="label">الالتزامات غير المسددة</div><div class="value">${money(s.bills)}</div></div><div class="stat"><div class="label">المتاح التقديري</div><div class="value">${money(s.available)}</div></div></div><hr><p>اقتراح: راجع المصروفات الاختيارية أولًا، ثم تأكد من تغطية السكن والغذاء والفواتير الأساسية. لا يعني هذا أن كل مصروف غير أساسي يمكن إلغاؤه.</p>`;
-}
-$('simForm').addEventListener('submit',e=>{
- e.preventDefault();const s=safeInfo(),cut=num($('simCut').value),rise=num($('simRise').value),extra=num($('simIncome').value),saveMore=num($('simSave').value);
- const monthly=s.cashAvailable+cut-rise+extra-saveMore;
- $('simResult').innerHTML=`<div class="stat"><div class="label">المتاح بعد السيناريو</div><div class="value ${monthly<0?'red':'green'}">${money(monthly)}</div><div class="small">قبل تقسيم المبلغ على الأيام المتبقية.</div></div><p class="muted">هذا تقدير مبني على القيم التي أدخلتها، ولا يغير معاملاتك أو ميزانيتك المحفوظة.</p>`;
-});
-function renderReport(){
- const m=$('analyticsMonth').value||monthNow();
- $('reportDetail').innerHTML=`<div class="grid"><div class="stat"><div class="label">الشهر</div><div class="value">${esc(m)}</div></div><div class="stat"><div class="label">الدخل</div><div class="value">${money(income(m))}</div></div><div class="stat"><div class="label">المصروفات</div><div class="value">${money(expenses(m))}</div></div><div class="stat"><div class="label">الصافي</div><div class="value">${money(income(m)-expenses(m))}</div></div></div>`;
-}
-function exportCSV(){
- const rows=[['id','type','amount','date','category','title','method','priority'],...state.transactions.map(t=>[t.id,t.type,t.amount,t.date,t.category,t.title,t.method,t.priority])];
- const csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');
- downloadBlob(csv,'masroofi-transactions.csv','text/csv;charset=utf-8');
-}
-function backupJSON(){
- save();
- const payload={app:'Masroofi',version:2,exportedAt:new Date().toISOString(),state};
- downloadBlob(JSON.stringify(payload,null,2),'masroofi-backup-'+today()+'.json','application/json');
-}
-function downloadBlob(text,name,type){
- const blob=new Blob([text],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');
- a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
-}
-$('restoreFile').addEventListener('change',async e=>{
- const file=e.target.files&&e.target.files[0];if(!file)return;
- try{
-  const parsed=JSON.parse(await file.text()),incoming=parsed.state||parsed;
-  if(!incoming||typeof incoming!=='object'||!Array.isArray(incoming.transactions)||!Array.isArray(incoming.bills)||!Array.isArray(incoming.goals)||!Array.isArray(incoming.debts)||!incoming.settings||typeof incoming.settings!=='object'||!incoming.budgets||typeof incoming.budgets!=='object')throw new Error('invalid');
-  if(!confirm('ستُستبدل البيانات الحالية بمحتوى النسخة الاحتياطية. هل نزّلت نسخة من بياناتك الحالية وتريد المتابعة؟'))return;
-  const safe=defaultState();
-  safe.transactions=incoming.transactions.filter(x=>x&&typeof x==='object'&&num(x.amount)>=0).map(x=>({...x,id:String(x.id||uid()),amount:num(x.amount)}));
-  safe.bills=incoming.bills.filter(x=>x&&typeof x==='object'&&num(x.amount)>=0).map(x=>({...x,id:String(x.id||uid()),amount:num(x.amount)}));
-  safe.goals=incoming.goals.filter(x=>x&&typeof x==='object'&&num(x.target)>=0).map(x=>({...x,id:String(x.id||uid()),target:num(x.target),saved:num(x.saved)}));
-  safe.debts=incoming.debts.filter(x=>x&&typeof x==='object'&&num(x.amount)>=0).map(x=>({...x,id:String(x.id||uid()),amount:num(x.amount),paid:num(x.paid)}));
-  safe.budgets=incoming.budgets;
-  safe.settings={...safe.settings,...incoming.settings};
-  state=safe;save();applyTheme();renderAll();toast('تمت استعادة النسخة الاحتياطية');
- }catch(err){toast('تعذرت قراءة النسخة. تأكد أنها نسخة JSON صحيحة من مصروفي.')}
- finally{e.target.value=''}
-});
-function printReport(){window.print()}
-async function shareReport(){
- const m=$('analyticsMonth').value||monthNow();
- const text=`ملخص مصروفي - ${m}\nالدخل المسجل: ${money(income(m))}\nالمصروفات: ${money(expenses(m))}\nالصافي: ${money(income(m)-expenses(m))}`;
- if(navigator.share){try{await navigator.share({title:'ملخص مصروفي',text})}catch(e){}}
- else if(navigator.clipboard){try{await navigator.clipboard.writeText(text);toast('تم نسخ الملخص')}catch(e){alert(text)}}
- else alert(text);
-}
-function clearData(){
- if(!confirm('تحذير: سيتم حذف كل المعاملات والميزانيات والالتزامات والأهداف والديون من هذا المتصفح. هل أنت متأكد؟'))return;
- if(!confirm('تأكيد أخير: لا يمكن التراجع عن الحذف. هل تريد المتابعة؟'))return;
- state=defaultState();save();applyTheme();renderAll();toast('تم حذف البيانات');
-}
-function renderAnalyticsCurrency(){
- $('analyticsCurrency').value=state.settings.currency;
- $('currency').value=state.settings.currency;
- $('lifeMode').value=state.settings.lifeMode;
-}
-function renderAll(){
- save();applyTheme();
- renderHome();renderTransactions();renderBills();renderGoals();renderDebts();renderAnalytics();
- renderBudgetForm();renderBudgetDetail();renderSurvival();renderReport();renderAnalyticsCurrency();
-}
-function init(){
- fillCategories();
- $('txDate').value=today();$('txMonth').value=monthNow();$('billMonth').value=monthNow();
- $('budgetMonth').value=monthNow();$('analyticsMonth').value=monthNow();
- renderBudgetForm();showMore('budget');applyTheme();renderAll();
-}
-init();
-</script>
-</body>
-</html>
+"use strict";
+
+/*
+  مصروفي - نسخة محلية مستقلة.
+  مفتاح البيانات الجديد مستقل عن المفتاح القديم.
+  لا تحذف هذه البيانات عند تحديث الصفحة.
+*/
+const STORAGE_KEY = "masroofi_standalone_v1";
+const OLD_STORAGE_KEY = "masroofi_complete_v1";
+
+const EXPENSE_CATEGORIES = [
+  "طعام ومشروبات","منزل وفواتير","مواصلات","صحة ودواء",
+  "تسوق","تعليم","ترفيه","اتصالات وإنترنت","التزامات","أخرى"
+];
+const INCOME_CATEGORIES = [
+  "راتب","عمل إضافي","مشروع","استثمار","هدية","دخل آخر"
+];
+
+function localDate(d=new Date()){
+  const year=d.getFullYear();
+  const month=String(d.getMonth()+1).padStart(2,"0");
+  const day=String(d.getDate()).padStart(2,"0");
