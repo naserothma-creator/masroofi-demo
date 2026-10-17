@@ -6,12 +6,13 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 public class MainActivity extends Activity {
-
     private WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        deleteDatabase("webview.db");
 
         webView = new WebView(this);
 
@@ -20,9 +21,12 @@ public class MainActivity extends Activity {
         settings.setDomStorageEnabled(true);
         settings.setAllowFileAccess(true);
         settings.setAllowContentAccess(true);
+        settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+
+        webView.clearCache(true);
 
         webView.loadUrl(
-                "https://naserothma-creator.github.io/masroofi-demo/"
+                "https://naserothma-creator.github.io/masroofi-demo/?v=1.2"
         );
 
         setContentView(webView);
