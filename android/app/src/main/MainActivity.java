@@ -5,14 +5,17 @@ import android.os.Bundle;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
+
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.net.Uri;
+
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.WebChromeClient;
+
 import android.widget.Toast;
 import android.util.Base64;
 
@@ -37,6 +40,7 @@ public class MainActivity extends Activity {
         webView = new WebView(this);
 
         WebSettings settings = webView.getSettings();
+
         settings.setJavaScriptEnabled(true);
         settings.setDomStorageEnabled(true);
         settings.setAllowFileAccess(true);
@@ -44,6 +48,8 @@ public class MainActivity extends Activity {
         settings.setDatabaseEnabled(true);
 
         webView.setWebViewClient(new WebViewClient());
+
+        // ضروري لتشغيل confirm و alert
         webView.setWebChromeClient(new WebChromeClient());
 
         webView.addJavascriptInterface(
@@ -54,7 +60,9 @@ public class MainActivity extends Activity {
         webView.setBackgroundColor(0xFFFFFFFF);
 
         // تشغيل التطبيق من داخل APK دون إنترنت
-        webView.loadUrl("file:///android_asset/index.html");
+        webView.loadUrl(
+                "file:///android_asset/index.html"
+        );
 
         setContentView(webView);
     }
@@ -63,7 +71,10 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public void saveState(String data) {
-            getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+            getSharedPreferences(
+                    PREFS_NAME,
+                    MODE_PRIVATE
+            )
                     .edit()
                     .putString(STATE_KEY, data)
                     .apply();
@@ -74,7 +85,8 @@ public class MainActivity extends Activity {
             return getSharedPreferences(
                     PREFS_NAME,
                     MODE_PRIVATE
-            ).getString(STATE_KEY, "");
+            )
+                    .getString(STATE_KEY, "");
         }
 
         @JavascriptInterface
@@ -96,14 +108,20 @@ public class MainActivity extends Activity {
                 String fileName =
                         "masroofi-backup-" + time + ".json";
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    saveWithMediaStore(fileBytes, fileName);
+                if (Build.VERSION.SDK_INT >= 29) {
+                    saveForModernAndroid(
+                            fileBytes,
+                            fileName
+                    );
                 } else {
-                    saveForOldAndroid(fileBytes, fileName);
+                    saveForOldAndroid(
+                            fileBytes,
+                            fileName
+                    );
                 }
 
                 showMessage(
-                        "تم حفظ النسخة في Downloads/Masroofi/Backups"
+                        "تم حفظ النسخة في مجلد التنزيلات"
                 );
 
             } catch (Exception error) {
@@ -113,14 +131,16 @@ public class MainActivity extends Activity {
             }
         }
 
-        private void saveWithMediaStore(
+        private void saveForModernAndroid(
                 byte[] fileBytes,
                 String fileName
         ) throws Exception {
 
-            ContentResolver resolver = getContentResolver();
+            ContentResolver resolver =
+                    getContentResolver();
 
-            ContentValues values = new ContentValues();
+            ContentValues values =
+                    new ContentValues();
 
             values.put(
                     MediaStore.Downloads.DISPLAY_NAME,
@@ -132,12 +152,13 @@ public class MainActivity extends Activity {
                     "application/json"
             );
 
+            // الحفظ مباشرة داخل Downloads
             values.put(
                     MediaStore.Downloads.RELATIVE_PATH,
                     Environment.DIRECTORY_DOWNLOADS
-                            + "/Masroofi/Backups"
             );
 
+            // إخفاء الملف مؤقتًا أثناء الكتابة
             values.put(
                     MediaStore.Downloads.IS_PENDING,
                     1
@@ -167,7 +188,10 @@ public class MainActivity extends Activity {
             outputStream.flush();
             outputStream.close();
 
-            ContentValues completed = new ContentValues();
+            // إظهار الملف للمستخدم بعد اكتمال الكتابة
+            ContentValues completed =
+                    new ContentValues();
+
             completed.put(
                     MediaStore.Downloads.IS_PENDING,
                     0
@@ -186,25 +210,21 @@ public class MainActivity extends Activity {
                 String fileName
         ) throws Exception {
 
-            File baseDirectory =
-                    Environment.getExternalStoragePublicDirectory(
-                            Environment.DIRECTORY_DOWNLOADS
-                    );
+            File downloadsDirectory =
+                    Environment
+                            .getExternalStoragePublicDirectory(
+                                    Environment.DIRECTORY_DOWNLOADS
+                            );
 
-            File backupDirectory = new File(
-                    baseDirectory,
-                    "Masroofi/Backups"
-            );
-
-            if (!backupDirectory.exists()
-                    && !backupDirectory.mkdirs()) {
+            if (!downloadsDirectory.exists()
+                    && !downloadsDirectory.mkdirs()) {
                 throw new Exception(
-                        "تعذر إنشاء مجلد النسخ"
+                        "تعذر إنشاء مجلد التنزيلات"
                 );
             }
 
             File backupFile = new File(
-                    backupDirectory,
+                    downloadsDirectory,
                     fileName
             );
 
