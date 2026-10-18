@@ -34,7 +34,6 @@ public class MainActivity extends Activity {
 
     private static final String PREFS_NAME = "MasroofiData";
     private static final String STATE_KEY = "app_state";
-
     private static final int FILE_CHOOSER_REQUEST = 1001;
 
     private ValueCallback<Uri[]> fileChooserCallback;
@@ -55,7 +54,6 @@ public class MainActivity extends Activity {
         webView.setWebViewClient(new WebViewClient());
 
         webView.setWebChromeClient(new WebChromeClient() {
-
             @Override
             public boolean onShowFileChooser(
                     WebView webView,
@@ -76,12 +74,12 @@ public class MainActivity extends Activity {
                             FILE_CHOOSER_REQUEST
                     );
 
+                    return true;
+
                 } catch (Exception error) {
                     fileChooserCallback = null;
                     return false;
                 }
-
-                return true;
             }
         });
 
@@ -92,7 +90,7 @@ public class MainActivity extends Activity {
 
         webView.setBackgroundColor(0xFFFFFFFF);
 
-        // تشغيل التطبيق دون إنترنت
+        // تشغيل التطبيق محليًا دون إنترنت
         webView.loadUrl(
                 "file:///android_asset/index.html"
         );
@@ -150,7 +148,20 @@ public class MainActivity extends Activity {
             return getSharedPreferences(
                     PREFS_NAME,
                     MODE_PRIVATE
-            ).getString(STATE_KEY, "");
+            )
+                    .getString(STATE_KEY, "");
+        }
+
+        // مسح البيانات المحفوظة داخل Android
+        @JavascriptInterface
+        public void clearState() {
+            getSharedPreferences(
+                    PREFS_NAME,
+                    MODE_PRIVATE
+            )
+                    .edit()
+                    .remove(STATE_KEY)
+                    .apply();
         }
 
         @JavascriptInterface
