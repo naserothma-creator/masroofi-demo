@@ -1,157 +1,25 @@
-package com.masroofi.app;
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.os.Build;
-import android.graphics.Color;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.net.Uri;
-import android.webkit.JavascriptInterface;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Toast;
+    <uses-permission android:name="android.permission.INTERNET" />
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.nio.charset.StandardCharsets;
-import android.util.Base64;
+    <application
+        android:allowBackup="true"
+        android:label="Masroofi"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
 
-public class MainActivity extends Activity {
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
 
-    private WebView webView;
-    private static final String PREFS_NAME = "MasroofiData";
-    private static final String STATE_KEY = "app_state";
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        </activity>
 
-        webView = new WebView(this);
+    </application>
 
-        WebSettings settings = webView.getSettings();
-        settings.setJavaScriptEnabled(true);
-        settings.setDomStorageEnabled(true);
-        settings.setAllowFileAccess(true);
-        settings.setAllowContentAccess(true);
-        settings.setDatabaseEnabled(true);
-
-        webView.setWebViewClient(new WebViewClient());
-        webView.setBackgroundColor(Color.WHITE);
-
-        webView.addJavascriptInterface(new AndroidBridge(), "AndroidBridge");
-
-        // فتح الواجهة من داخل APK دون إنترنت
-        webView.loadUrl("file:///android_asset/index.html");
-
-        setContentView(webView);
-    }
-
-    public class AndroidBridge {
-
-        @JavascriptInterface
-        public void saveState(String data) {
-            getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
-                    .edit()
-                    .putString(STATE_KEY, data)
-                    .apply();
-        }
-
-        @JavascriptInterface
-        public String getState() {
-            return getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
-                    .getString(STATE_KEY, "");
-        }
-
-        @JavascriptInterface
-        public void saveBackup(String base64Data, String fileName) {
-            try {
-                byte[] fileBytes = Base64.decode(base64Data, Base64.DEFAULT);
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    ContentResolver resolver = getContentResolver();
-
-                    ContentValues values = new ContentValues();
-                    values.put(MediaStore.Downloads.DISPLAY_NAME, fileName);
-                    values.put(
-                            MediaStore.Downloads.MIME_TYPE,
-                            "application/json"
-                    );
-                    values.put(
-                            MediaStore.Downloads.RELATIVE_PATH,
-                            Environment.DIRECTORY_DOWNLOADS
-                    );
-                    values.put(
-                            MediaStore.Downloads.IS_PENDING,
-                            1
-                    );
-
-                    Uri fileUri = resolver.insert(
-                            MediaStore.Downloads.EXTERNAL_CONTENT_URI,
-                            values
-                    );
-
-                    if (fileUri == null) {
-                        throw new Exception("تعذر إنشاء ملف النسخة");
-                    }
-
-                    try (OutputStream outputStream =
-                                 resolver.openOutputStream(fileUri)) {
-
-                        if (outputStream == null) {
-                            throw new Exception("تعذر فتح ملف النسخة");
-                        }
-
-                        outputStream.write(fileBytes);
-                        outputStream.flush();
-                    }
-
-                    values.clear();
-                    values.put(MediaStore.Downloads.IS_PENDING, 0);
-                    resolver.update(fileUri, values, null, null);
-
-                } else {
-                    File downloadsDirectory = Environment
-                            .getExternalStoragePublicDirectory(
-                                    Environment.DIRECTORY_DOWNLOADS
-                            );
-
-                    if (!downloadsDirectory.exists()) {
-                        downloadsDirectory.mkdirs();
-                    }
-
-                    File backupFile = new File(
-                            downloadsDirectory,
-                            fileName
-                    );
-
-                    try (FileOutputStream outputStream =
-                                 new FileOutputStream(backupFile)) {
-
-                        outputStream.write(fileBytes);
-                        outputStream.flush();
-                    }
-                }
-
-                showMessage("تم حفظ النسخة في مجلد التنزيلات");
-
-            } catch (Exception error) {
-                showMessage("تعذر حفظ النسخة الاحتياطية");
-            }
-        }
-    }
-
-    private void showMessage(String message) {
-        runOnUiThread(() ->
-                Toast.makeText(
-                        MainActivity.this,
-                        message,
-                        Toast.LENGTH_LONG
-                ).show()
-        );
-    }
-}
+</manifest>
