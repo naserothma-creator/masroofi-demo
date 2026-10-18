@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.net.Uri;
 
 import android.webkit.JavascriptInterface;
@@ -15,6 +16,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.WebChromeClient;
+import android.webkit.ValueCallback;
 
 import android.widget.Toast;
 import android.util.Base64;
@@ -33,6 +35,10 @@ public class MainActivity extends Activity {
     private static final String PREFS_NAME = "MasroofiData";
     private static final String STATE_KEY = "app_state";
 
+    private static final int FILE_CHOOSER_REQUEST = 1001;
+
+    private ValueCallback<Uri[]> fileChooserCallback;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +46,6 @@ public class MainActivity extends Activity {
         webView = new WebView(this);
 
         WebSettings settings = webView.getSettings();
-
         settings.setJavaScriptEnabled(true);
         settings.setDomStorageEnabled(true);
         settings.setAllowFileAccess(true);
@@ -49,8 +54,36 @@ public class MainActivity extends Activity {
 
         webView.setWebViewClient(new WebViewClient());
 
-        // ضروري لتشغيل confirm و alert
-        webView.setWebChromeClient(new WebChromeClient());
+        webView.setWebChromeClient(new WebChromeClient() {
+
+            @Override
+            public boolean onShowFileChooser(
+                    WebView webView,
+                    ValueCallback<Uri[]> callback,
+                    FileChooserParams params
+            ) {
+                if (fileChooserCallback != null) {
+                    fileChooserCallback.onReceiveValue(null);
+                }
+
+                fileChooserCallback = callback;
+
+                try {
+                    Intent intent = params.createIntent();
+
+                    startActivityForResult(
+                            intent,
+                            FILE_CHOOSER_REQUEST
+                    );
+
+                } catch (Exception error) {
+                    fileChooserCallback = null;
+                    return false;
+                }
+
+                return true;
+            }
+        });
 
         webView.addJavascriptInterface(
                 new AndroidBridge(),
@@ -59,12 +92,44 @@ public class MainActivity extends Activity {
 
         webView.setBackgroundColor(0xFFFFFFFF);
 
-        // تشغيل التطبيق من داخل APK دون إنترنت
+        // تشغيل التطبيق دون إنترنت
         webView.loadUrl(
                 "file:///android_asset/index.html"
         );
 
         setContentView(webView);
+    }
+
+    @Override
+    protected void onActivityResult(
+            int requestCode,
+            int resultCode,
+            Intent data
+    ) {
+        super.onActivityResult(
+                requestCode,
+                resultCode,
+                data
+        );
+
+        if (requestCode != FILE_CHOOSER_REQUEST) {
+            return;
+        }
+
+        Uri[] results = null;
+
+        if (resultCode == RESULT_OK && data != null) {
+            Uri selectedFile = data.getData();
+
+            if (selectedFile != null) {
+                results = new Uri[]{selectedFile};
+            }
+        }
+
+        if (fileChooserCallback != null) {
+            fileChooserCallback.onReceiveValue(results);
+            fileChooserCallback = null;
+        }
     }
 
     public class AndroidBridge {
@@ -85,8 +150,7 @@ public class MainActivity extends Activity {
             return getSharedPreferences(
                     PREFS_NAME,
                     MODE_PRIVATE
-            )
-                    .getString(STATE_KEY, "");
+            ).getString(STATE_KEY, "");
         }
 
         @JavascriptInterface
@@ -152,13 +216,11 @@ public class MainActivity extends Activity {
                     "application/json"
             );
 
-            // الحفظ مباشرة داخل Downloads
             values.put(
                     MediaStore.Downloads.RELATIVE_PATH,
                     Environment.DIRECTORY_DOWNLOADS
             );
 
-            // إخفاء الملف مؤقتًا أثناء الكتابة
             values.put(
                     MediaStore.Downloads.IS_PENDING,
                     1
@@ -170,25 +232,20 @@ public class MainActivity extends Activity {
             );
 
             if (fileUri == null) {
-                throw new Exception(
-                        "تعذر إنشاء ملف النسخة"
-                );
+                throw new Exception();
             }
 
             OutputStream outputStream =
                     resolver.openOutputStream(fileUri);
 
             if (outputStream == null) {
-                throw new Exception(
-                        "تعذر فتح ملف النسخة"
-                );
+                throw new Exception();
             }
 
             outputStream.write(fileBytes);
             outputStream.flush();
             outputStream.close();
 
-            // إظهار الملف للمستخدم بعد اكتمال الكتابة
             ContentValues completed =
                     new ContentValues();
 
@@ -218,9 +275,7 @@ public class MainActivity extends Activity {
 
             if (!downloadsDirectory.exists()
                     && !downloadsDirectory.mkdirs()) {
-                throw new Exception(
-                        "تعذر إنشاء مجلد التنزيلات"
-                );
+                throw new Exception();
             }
 
             File backupFile = new File(
