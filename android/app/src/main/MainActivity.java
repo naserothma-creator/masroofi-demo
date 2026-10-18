@@ -3,11 +3,10 @@ package com.masroofi.app;
 import android.app.Activity;
 import android.os.Bundle;
 import android.graphics.Color;
-import android.view.Gravity;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.TextView;
+import android.webkit.WebChromeClient;
 
 public class MainActivity extends Activity {
 
@@ -26,10 +25,13 @@ public class MainActivity extends Activity {
 
         webView.setWebViewClient(new WebViewClient());
 
+        // ضروري لإظهار نوافذ التأكيد الخاصة بالحذف
+        webView.setWebChromeClient(new WebChromeClient());
+
         webView.setBackgroundColor(Color.WHITE);
 
         webView.loadUrl(
-            "https://naserothma-creator.github.io/masroofi-demo/"
+                "https://naserothma-creator.github.io/masroofi-demo/"
         );
 
         setContentView(webView);
