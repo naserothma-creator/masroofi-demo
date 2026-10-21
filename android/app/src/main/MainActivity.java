@@ -90,7 +90,6 @@ public class MainActivity extends Activity {
 
         webView.setBackgroundColor(0xFFFFFFFF);
 
-        // تشغيل التطبيق محليًا دون إنترنت
         webView.loadUrl(
                 "file:///android_asset/index.html"
         );
@@ -152,7 +151,6 @@ public class MainActivity extends Activity {
                     .getString(STATE_KEY, "");
         }
 
-        // مسح البيانات المحفوظة داخل Android
         @JavascriptInterface
         public void clearState() {
             getSharedPreferences(
@@ -321,4 +319,4 @@ public class MainActivity extends Activity {
             super.onBackPressed();
         }
     }
-                }
+}
